@@ -11,7 +11,7 @@ export default function TaskBoard() {
 
   const handleAddTask = (sectionId) => {
     const newTask = {
-                      id: tasks[tasks.length - 1].id + 1000000,
+                      id: tasks.length > 0 ? tasks[tasks.length-1].id + 1000000 : 1000000,
                       name: '',
                       description: '',
                       status: sectionId,
