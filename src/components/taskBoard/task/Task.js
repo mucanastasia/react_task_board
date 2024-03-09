@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Task({ task, updateTask, deleteTask, index }) {
+export default function Task({ task, updateTask, handleDelete, handleDropOverTask, index }) {
     const handleNameChange = (e) => {
         updateTask(index, { ...task, name: e.target.value });
     };
@@ -38,6 +38,7 @@ export default function Task({ task, updateTask, deleteTask, index }) {
             e.target.classList.add('grabbing', 'taskMoving');
         }, 50);
         e.dataTransfer.setData('text/plain', taskId.toString());
+        console.log('Task that im dragging: ', taskId);
     };
 
     const handleDragEnd = (e) => {
@@ -45,12 +46,8 @@ export default function Task({ task, updateTask, deleteTask, index }) {
         e.dataTransfer.clearData();
     };
 
-    const handleDelete = () => {
-        deleteTask(task.id);
-    };
-
     return (
-        <div className='task' draggable onDragStart={(e) => handleDragStart(e, task.id)} onDragEnd={handleDragEnd} >
+        <div className='task' draggable onDragStart={(e) => handleDragStart(e, task.id)} onDragEnd={handleDragEnd} onDrop={() => handleDropOverTask(task.id)} >
 
             {task.isEditingName ? (
                 <div className='taskTitle'>
@@ -65,7 +62,7 @@ export default function Task({ task, updateTask, deleteTask, index }) {
                         autoFocus
                     />
                     <button className='btnIco btnEdit' onClick={handleEdit} />
-                    <button className='btnIco btnDelete' onClick={handleDelete}/>
+                    <button className='btnIco btnDelete' onClick={() => handleDelete(task.id)}/>
                 </div>
             ) : (
                 <div className='taskTitle'>
@@ -73,7 +70,7 @@ export default function Task({ task, updateTask, deleteTask, index }) {
                     <h5>{task.name}</h5>
                     {/* <button className='btnIco btnStar' onClick={handleStar}/> */}
                     <button className='btnIco btnEdit' onClick={handleEdit} />
-                    <button className='btnIco btnDelete' onClick={handleDelete}/>
+                    <button className='btnIco btnDelete' onClick={() => handleDelete(task.id)}/>
                 </div>
             )}
 

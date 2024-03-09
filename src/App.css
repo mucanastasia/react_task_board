@@ -166,6 +166,11 @@ h1 {
   cursor: grab;
   cursor: -webkit-grab;
 	cursor:    -moz-grab;
+  border-top: transparent 4px solid;
+}
+
+.taskHighlighted {
+  border-top: #e4cbfa 4px solid;
 }
 
 .grabbing * {

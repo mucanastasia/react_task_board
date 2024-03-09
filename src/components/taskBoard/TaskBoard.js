@@ -3,6 +3,7 @@ import Task from './task/Task';
 
 export default function TaskBoard() {
   const [tasks, setTasks] = useState([]);
+  let taskBelow = 0;
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem('taskList') || '[]');
@@ -41,22 +42,27 @@ export default function TaskBoard() {
     }
   };
 
-  const deleteTask = (taskId) => {
+  const handleDelete = (taskId) => {
     const updatedTasks = tasks.filter(task => task.id !== taskId);
     setTasks(updatedTasks);
     localStorage.setItem('taskList', JSON.stringify(updatedTasks));
   };
 
+  const handleDropOverTask = (taskId) => {
+    console.log('Task, where the task were droped: ', taskId);
+    taskBelow = taskId;
+  };
+
   const renderList = (sectionId) => {
-    const list = tasks.filter((task) => task.status === sectionId).map((task) => (
-      <Task key = {task.id} task={task} updateTask = {updateTask} deleteTask={deleteTask} index = {task.id} />
+    const list = tasks.filter((task) => task.status === sectionId).sort((a, b) => a.id - b.id).map((task) => (
+      <Task key = {task.id} task={task} updateTask = {updateTask} handleDelete={handleDelete} index = {task.id} handleDropOverTask={handleDropOverTask} />
     ));
     return list;
   };
 
   const renderCounter = (sectionId) => {
     let counter = 0;
-    const filteredTasks = tasks.filter((task) => task.status === sectionId);
+    const filteredTasks = tasks.filter((task) => task.name && task.description && task.status === sectionId);
     counter = filteredTasks.length;
     return counter;
   };
@@ -64,8 +70,17 @@ export default function TaskBoard() {
   const handleDrop = (e, newStatus) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData('text/plain');
+    console.log(taskBelow);
     const updatedTasks = tasks.map((task) => {
-      if (task.id === +taskId) {
+      // Change the logic for updating task.id
+      // refactoring...
+      if (task.id === +taskId && taskBelow > 0 && taskBelow !== task.id) {
+        return { ...task, id: taskBelow + 10, status: newStatus, done: newStatus === 'done' };
+      }
+      if (task.id === +taskId && taskBelow === 0) {
+        return { ...task, id: tasks[tasks.length-1].id + 10, status: newStatus, done: newStatus === 'done' };
+      }
+      if (task.id === +taskId && taskBelow === task.id) {
         return { ...task, status: newStatus, done: newStatus === 'done' };
       }
       return task;
