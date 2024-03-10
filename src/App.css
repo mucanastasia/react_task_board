@@ -153,10 +153,9 @@ h1 {
 }
 
 .task {
-  position: relative;
   background: #ffffff;
   padding: 8px;
-  margin: 4px 0;
+  margin: 6px 0;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -166,11 +165,31 @@ h1 {
   cursor: grab;
   cursor: -webkit-grab;
 	cursor:    -moz-grab;
-  border-top: transparent 4px solid;
+  opacity: 1;
+  transition: 0.2s ease;
 }
 
-.taskHighlighted {
-  border-top: #e4cbfa 4px solid;
+.gap {
+  margin: 6px 0;
+  background: transparent;
+  height: 0px;
+}
+
+.colorGap {
+  background: #e4cbfa;
+  margin: -5px 0;
+  height: 4px;
+  opacity: 0;
+  animation: fadeIn 250ms ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .grabbing * {
@@ -182,7 +201,7 @@ h1 {
 
 .taskMoving {
   opacity: 0.4;
-  transition: ease 0.5s;
+  transition: ease 0.2s;
 }
 
 .emptyList {
@@ -234,6 +253,7 @@ button {
   border-radius: 6px;
   transition: 0.3s ease;
   margin-bottom: 16px;
+  margin-top: 2px;
 }
 
 .btnEssential:hover {

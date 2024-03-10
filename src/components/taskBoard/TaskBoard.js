@@ -89,49 +89,37 @@ export default function TaskBoard() {
     localStorage.setItem('taskList', JSON.stringify(updatedTasks));
   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.currentTarget.classList.add('highlighted');
-  };
-
-  const handleDragLeaveOrDrop = (e) => {
-    e.currentTarget.classList.remove('highlighted');
-  };
-
   return (
     <>
       <div className='container'>
         <div className='containerToDo'
              id='toDo'
-             onDrop={(e) => {handleDrop(e, 'toDo'); handleDragLeaveOrDrop(e);}}
-             onDragOver={handleDragOver}
-             onDragLeave={handleDragLeaveOrDrop}>
+             onDrop={(e) => handleDrop(e, 'toDo')}>
           <div className='title titleToDo'>To do <span>{renderCounter('toDo')}</span></div>
           <div>
             {renderList('toDo')}
           </div>
+          <div className='gap'/>
           <button className="btnEssential" onClick={() => handleAddTask('toDo')}>Add a task</button>
         </div>
         <div className='containerInProgress'
              id='inProgress'
-             onDrop={(e) => {handleDrop(e, 'inProgress'); handleDragLeaveOrDrop(e);}}
-             onDragOver={handleDragOver}
-             onDragLeave={handleDragLeaveOrDrop}>
+             onDrop={(e) => handleDrop(e, 'inProgress')}>
           <div className='title titleInProgress'>In progress <span>{renderCounter('inProgress')}</span></div>
           <div>
             {renderList('inProgress')}
           </div>
+          <div className='gap'/>
           <button className="btnEssential" onClick={() => handleAddTask('inProgress')}>Add a task</button>
         </div>
         <div className='containerDone'
              id='done'
-             onDrop={(e) => {handleDrop(e, 'done'); handleDragLeaveOrDrop(e);}}
-             onDragOver={handleDragOver}
-             onDragLeave={handleDragLeaveOrDrop}>
+             onDrop={(e) => handleDrop(e, 'done')}>
           <div className='title titleDone'>Done <span>{renderCounter('done')}</span></div>
           <div>
             {renderList('done')}
           </div>
+          <div className='gap'/>
           <button className="btnEssential" onClick={() => handleAddTask('done')}>Add a task</button>
         </div>
       </div>

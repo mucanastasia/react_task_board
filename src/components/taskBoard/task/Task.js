@@ -46,8 +46,32 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
         e.dataTransfer.clearData();
     };
 
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        setShowColorGap(true);
+    };
+
+    const handleDragLeaveOrDrop = (e) => {
+        setShowColorGap(!showColorGap);
+    };
+
+    const ColorGap = () => {
+        return (
+            <div className= 'gap colorGap'/>
+        );
+    };
+
+    const [showColorGap, setShowColorGap] = React.useState(false);
+
     return (
-        <div className='task' draggable onDragStart={(e) => handleDragStart(e, task.id)} onDragEnd={handleDragEnd} onDrop={() => handleDropOverTask(task.id)} >
+        <>
+        <div className='task'
+             draggable
+             onDragStart={(e) => handleDragStart(e, task.id)}
+             onDragEnd={handleDragEnd}
+             onDrop={(e) => {handleDropOverTask(task.id); handleDragLeaveOrDrop(e);}}
+             onDragOver={handleDragOver}
+             onDragLeave={handleDragLeaveOrDrop} >
 
             {task.isEditingName ? (
                 <div className='taskTitle'>
@@ -68,7 +92,8 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
                 <div className='taskTitle'>
                     <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={handleCheck} />
                     <h5>{task.name}</h5>
-                    {/* <button className='btnIco btnStar' onClick={handleStar}/> */}
+                    {/* NOTE: note sure about pin-feature >,>
+                    <button className='btnIco btnStar' onClick={handleStar}/> */}
                     <button className='btnIco btnEdit' onClick={handleEdit} />
                     <button className='btnIco btnDelete' onClick={() => handleDelete(task.id)}/>
                 </div>
@@ -87,5 +112,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
                 <p>{task.description}</p>
             )}
         </div>
+        {showColorGap && <ColorGap />}
+        </>
     );
 }
