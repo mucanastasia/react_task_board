@@ -11,26 +11,26 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
 
     const handleBlurName = () => {
         if ((task.name?.trim() || "").length > 0) {
-            updateTask(index, { ...task, isEditingName: false});
+            updateTask(index, { ...task, isEditingName: false });
         }
     };
 
     const handleBlurDescription = () => {
         if ((task.description?.trim() || "").length > 0) {
-            updateTask(index, { ...task, isEditingDescription: false});
+            updateTask(index, { ...task, isEditingDescription: false });
         }
     };
 
     const handleCheck = () => {
         if (!task.done) {
-            updateTask(index, { ...task, done: true, status: 'done',});
+            updateTask(index, { ...task, done: true, status: 'done', });
         } else {
-            updateTask(index, { ...task, done: false, status: 'toDo',});
+            updateTask(index, { ...task, done: false, status: 'toDo', });
         }
     };
 
     const handleEdit = () => {
-        updateTask(index, { ...task, isEditingName: true, isEditingDescription: true});
+        updateTask(index, { ...task, isEditingName: true, isEditingDescription: true });
     };
 
     const handleDragStart = (e, taskId) => {
@@ -57,7 +57,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
 
     const ColorGap = () => {
         return (
-            <div className= 'gap colorGap'/>
+            <div className='gap colorGap' />
         );
     };
 
@@ -65,54 +65,54 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
 
     return (
         <>
-        <div className='task'
-             draggable
-             onDragStart={(e) => handleDragStart(e, task.id)}
-             onDragEnd={handleDragEnd}
-             onDrop={(e) => {handleDropOverTask(task.id); handleDragLeaveOrDrop(e);}}
-             onDragOver={handleDragOver}
-             onDragLeave={handleDragLeaveOrDrop} >
+            <div className='task'
+                draggable
+                onDragStart={(e) => handleDragStart(e, task.id)}
+                onDragEnd={handleDragEnd}
+                onDrop={(e) => { handleDropOverTask(task.id); handleDragLeaveOrDrop(e); }}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeaveOrDrop} >
 
-            {task.isEditingName ? (
-                <div className='taskTitle'>
-                    <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={handleCheck} />
+                {task.isEditingName ? (
+                    <div className='taskTitle'>
+                        <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={handleCheck} />
+                        <input
+                            className='name'
+                            type='text'
+                            value={task.name}
+                            onChange={handleNameChange}
+                            onBlur={handleBlurName}
+                            placeholder='Add a task name here'
+                            autoFocus
+                        />
+                        <button className='btnIco btnEdit' onClick={handleEdit} />
+                        <button className='btnIco btnDelete' onClick={() => handleDelete(task.id)} />
+                    </div>
+                ) : (
+                    <div className='taskTitle'>
+                        <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={handleCheck} />
+                        <h5>{task.name}</h5>
+                        {/* NOTE: note sure about pin-feature >,>
+                        <button className='btnIco btnStar' onClick={handleStar}/> */}
+                        <button className='btnIco btnEdit' onClick={handleEdit} />
+                        <button className='btnIco btnDelete' onClick={() => handleDelete(task.id)} />
+                    </div>
+                )}
+
+                {task.isEditingDescription ? (
                     <input
-                        className='name'
+                        className='description'
                         type='text'
-                        value={task.name}
-                        onChange={handleNameChange}
-                        onBlur={handleBlurName}
-                        placeholder='Add a task name here'
-                        autoFocus
+                        value={task.description}
+                        onChange={handleDescriptionChange}
+                        onBlur={handleBlurDescription}
+                        placeholder='Add a description here'
                     />
-                    <button className='btnIco btnEdit' onClick={handleEdit} />
-                    <button className='btnIco btnDelete' onClick={() => handleDelete(task.id)}/>
-                </div>
-            ) : (
-                <div className='taskTitle'>
-                    <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={handleCheck} />
-                    <h5>{task.name}</h5>
-                    {/* NOTE: note sure about pin-feature >,>
-                    <button className='btnIco btnStar' onClick={handleStar}/> */}
-                    <button className='btnIco btnEdit' onClick={handleEdit} />
-                    <button className='btnIco btnDelete' onClick={() => handleDelete(task.id)}/>
-                </div>
-            )}
-
-            {task.isEditingDescription ? (
-                <input
-                    className='description'
-                    type='text'
-                    value={task.description}
-                    onChange={handleDescriptionChange}
-                    onBlur={handleBlurDescription}
-                    placeholder='Add a description here'
-                />
-            ) : (
-                <p>{task.description}</p>
-            )}
-        </div>
-        {showColorGap && <ColorGap />}
+                ) : (
+                    <p>{task.description}</p>
+                )}
+            </div>
+            {showColorGap && <ColorGap />}
         </>
     );
 }

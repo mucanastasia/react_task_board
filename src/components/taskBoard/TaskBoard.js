@@ -12,14 +12,15 @@ export default function TaskBoard() {
 
   const handleAddTask = (sectionId) => {
     const newTask = {
-                      id: tasks.length > 0 ? tasks[tasks.length-1].id + 1000000 : 1000000,
-                      name: '',
-                      description: '',
-                      status: sectionId,
-                      isEditingName: true,
-                      isEditingDescription: true,
-                      done: sectionId === 'done',
-                    };
+      id: tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1,
+      sortId: tasks.length > 0 ? (tasks[tasks.length - 1].id + 1) * 1000000 : 1000000,
+      name: '',
+      description: '',
+      status: sectionId,
+      isEditingName: true,
+      isEditingDescription: true,
+      done: sectionId === 'done',
+    };
     setTasks([...tasks, newTask]);
   };
 
@@ -55,7 +56,7 @@ export default function TaskBoard() {
 
   const renderList = (sectionId) => {
     const list = tasks.filter((task) => task.status === sectionId).sort((a, b) => a.id - b.id).map((task) => (
-      <Task key = {task.id} task={task} updateTask = {updateTask} handleDelete={handleDelete} index = {task.id} handleDropOverTask={handleDropOverTask} />
+      <Task key={task.id} task={task} updateTask={updateTask} handleDelete={handleDelete} index={task.id} handleDropOverTask={handleDropOverTask} />
     ));
     return list;
   };
@@ -78,7 +79,7 @@ export default function TaskBoard() {
         return { ...task, id: taskBelow + 10, status: newStatus, done: newStatus === 'done' };
       }
       if (task.id === +taskId && taskBelow === 0) {
-        return { ...task, id: tasks[tasks.length-1].id + 10, status: newStatus, done: newStatus === 'done' };
+        return { ...task, id: tasks[tasks.length - 1].id + 10, status: newStatus, done: newStatus === 'done' };
       }
       if (task.id === +taskId && taskBelow === task.id) {
         return { ...task, status: newStatus, done: newStatus === 'done' };
@@ -93,36 +94,36 @@ export default function TaskBoard() {
     <>
       <div className='container'>
         <div className='containerToDo'
-             id='toDo'
-             onDrop={(e) => handleDrop(e, 'toDo')}>
+          id='toDo'
+          onDrop={(e) => handleDrop(e, 'toDo')}>
           <div className='title titleToDo'>To do <span>{renderCounter('toDo')}</span></div>
           <div>
             {renderList('toDo')}
           </div>
-          <div className='gap'/>
+          <div className='gap' />
           <button className="btnEssential" onClick={() => handleAddTask('toDo')}>Add a task</button>
         </div>
         <div className='containerInProgress'
-             id='inProgress'
-             onDrop={(e) => handleDrop(e, 'inProgress')}>
+          id='inProgress'
+          onDrop={(e) => handleDrop(e, 'inProgress')}>
           <div className='title titleInProgress'>In progress <span>{renderCounter('inProgress')}</span></div>
           <div>
             {renderList('inProgress')}
           </div>
-          <div className='gap'/>
+          <div className='gap' />
           <button className="btnEssential" onClick={() => handleAddTask('inProgress')}>Add a task</button>
         </div>
         <div className='containerDone'
-             id='done'
-             onDrop={(e) => handleDrop(e, 'done')}>
+          id='done'
+          onDrop={(e) => handleDrop(e, 'done')}>
           <div className='title titleDone'>Done <span>{renderCounter('done')}</span></div>
           <div>
             {renderList('done')}
           </div>
-          <div className='gap'/>
+          <div className='gap' />
           <button className="btnEssential" onClick={() => handleAddTask('done')}>Add a task</button>
         </div>
       </div>
-  </>
+    </>
   );
 }
