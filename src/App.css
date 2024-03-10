@@ -51,20 +51,13 @@ h1 {
   padding: 0 10px;
 }
 
-/* h5 {
-  color: #3b3b3b;
-  font-size: 16px;
-  margin: 14px 24px 10px 14px;
-  width: 100%;
-} */
-
 .containerTitle {
   max-width: 750px;
 }
 
 .container {
   display: flex;
-  gap: 10px;
+  gap: 18px;
 }
 
 .containerToDo {
@@ -75,8 +68,7 @@ h1 {
   padding: 12px 16px;
   max-width: 650px;
   min-height: 126px;
-  border: solid 4px #fff;
-  transition: 0.5s ease;
+  transition: 0.4s ease;
 }
 
 .containerInProgress {
@@ -87,8 +79,7 @@ h1 {
   padding: 12px 16px;
   max-width: 650px;
   min-height: 126px;
-  border: solid 4px #fff;
-  transition: 0.5s ease;
+  transition: 0.4s ease;
 }
 
 .containerDone {
@@ -99,14 +90,14 @@ h1 {
   padding: 12px 16px;
   max-width: 650px;
   min-height: 126px;
-  border: solid 4px #fff;
-  transition: 0.5s ease;
+  transition: 0.4s ease;
 }
 
 .highlighted {
-  border: solid 4px #e4cbfa;
-  transition: 0.5s ease;
+  transition: 0.4s ease;
   cursor: grabbing;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  /* transform: scale(1.002); */
 }
 
 .containerButtons {
@@ -180,6 +171,7 @@ h1 {
   margin: -5px 0;
   height: 4px;
   opacity: 0;
+  z-index: 1000;
   animation: fadeIn 250ms ease forwards;
 }
 

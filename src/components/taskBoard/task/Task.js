@@ -1,36 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Task({ task, updateTask, handleDelete, handleDropOverTask, index }) {
+export default function Task({ task, updateTask, handleDelete, handleDropOverTask, id, sortId }) {
     const handleNameChange = (e) => {
-        updateTask(index, { ...task, name: e.target.value });
+        updateTask(id, { ...task, name: e.target.value });
     };
 
     const handleDescriptionChange = (e) => {
-        updateTask(index, { ...task, description: e.target.value });
+        updateTask(id, { ...task, description: e.target.value });
     };
 
     const handleBlurName = () => {
-        if ((task.name?.trim() || "").length > 0) {
-            updateTask(index, { ...task, isEditingName: false });
+        if ((task.name?.trim() || '').length > 0) {
+            updateTask(id, { ...task, isEditingName: false });
         }
     };
 
     const handleBlurDescription = () => {
-        if ((task.description?.trim() || "").length > 0) {
-            updateTask(index, { ...task, isEditingDescription: false });
+        if ((task.description?.trim() || '').length > 0) {
+            updateTask(id, { ...task, isEditingDescription: false });
         }
     };
 
+    const handleKeyEnterName = (e) => {
+        if (e.key === 'Enter' && (task.name?.trim() || '').length > 0) {
+            updateTask(id, { ...task, isEditingName: false });
+        }
+    };
+
+    const handleKeyEnterDescription = (e) => {
+        if (e.key === 'Enter' && (task.description?.trim() || '').length > 0) {
+            updateTask(id, { ...task, isEditingDescription: false });
+        }
+    };
+    // TODO: Change the logic for (un)/checking the task. Should become the last in the list.
     const handleCheck = () => {
         if (!task.done) {
-            updateTask(index, { ...task, done: true, status: 'done', });
+            updateTask(id, { ...task, done: true, status: 'done', });
         } else {
-            updateTask(index, { ...task, done: false, status: 'toDo', });
+            updateTask(id, { ...task, done: false, status: 'toDo', });
         }
     };
 
     const handleEdit = () => {
-        updateTask(index, { ...task, isEditingName: true, isEditingDescription: true });
+        updateTask(id, { ...task, isEditingName: true, isEditingDescription: true });
     };
 
     const handleDragStart = (e, taskId) => {
@@ -38,7 +50,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
             e.target.classList.add('grabbing', 'taskMoving');
         }, 50);
         e.dataTransfer.setData('text/plain', taskId.toString());
-        console.log('Task that im dragging: ', taskId);
+        console.log('Task that im dragging {taskId}: ', taskId);
     };
 
     const handleDragEnd = (e) => {
@@ -52,16 +64,10 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
     };
 
     const handleDragLeaveOrDrop = (e) => {
-        setShowColorGap(!showColorGap);
+        setShowColorGap(false);
     };
 
-    const ColorGap = () => {
-        return (
-            <div className='gap colorGap' />
-        );
-    };
-
-    const [showColorGap, setShowColorGap] = React.useState(false);
+    const [showColorGap, setShowColorGap] = useState(false);
 
     return (
         <>
@@ -69,7 +75,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
                 draggable
                 onDragStart={(e) => handleDragStart(e, task.id)}
                 onDragEnd={handleDragEnd}
-                onDrop={(e) => { handleDropOverTask(task.id); handleDragLeaveOrDrop(e); }}
+                onDrop={(e) => { handleDropOverTask(task.sortId); handleDragLeaveOrDrop(e); }}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeaveOrDrop} >
 
@@ -82,6 +88,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
                             value={task.name}
                             onChange={handleNameChange}
                             onBlur={handleBlurName}
+                            onKeyDown={handleKeyEnterName}
                             placeholder='Add a task name here'
                             autoFocus
                         />
@@ -106,13 +113,14 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
                         value={task.description}
                         onChange={handleDescriptionChange}
                         onBlur={handleBlurDescription}
+                        onKeyDown={handleKeyEnterDescription}
                         placeholder='Add a description here'
                     />
                 ) : (
                     <p>{task.description}</p>
                 )}
             </div>
-            {showColorGap && <ColorGap />}
+            {showColorGap && <div className='gap colorGap' />}
         </>
     );
 }
