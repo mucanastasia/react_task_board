@@ -60,6 +60,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
 
     const handleDragOver = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         setShowColorGap(true);
     };
 

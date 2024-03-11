@@ -3,7 +3,8 @@ import Task from './task/Task';
 
 export default function TaskBoard() {
   const [tasks, setTasks] = useState([]);
-  const [showTopColorGap, setShowTopColorGap] = useState({ show: false, section: '' });
+  const [showColorGap, setShowColorGap] = useState({ section: '', top: false, bottom: false, });
+  const [isOverContainer, setIsOverContainer] = useState({ status: false, section: '', });
   let sortIdAbove = 0;
 
   useEffect(() => {
@@ -68,11 +69,25 @@ export default function TaskBoard() {
 
   const handleDragOver = (e, sectionId) => {
     e.preventDefault();
-    setShowTopColorGap({ show: true, section: sectionId });
+    e.stopPropagation();
+    setShowColorGap({ ...showColorGap, top: true, bottom: false, section: sectionId });
   };
 
-  const handleDragLeaveOrDrop = (e) => {
-    setShowTopColorGap({ show: false, section: '' });
+  const handleDragLeaveOrDrop = () => {
+    setShowColorGap({ ...showColorGap, top: false, bottom: false, section: '' });
+  };
+
+  const handleDragOverContainer = (e, sectionId) => {
+    e.preventDefault();
+    setIsOverContainer({ status: true, section: sectionId, });
+    setShowColorGap({ ...showColorGap, bottom: true, top: false, section: sectionId });
+    console.log('container ', sectionId, ':', isOverContainer);
+  };
+
+  const handleDragLeaveContainer = () => {
+    setIsOverContainer({ status: false, section: '', });
+    setShowColorGap({ ...showColorGap, bottom: false, top: false, section: '' });
+    console.log('container Leave:', isOverContainer);
   };
 
   const handleDrop = (e, newStatus) => {
@@ -82,7 +97,12 @@ export default function TaskBoard() {
     let sortIdBelow = 0;
     const tasksBelow = tasks.filter((task) => task.status === newStatus && task.sortId > sortIdAbove)
       .sort((a, b) => a.sortId - b.sortId);
-    sortIdBelow = tasksBelow.length > 0 ? tasksBelow.at(0).sortId : sortIdAbove + 2000000;
+
+    if (isOverContainer.status && isOverContainer.section === newStatus && sortIdAbove === 0) {
+      sortIdBelow = tasksBelow.length > 0 ? tasksBelow[tasksBelow.length - 1].sortId * 2 + 2000000 : 2000000;
+    } else {
+      sortIdBelow = tasksBelow.length > 0 ? tasksBelow.at(0).sortId : sortIdAbove + 2000000;
+    }
 
     console.log('sortIdBelow', sortIdBelow);
     console.log('sortIdAbove', sortIdAbove);
@@ -105,44 +125,60 @@ export default function TaskBoard() {
     <>
       <div className='container'>
         {/*TODO: Extract to a component and pass only sectionId and name */}
+
         <div className='containerToDo'
           id='toDo'
-          onDrop={(e) => handleDrop(e, 'toDo')}>
+          onDrop={(e) => { handleDrop(e, 'toDo'); handleDragLeaveContainer(); }}
+          onDragOver={(e) => handleDragOverContainer(e, 'toDo')}
+          onDragLeave={handleDragLeaveContainer}>
+
+
           <div className='title titleToDo'
-            onDrop={(e) => { handleDrop(e, 'toDo'); handleDragLeaveOrDrop(e); }}
+            onDrop={(e) => { handleDrop(e, 'toDo'); handleDragLeaveOrDrop(); }}
             onDragOver={(e) => handleDragOver(e, 'toDo')}
             onDragLeave={handleDragLeaveOrDrop} >To do <span>{renderCounter('toDo')}</span></div>
+
+
           <div>
-            {showTopColorGap.show && showTopColorGap.section === 'toDo' && <div className='colorGap' />}
+            {showColorGap.top && showColorGap.section === 'toDo' && <div className='colorGap' />}
             {renderList('toDo')}
+            {showColorGap.bottom && showColorGap.section === 'toDo' && <div className='colorGap' />}
           </div>
           <div className='gap' />
           <button className="btnEssential" onClick={() => handleAddTask('toDo')}>Add a task</button>
         </div>
         <div className='containerInProgress'
           id='inProgress'
-          onDrop={(e) => handleDrop(e, 'inProgress')}>
+          onDrop={(e) => { handleDrop(e, 'inProgress'); handleDragLeaveContainer(); }}
+          onDragOver={(e) => handleDragOverContainer(e, 'inProgress')}
+          onDragLeave={handleDragLeaveContainer}>
+
           <div className='title titleInProgress'
-            onDrop={(e) => { handleDrop(e, 'inProgress'); handleDragLeaveOrDrop(e); }}
+            onDrop={(e) => { handleDrop(e, 'inProgress'); handleDragLeaveOrDrop(); }}
             onDragOver={(e) => handleDragOver(e, 'inProgress')}
             onDragLeave={handleDragLeaveOrDrop}>In progress <span>{renderCounter('inProgress')}</span></div>
           <div>
-            {showTopColorGap.show && showTopColorGap.section === 'inProgress' && <div className='colorGap' />}
+            {showColorGap.top && showColorGap.section === 'inProgress' && <div className='colorGap' />}
             {renderList('inProgress')}
+            {showColorGap.bottom && showColorGap.section === 'inProgress' && <div className='colorGap' />}
           </div>
           <div className='gap' />
           <button className="btnEssential" onClick={() => handleAddTask('inProgress')}>Add a task</button>
         </div>
         <div className='containerDone'
           id='done'
-          onDrop={(e) => handleDrop(e, 'done')}>
+          onDrop={(e) => { handleDrop(e, 'done'); handleDragLeaveContainer(); }}
+          onDragOver={(e) => handleDragOverContainer(e, 'done')}
+          onDragLeave={handleDragLeaveContainer}>
+
           <div className='title titleDone'
-            onDrop={(e) => { handleDrop(e, 'done'); handleDragLeaveOrDrop(e); }}
+            onDrop={(e) => { handleDrop(e, 'done'); handleDragLeaveOrDrop(); }}
             onDragOver={(e) => handleDragOver(e, 'done')}
             onDragLeave={handleDragLeaveOrDrop}>Done <span>{renderCounter('done')}</span></div>
           <div>
-            {showTopColorGap.show && showTopColorGap.section === 'done' && <div className='colorGap' />}
+            {showColorGap.top && showColorGap.section === 'done' && <div className='colorGap' />}
             {renderList('done')}
+            {showColorGap.bottom && showColorGap.section === 'done' && <div className='colorGap' />}
           </div>
           <div className='gap' />
           <button className="btnEssential" onClick={() => handleAddTask('done')}>Add a task</button>
