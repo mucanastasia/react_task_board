@@ -89,7 +89,7 @@ export default function TaskBoard() {
 
     const updatedTasks = tasks.map((task) => {
       if (task.id === +taskId) {
-        if (sortIdAbove === task.sortId) {
+        if (sortIdAbove === task.sortId && task.status === newStatus) {
           return task;
         } else {
           return { ...task, sortId: (sortIdAbove + sortIdBelow) / 2, status: newStatus, done: newStatus === 'done' };
