@@ -167,7 +167,7 @@ h1 {
 }
 
 .colorGap {
-  background: #e4cbfa;
+  background: #9a68d3;
   margin: -5px 0;
   height: 4px;
   opacity: 0;
@@ -254,26 +254,12 @@ button {
   transition: 0.3s ease;
 }
 
-.btnMinor {
-  background-color: #a5a5a5;
-}
-
-.btnMinor:hover {
-  background-color: #c0c0c0;
-  transition: 0.3s ease;
-}
-
 p {
   font-size: 14px;
   line-height: 17px;
   padding: 0 0 0 14px;
   flex: 8;
   margin: 0 8px 14px 32px;
-}
-
-.checkedTask {
-  background-color: #cbf3cb;
-  transition: 0.5s ease;
 }
 
 .taskTitle {
@@ -295,6 +281,11 @@ p {
 .btnCheck {
   background-image: url('components/taskBoard/task/icons/check_dark.svg');
   margin: 14px 14px 10px 14px;
+  opacity: 50%;
+}
+
+.btnCheck:hover {
+  background-image: url('components/taskBoard/task/icons/check_hover.svg');
 }
 
 .btnDone {
@@ -348,12 +339,6 @@ p {
   background-color: #feeea6;
 }
 
-
-.disabled {
-  display: none;
-}
-
-
 input {
   border: 0;
   border-bottom: #a5a5a5 dotted 1px;
@@ -391,15 +376,18 @@ h5 {
   padding: 0;
 }
 
-@media only screen and (min-width: 769px) {
-  .containerTitle {
-    margin-left: 100px;
+@supports (background: -webkit-named-image(i)) {
+  /* Styles for Safari only */
+  .description {
+    line-height: 19px;
+    width: 81%;
+    margin-right: 24px;
   }
+}
+
+@media only screen and (min-width: 769px) {
   .container {
     margin: 2%;
-  }
-  .containerButtons {
-    margin-left: 100px;
   }
 }
 
