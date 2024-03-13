@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Task from './task/Task';
+import AutoFillTasks from './AutoFillTasks';
 
 export default function TaskBoard() {
   const [tasks, setTasks] = useState([]);
@@ -13,9 +14,10 @@ export default function TaskBoard() {
   }, []);
 
   const handleAddTask = (sectionId) => {
+    const filteredAndSortedList = tasks.filter((task) => task.status === sectionId).sort((a, b) => a.sortId - b.sortId);
     const newTask = {
       id: tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1,
-      sortId: tasks.length > 0 ? (tasks[tasks.length - 1].id + 1) * 1000000 : 1000000,
+      sortId: tasks.length > 0 ? filteredAndSortedList.at([filteredAndSortedList.length - 1]).sortId + 1000000 : 1000000,
       name: '',
       description: '',
       status: sectionId,
@@ -26,17 +28,21 @@ export default function TaskBoard() {
     setTasks([...tasks, newTask]);
   };
 
+  const updateLocalstorage = (updatedTasks) => {
+    const filteredUpdatedTasks = updatedTasks.filter((task) => (task.name?.trim() || '').length > 0 && (task.description?.trim() || '').length > 0);
+    localStorage.setItem('storedTasks', JSON.stringify(filteredUpdatedTasks));
+  };
+
   const updateTask = (taskId, updatedTaskData) => {
     const updatedTasks = tasks.map(task => task.id === taskId ? { ...task, ...updatedTaskData } : task);
     setTasks(updatedTasks);
-    const filteredUpdatedTasks = updatedTasks.filter((task) => (task.name?.trim() || '').length > 0 && (task.description?.trim() || '').length > 0);
-    localStorage.setItem('storedTasks', JSON.stringify(filteredUpdatedTasks));
+    updateLocalstorage(updatedTasks);
   };
 
   const handleDelete = (taskId) => {
     const updatedTasks = tasks.filter(task => task.id !== taskId);
     setTasks(updatedTasks);
-    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks));
+    updateLocalstorage(updatedTasks);
   };
 
   const handleCheck = (taskId, sectionId) => {
@@ -54,7 +60,7 @@ export default function TaskBoard() {
       return task;
     });
     setTasks(updatedTasks);
-    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks));
+    updateLocalstorage(updatedTasks);
   };
 
   const renderList = (sectionId) => {
@@ -150,7 +156,7 @@ export default function TaskBoard() {
       return task;
     });
     setTasks(updatedTasks);
-    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks));
+    updateLocalstorage(updatedTasks);
   };
 
   return (
@@ -173,7 +179,7 @@ export default function TaskBoard() {
             {showColorGap.bottom && showColorGap.section === 'toDo' && <div className='colorGap' />}
           </div>
           <div className='gap' />
-          <button className="btnEssential" onClick={() => handleAddTask('toDo')}>Add a task</button>
+          <button className='btnEssential' onClick={() => handleAddTask('toDo')}>Add a task</button>
         </div>
         <div className='containerInProgress'
           id='inProgress'
@@ -190,7 +196,7 @@ export default function TaskBoard() {
             {showColorGap.bottom && showColorGap.section === 'inProgress' && <div className='colorGap' />}
           </div>
           <div className='gap' />
-          <button className="btnEssential" onClick={() => handleAddTask('inProgress')}>Add a task</button>
+          <button className='btnEssential' onClick={() => handleAddTask('inProgress')}>Add a task</button>
         </div>
         <div className='containerDone'
           id='done'
@@ -207,9 +213,10 @@ export default function TaskBoard() {
             {showColorGap.bottom && showColorGap.section === 'done' && <div className='colorGap' />}
           </div>
           <div className='gap' />
-          <button className="btnEssential" onClick={() => handleAddTask('done')}>Add a task</button>
+          <button className='btnEssential' onClick={() => handleAddTask('done')}>Add a task</button>
         </div>
       </div>
+      <AutoFillTasks tasks={tasks} setTasks={setTasks} />
     </>
   );
 }

@@ -153,13 +153,17 @@ h1 {
   flex-wrap: wrap;
   min-height: 94px;
   z-index: 1;
+  opacity: 1;
+  transition: 0.2s ease;
+  border: 1px solid transparent;
+  cursor: text;
+}
+
+.task[draggable="true"] {
   cursor: move;
   cursor: grab;
   cursor: -webkit-grab;
 	cursor:    -moz-grab;
-  opacity: 1;
-  transition: 0.2s ease;
-  border: 1px solid transparent;
 }
 
 .gap {
@@ -255,6 +259,24 @@ button {
   cursor: pointer;
   background-color: rgb(255, 255, 255, 0.8);
   transition: 0.3s ease;
+}
+
+.btnScnd {
+  background-image: url('/src/components/taskBoard/task/icons/star.svg');
+  background-color: rgb(255, 255, 255, 0.4);
+  background-repeat: no-repeat;
+  background-position: 26px;
+  text-align: left;
+  padding: 0 26px 0 52px;
+  width: 100%;
+  height: 34px;
+  border: 0;
+  color: #8a8a8a;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  transition: 0.3s ease;
+  margin-bottom: 16px;
+  margin-top: 2px;
 }
 
 p {
