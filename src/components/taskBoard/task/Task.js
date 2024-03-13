@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-export default function Task({ task, updateTask, handleDelete, handleDropOverTask, id, sortId }) {
+export default function Task({ task, updateTask, handleCheck, handleDelete, handleDropOverTask, id }) {
+    const [showColorGap, setShowColorGap] = useState({ top: false, bottom: false });
+
     const handleNameChange = (e) => {
         updateTask(id, { ...task, name: e.target.value });
     };
@@ -32,17 +34,29 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
             updateTask(id, { ...task, isEditingDescription: false });
         }
     };
-    // TODO: Change the logic for (un)/checking the task. Should become the last in the list.
-    const handleCheck = () => {
-        if (!task.done) {
-            updateTask(id, { ...task, done: true, status: 'done', });
-        } else {
-            updateTask(id, { ...task, done: false, status: 'toDo', });
-        }
-    };
 
     const handleEdit = () => {
         updateTask(id, { ...task, isEditingName: true, isEditingDescription: true });
+    };
+
+    const createDragImage = (e) => {
+        // Styles for the custom ghost drag image
+        const dragImage = e.target.cloneNode(true);
+        dragImage.style.width = `${e.target.offsetWidth}px`;
+        dragImage.style.height = `${e.target.offsetHeight}px`;
+        dragImage.style.backgroundColor = 'rgb(255, 255, 255, 0.7)';
+        dragImage.style.color = 'rgb(0, 0, 0, 0.5)';
+        dragImage.style.position = 'absolute';
+        dragImage.style.border = '1px dashed #dddddd';
+        dragImage.style.top = '-99999px';
+        dragImage.firstElementChild.style.opacity = '0.5';
+        document.body.appendChild(dragImage);
+        const rect = e.target.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const offsetY = e.clientY - rect.top;
+        e.dataTransfer.setDragImage(dragImage, offsetX, offsetY);
+        // Removing the clone image
+        setTimeout(() => document.body.removeChild(dragImage), 0);
     };
 
     const handleDragStart = (e, taskId) => {
@@ -50,7 +64,8 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
             e.target.classList.add('grabbing', 'taskMoving');
         }, 50);
         e.dataTransfer.setData('text/plain', taskId.toString());
-        console.log('Task that im dragging {taskId}: ', taskId);
+        //console.log('Task that im dragging {taskId}: ', taskId);
+        createDragImage(e);
     };
 
     const handleDragEnd = (e) => {
@@ -61,28 +76,29 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
     const handleDragOver = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        setShowColorGap(true);
+        const containerRect = e.currentTarget.getBoundingClientRect();
+        const positionPercentage = ((e.clientY - containerRect.top) / containerRect.height) * 100;
+        positionPercentage <= 50 ? setShowColorGap({ top: true, bottom: false }) : setShowColorGap({ top: false, bottom: true });
     };
 
     const handleDragLeaveOrDrop = (e) => {
-        setShowColorGap(false);
+        setShowColorGap({ top: false, bottom: false });
     };
-
-    const [showColorGap, setShowColorGap] = useState(false);
 
     return (
         <>
+            {showColorGap.top && <div className='gap colorGap' />}
             <div className='task'
-                draggable
+                draggable={!task.isEditingName && !task.isEditingDescription}
                 onDragStart={(e) => handleDragStart(e, task.id)}
                 onDragEnd={handleDragEnd}
-                onDrop={(e) => { handleDropOverTask(task.sortId); handleDragLeaveOrDrop(e); }}
+                onDrop={(e) => { handleDropOverTask(task.sortId, task.status, showColorGap); handleDragLeaveOrDrop(e); }}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeaveOrDrop} >
 
                 {task.isEditingName ? (
                     <div className='taskTitle'>
-                        <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={handleCheck} />
+                        <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={() => handleCheck(task.id, task.status)} />
                         <input
                             className='name'
                             type='text'
@@ -98,7 +114,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
                     </div>
                 ) : (
                     <div className='taskTitle'>
-                        <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={handleCheck} />
+                        <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={() => handleCheck(task.id, task.status)} />
                         <h5>{task.name}</h5>
                         {/* NOTE: note sure about pin-feature >,>
                         <button className='btnIco btnStar' onClick={handleStar}/> */}
@@ -121,7 +137,7 @@ export default function Task({ task, updateTask, handleDelete, handleDropOverTas
                     <p>{task.description}</p>
                 )}
             </div>
-            {showColorGap && <div className='gap colorGap' />}
+            {showColorGap.bottom && <div className='gap colorGap' />}
         </>
     );
 }

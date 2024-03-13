@@ -4,7 +4,7 @@ import Task from './task/Task';
 export default function TaskBoard() {
   const [tasks, setTasks] = useState([]);
   const [showColorGap, setShowColorGap] = useState({ section: '', top: false, bottom: false, });
-  const [isOverContainer, setIsOverContainer] = useState({ status: false, section: '', });
+  const [isOverContainer, setIsOverContainer] = useState({ yes: false, section: '', });
   let sortIdAbove = 0;
 
   useEffect(() => {
@@ -39,6 +39,24 @@ export default function TaskBoard() {
     localStorage.setItem('storedTasks', JSON.stringify(updatedTasks));
   };
 
+  const handleCheck = (taskId, sectionId) => {
+    let lastSortId = 0;
+    let newStatus = '';
+    (sectionId === 'inProgress' || sectionId === 'toDo') ? newStatus = 'done' : newStatus = 'toDo';
+    const filteredAndSortedList = tasks.filter((task) => task.status === newStatus).sort((a, b) => a.sortId - b.sortId);
+    lastSortId = filteredAndSortedList.length > 0 ? filteredAndSortedList.at([filteredAndSortedList.length - 1]).sortId : 0;
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId && !task.done) {
+        return { ...task, done: true, status: 'done', sortId: lastSortId + 1000000, };
+      } else if (task.id === taskId && task.done) {
+        return { ...task, done: false, status: 'toDo', sortId: lastSortId + 1000000, };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks));
+  };
+
   const renderList = (sectionId) => {
     const list = tasks.filter((task) => task.status === sectionId)
       .sort((a, b) => a.sortId - b.sortId)
@@ -48,8 +66,8 @@ export default function TaskBoard() {
           task={task}
           updateTask={updateTask}
           handleDelete={handleDelete}
+          handleCheck={handleCheck}
           id={task.id}
-          sortId={task.sortId}
           handleDropOverTask={handleDropOverTask}
         />
       ));
@@ -62,9 +80,19 @@ export default function TaskBoard() {
     counter = filteredTasks.length;
     return counter;
   };
-  const handleDropOverTask = (sortId) => {
-    console.log('Task, where the task were droped {sortId}: ', sortId);
-    sortIdAbove = sortId;
+  const handleDropOverTask = (overSortId, sectionId, position) => {
+    //console.log('Task, where the task were droped {sortId}: ', overSortId);
+    if (position.bottom && !position.top) {
+      sortIdAbove = overSortId;
+      //console.log('bottom');
+    } else if (position.top && !position.bottom) {
+      const tasksAbove = tasks.filter((task) => task.status === sectionId && task.sortId < overSortId)
+        .sort((a, b) => a.sortId - b.sortId);
+      //console.log(tasksAbove);
+      sortIdAbove = tasksAbove.length > 0 ? tasksAbove.at([tasksAbove.length - 1]).sortId : 0;
+      //console.log('top');
+    }
+    //console.log(sortIdAbove);
   };
 
   const handleDragOver = (e, sectionId) => {
@@ -79,34 +107,38 @@ export default function TaskBoard() {
 
   const handleDragOverContainer = (e, sectionId) => {
     e.preventDefault();
-    setIsOverContainer({ status: true, section: sectionId, });
+    const containerRect = e.currentTarget.getBoundingClientRect();
+    const isNearTop = (e.clientY - containerRect.top) < 60; // 60px from the top of the container
+    //console.log(isNearTop, ' : ', e.clientY);
+    if (isNearTop) {
+      setShowColorGap({ ...showColorGap, top: true, bottom: false, section: sectionId });
+      setIsOverContainer({ yes: false, section: '', });
+      //console.log(isOverContainer);
+      return;
+    }
+    setIsOverContainer({ yes: true, section: sectionId, });
     setShowColorGap({ ...showColorGap, bottom: true, top: false, section: sectionId });
-    console.log('container ', sectionId, ':', isOverContainer);
+    //console.log('container ', sectionId, ':', isOverContainer);
   };
 
   const handleDragLeaveContainer = () => {
-    setIsOverContainer({ status: false, section: '', });
+    setIsOverContainer({ yes: false, section: '', });
     setShowColorGap({ ...showColorGap, bottom: false, top: false, section: '' });
-    console.log('container Leave:', isOverContainer);
+    // console.log('container Leave:', isOverContainer);
   };
 
   const handleDrop = (e, newStatus) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData('text/plain');
-    console.log('transferData', +taskId);
     let sortIdBelow = 0;
     const tasksBelow = tasks.filter((task) => task.status === newStatus && task.sortId > sortIdAbove)
       .sort((a, b) => a.sortId - b.sortId);
 
-    if (isOverContainer.status && isOverContainer.section === newStatus && sortIdAbove === 0) {
+    if (isOverContainer.yes && isOverContainer.section === newStatus && sortIdAbove === 0) {
       sortIdBelow = tasksBelow.length > 0 ? tasksBelow[tasksBelow.length - 1].sortId * 2 + 2000000 : 2000000;
     } else {
       sortIdBelow = tasksBelow.length > 0 ? tasksBelow.at(0).sortId : sortIdAbove + 2000000;
     }
-
-    console.log('sortIdBelow', sortIdBelow);
-    console.log('sortIdAbove', sortIdAbove);
-
     const updatedTasks = tasks.map((task) => {
       if (task.id === +taskId) {
         if (sortIdAbove === task.sortId && task.status === newStatus) {
@@ -131,15 +163,11 @@ export default function TaskBoard() {
           onDrop={(e) => { handleDrop(e, 'toDo'); handleDragLeaveContainer(); }}
           onDragOver={(e) => handleDragOverContainer(e, 'toDo')}
           onDragLeave={handleDragLeaveContainer}>
-
-
           <div className='title titleToDo'
             onDrop={(e) => { handleDrop(e, 'toDo'); handleDragLeaveOrDrop(); }}
             onDragOver={(e) => handleDragOver(e, 'toDo')}
             onDragLeave={handleDragLeaveOrDrop} >To do <span>{renderCounter('toDo')}</span></div>
-
-
-          <div>
+          <div onDragOver={(e) => e.stopPropagation()}>
             {showColorGap.top && showColorGap.section === 'toDo' && <div className='colorGap' />}
             {renderList('toDo')}
             {showColorGap.bottom && showColorGap.section === 'toDo' && <div className='colorGap' />}
@@ -152,12 +180,11 @@ export default function TaskBoard() {
           onDrop={(e) => { handleDrop(e, 'inProgress'); handleDragLeaveContainer(); }}
           onDragOver={(e) => handleDragOverContainer(e, 'inProgress')}
           onDragLeave={handleDragLeaveContainer}>
-
           <div className='title titleInProgress'
             onDrop={(e) => { handleDrop(e, 'inProgress'); handleDragLeaveOrDrop(); }}
             onDragOver={(e) => handleDragOver(e, 'inProgress')}
             onDragLeave={handleDragLeaveOrDrop}>In progress <span>{renderCounter('inProgress')}</span></div>
-          <div>
+          <div onDragOver={(e) => e.stopPropagation()}>
             {showColorGap.top && showColorGap.section === 'inProgress' && <div className='colorGap' />}
             {renderList('inProgress')}
             {showColorGap.bottom && showColorGap.section === 'inProgress' && <div className='colorGap' />}
@@ -170,12 +197,11 @@ export default function TaskBoard() {
           onDrop={(e) => { handleDrop(e, 'done'); handleDragLeaveContainer(); }}
           onDragOver={(e) => handleDragOverContainer(e, 'done')}
           onDragLeave={handleDragLeaveContainer}>
-
           <div className='title titleDone'
             onDrop={(e) => { handleDrop(e, 'done'); handleDragLeaveOrDrop(); }}
             onDragOver={(e) => handleDragOver(e, 'done')}
             onDragLeave={handleDragLeaveOrDrop}>Done <span>{renderCounter('done')}</span></div>
-          <div>
+          <div onDragOver={(e) => e.stopPropagation()}>
             {showColorGap.top && showColorGap.section === 'done' && <div className='colorGap' />}
             {renderList('done')}
             {showColorGap.bottom && showColorGap.section === 'done' && <div className='colorGap' />}
