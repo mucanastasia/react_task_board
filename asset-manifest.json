@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react_task_board/static/css/main.5294774a.css",
-    "main.js": "/react_task_board/static/js/main.97ccebc1.js",
+    "main.css": "/react_task_board/static/css/main.594d93f1.css",
+    "main.js": "/react_task_board/static/js/main.f7c16acc.js",
     "static/js/453.139604bf.chunk.js": "/react_task_board/static/js/453.139604bf.chunk.js",
     "static/media/stared.svg": "/react_task_board/static/media/stared.48b0322d868e7c189c61.svg",
     "static/media/star.svg": "/react_task_board/static/media/star.416f02e12e18794b2be6.svg",
@@ -9,18 +9,17 @@
     "index.html": "/react_task_board/index.html",
     "static/media/edit_dark.svg": "/react_task_board/static/media/edit_dark.1bb9acc231df8b25b4e7.svg",
     "static/media/done.svg": "/react_task_board/static/media/done.4e4b6d6309d0dc2f20c6.svg",
-    "static/media/check_hover.svg": "/react_task_board/static/media/check_hover.729c876697626d665fa5.svg",
     "static/media/check_dark.svg": "/react_task_board/static/media/check_dark.bacb279c2f0981192d5e.svg",
     "static/media/cross.svg": "/react_task_board/static/media/cross.f2473bf997b08ca3c5f4.svg",
     "static/media/blue.svg": "/react_task_board/static/media/blue.f09d0a9bd8246fc44112.svg",
     "static/media/green.svg": "/react_task_board/static/media/green.9c3fab15af580c55a4df.svg",
     "static/media/grey.svg": "/react_task_board/static/media/grey.0f3c33cc30ac8a4caae6.svg",
-    "main.5294774a.css.map": "/react_task_board/static/css/main.5294774a.css.map",
-    "main.97ccebc1.js.map": "/react_task_board/static/js/main.97ccebc1.js.map",
+    "main.594d93f1.css.map": "/react_task_board/static/css/main.594d93f1.css.map",
+    "main.f7c16acc.js.map": "/react_task_board/static/js/main.f7c16acc.js.map",
     "453.139604bf.chunk.js.map": "/react_task_board/static/js/453.139604bf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5294774a.css",
-    "static/js/main.97ccebc1.js"
+    "static/css/main.594d93f1.css",
+    "static/js/main.f7c16acc.js"
   ]
 }
