@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Task from './task/Task';
-import AutoFillTasks from './AutoFillTasks';
+import DeveloperToolsTaskBoard from './DeveloperToolsTaskBoard';
 
 export default function TaskBoard() {
   const [tasks, setTasks] = useState([]);
@@ -216,7 +216,7 @@ export default function TaskBoard() {
           <button className='btnEssential' onClick={() => handleAddTask('done')}>Add a task</button>
         </div>
       </div>
-      <AutoFillTasks tasks={tasks} setTasks={setTasks} />
+      <DeveloperToolsTaskBoard tasks={tasks} setTasks={setTasks} />
     </>
   );
 }

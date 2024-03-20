@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AutoFillTasks({ tasks, setTasks }) {
+export default function DeveloperToolsTaskBoard({ tasks, setTasks }) {
     const handleAutoFillTasks = () => {
         const autoFillTasks = [
             {
@@ -109,11 +109,14 @@ function AutoFillTasks({ tasks, setTasks }) {
         localStorage.setItem('storedTasks', JSON.stringify(autoFillTasks));
     };
 
+    const handleDeleteAll = () => {
+        setTasks([]);
+        localStorage.setItem('storedTasks', JSON.stringify([]));
+    };
+
     return (
         <div className='containerButtons'>
-            {tasks.length === 0 && <button className='btnEssential' onClick={handleAutoFillTasks}>Auto fill task board </button>}
+            {tasks.length === 0 ? <button className='btnScnd autoFill' onClick={handleAutoFillTasks}>Auto fill task board</button> : <button className='btnScnd deleteAll' onClick={handleDeleteAll}>Delete all tasks</button>}
         </div>
     );
-}
-
-export default AutoFillTasks;
+};
