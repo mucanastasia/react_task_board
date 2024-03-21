@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getTasksFromLocalstorage, updateLocalstorage } from '../../services/localStorageService';
 import Task from './task/Task';
 import DeveloperToolsTaskBoard from './DeveloperToolsTaskBoard';
 
@@ -9,7 +10,7 @@ export default function TaskBoard() {
   let sortIdAbove = 0;
 
   useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem('storedTasks') || '[]');
+    const storedTasks = getTasksFromLocalstorage('storedTasks');
     setTasks(storedTasks);
   }, []);
 
@@ -28,21 +29,16 @@ export default function TaskBoard() {
     setTasks([...tasks, newTask]);
   };
 
-  const updateLocalstorage = (updatedTasks) => {
-    const filteredUpdatedTasks = updatedTasks.filter((task) => (task.name?.trim() || '').length > 0 && (task.description?.trim() || '').length > 0);
-    localStorage.setItem('storedTasks', JSON.stringify(filteredUpdatedTasks));
-  };
-
   const updateTask = (taskId, updatedTaskData) => {
     const updatedTasks = tasks.map(task => task.id === taskId ? { ...task, ...updatedTaskData } : task);
     setTasks(updatedTasks);
-    updateLocalstorage(updatedTasks);
+    updateLocalstorage('storedTasks', updatedTasks);
   };
 
   const handleDelete = (taskId) => {
     const updatedTasks = tasks.filter(task => task.id !== taskId);
     setTasks(updatedTasks);
-    updateLocalstorage(updatedTasks);
+    updateLocalstorage('storedTasks', updatedTasks);
   };
 
   const handleCheck = (taskId, sectionId) => {
@@ -60,7 +56,7 @@ export default function TaskBoard() {
       return task;
     });
     setTasks(updatedTasks);
-    updateLocalstorage(updatedTasks);
+    updateLocalstorage('storedTasks', updatedTasks);
   };
 
   const renderList = (sectionId) => {
@@ -156,7 +152,7 @@ export default function TaskBoard() {
       return task;
     });
     setTasks(updatedTasks);
-    updateLocalstorage(updatedTasks);
+    updateLocalstorage('storedTasks', updatedTasks);
   };
 
   return (
