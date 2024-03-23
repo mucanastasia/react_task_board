@@ -60,7 +60,7 @@ h1 {
   gap: 18px;
 }
 
-.containerToDo {
+.container_toDo {
   flex: 1;
   background: #eeeeee;
   border-radius: 10px;
@@ -72,7 +72,7 @@ h1 {
   transition: 0.4s ease;
 }
 
-.containerInProgress {
+.container_inProgress {
   flex: 1;
   background: #e2ecf5;
   border-radius: 10px;
@@ -84,7 +84,7 @@ h1 {
   transition: 0.4s ease;
 }
 
-.containerDone {
+.container_done {
   flex: 1;
   background: #def2d3;
   border-radius: 10px;
@@ -118,18 +118,18 @@ h1 {
   box-sizing: border-box;
 }
 
-.titleToDo {
-  background-image: url('/src/components/taskBoard/task/icons/grey.svg');
+.title_toDo {
+  background-image: url('./assets/icons/grey.svg');
   background-color: #e3e3e3;
 }
 
-.titleInProgress {
-  background-image: url('/src/components/taskBoard/task/icons/blue.svg');
+.title_inProgress {
+  background-image: url('./assets/icons/blue.svg');
   background-color: #cee1f3;
 }
 
-.titleDone {
-  background-image: url('/src/components/taskBoard/task/icons/green.svg');
+.title_done {
+  background-image: url('./assets/icons/green.svg');
   background-color: #cee9bf;
 }
 
@@ -223,7 +223,7 @@ button {
 
 .btnEssential {
   font-size: 14px;
-  background-image: url('/src/components/taskBoard/task/icons/cross.svg');
+  background-image: url('./assets/icons/cross.svg');
   background-color: rgb(255, 255, 255, 0.4);
   background-repeat: no-repeat;
   background-position: 26px;
@@ -271,12 +271,12 @@ button {
 }
 
 .autoFill {
-  background-image: url('/src/components/taskBoard/task/icons/auto_fill.svg');
+  background-image: url('./assets/icons/auto_fill.svg');
 }
 
 .deleteAll {
   /* opacity: 0; */
-  background-image: url('/src/components/taskBoard/task/icons/delete_all.svg');
+  background-image: url('./assets/icons/delete_all.svg');
 }
 
 .containerButtons {
@@ -309,22 +309,22 @@ p {
 }
 
 .btnCheck {
-  background-image: url('components/taskBoard/task/icons/check_dark.svg');
+  background-image: url('./assets/icons/check_dark.svg');
   margin: 14px 14px 10px 14px;
   opacity: 50%;
 }
 
 .btnCheck:hover {
-  background-image: url('components/taskBoard/task/icons/check_hover.svg');
+  background-image: url('./assets/icons/check_hover.svg');
 }
 
 .btnDone {
-  background-image: url('components/taskBoard/task/icons/done.svg');
+  background-image: url('./assets/icons/done.svg');
   margin: 14px 14px 10px 14px;
 }
 
 .btnStar {
-  background-image: url('components/taskBoard/task/icons/star.svg');
+  background-image: url('./assets/icons/star.svg');
   margin: 12px 4px 0px 0px;
   width: 26px;
   height: 22px;
@@ -332,21 +332,21 @@ p {
 }
 
 .btnStared {
-  background-image: url('components/taskBoard/task/icons/stared.svg');
+  background-image: url('./assets/icons/stared.svg');
   margin: 12px 4px 0px 0px;
   width: 26px;
   height: 22px;
 }
 
 .btnEdit {
-  background-image: url('components/taskBoard/task/icons/edit_dark.svg');
+  background-image: url('./assets/icons/edit_dark.svg');
   margin: 10px 4px 0px 0px;
   width: 26px;
   height: 22px;
   opacity: 50%;
 }
 .btnDelete {
-  background-image: url('components/taskBoard/task/icons/delete_dark.svg');
+  background-image: url('./assets/icons/delete_dark.svg');
   margin: 10px 14px 0px 4px;
   width: 26px;
   height: 22px;
