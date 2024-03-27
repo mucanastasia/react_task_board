@@ -8,7 +8,7 @@ export default function TaskBoard() {
     const { setTasks } = useTasks();
 
     useEffect(() => {
-        const storedTasks = getTasksFromLocalstorage('storedTasks');
+        const storedTasks = getTasksFromLocalstorage();
         setTasks(storedTasks);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

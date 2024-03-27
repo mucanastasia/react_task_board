@@ -1,50 +1,63 @@
 import React, { useState } from 'react';
-import { useTasks } from '../../../TasksContext';
-import { updateLocalstorage } from '../../../services/localStorageService.js';
-// import taskHelper from '../../../helpers/taskHelper.js';
-import Container from './container/Container.js';
-import HeaderOfSection from './sectionHeader/SectionHeader.js';
+import { useTasks } from '../../../TasksContext.js';
+import taskHelpers from '../../../helpers/taskHelpers.js';
+import SectionHeader from './sectionHeader/SectionHeader.js';
 import ListOfTasks from './listOfTasks/ListOfTasks.js';
 
 export default function Section({ sectionId, name }) {
     const { tasks, setTasks } = useTasks();
-    // const { addTask } = taskHelper(tasks, setTasks);
+    const { addTask, processDropOnSection } = taskHelpers(tasks, setTasks);
     //
     // const [showColorGap, setShowColorGap] = useState({ section: '', top: false, bottom: false, });
     //
-    const [isOverContainer, setIsOverContainer] = useState({ yes: false, section: '', });
-    let sortIdAbove = 0;
+    const [isOverContainer, setIsOverContainer] = useState({ top: false, bottom: false, section: '', });
+    // const [sortIdAbove, setSortIdAbove] = useState(0);
 
-    const processDrop = (e, newStatus) => {
+    //TODO: rename
+    const handleDragOverContainer = (e, sectionId) => {
         e.preventDefault();
-        const taskId = e.dataTransfer.getData('text/plain');
-        let sortIdBelow = 0;
-        const tasksBelow = tasks.filter((task) => task.status === newStatus && task.sortId > sortIdAbove)
-            .sort((a, b) => a.sortId - b.sortId);
-
-        if (isOverContainer.yes && isOverContainer.section === newStatus && sortIdAbove === 0) {
-            sortIdBelow = tasksBelow.length > 0 ? tasksBelow[tasksBelow.length - 1].sortId * 2 + 2000000 : 2000000;
-        } else {
-            sortIdBelow = tasksBelow.length > 0 ? tasksBelow.at(0).sortId : sortIdAbove + 2000000;
+        const containerRect = e.currentTarget.getBoundingClientRect();
+        const isNearTop = (e.clientY - containerRect.top) < 60; // 60px from the top of the container
+        //console.log(isNearTop, ' : ', e.clientY);
+        if (isNearTop) {
+            // setShowColorGap({ ...showColorGap, top: true, bottom: false, section: sectionId });
+            setIsOverContainer({ top: true, bottom: false, section: sectionId, });
+            //console.log(isOverContainer);
+            return;
         }
-        const updatedTasks = tasks.map((task) => {
-            if (task.id === +taskId) {
-                if (sortIdAbove === task.sortId && task.status === newStatus) {
-                    return task;
-                } else {
-                    return { ...task, sortId: (sortIdAbove + sortIdBelow) / 2, status: newStatus, done: newStatus === 'done' };
-                }
-            }
-            return task;
-        });
-        setTasks(updatedTasks);
-        updateLocalstorage('storedTasks', updatedTasks);
+        setIsOverContainer({ top: false, bottom: true, section: sectionId, });
+        // setShowColorGap({ ...showColorGap, bottom: true, top: false, section: sectionId });
+        //console.log('container ', sectionId, ':', isOverContainer);
+    };
+
+    const handleDrop = (e) => {
+        console.log('Drop over a section');
+        e.preventDefault();
+        processDropOnSection(e, sectionId, isOverContainer);
+    };
+
+    //TODO: rename
+    const handleDragLeaveContainer = () => {
+        setIsOverContainer({ top: false, bottom: false, section: '', });
+        // setShowColorGap({ ...showColorGap, bottom: false, top: false, section: '' });
+        // console.log('container Leave:', isOverContainer);
+    };
+
+    const handleClick = () => {
+        addTask(sectionId);
     };
 
     return (
-        <Container sectionId={sectionId} setIsOverContainer={setIsOverContainer} processDrop={processDrop}>
-            <HeaderOfSection sectionId={sectionId} name={name} />
-            <ListOfTasks sectionId={sectionId} sortIdAbove={sortIdAbove} />
-        </Container>
+        <div className={`container_${sectionId}`}
+            onDrop={handleDrop}
+            onDragOver={(e) => handleDragOverContainer(e, sectionId)} //TODO: handler
+            onDragLeave={handleDragLeaveContainer}>
+
+            <SectionHeader sectionId={sectionId} name={name} />
+            <ListOfTasks sectionId={sectionId} />
+
+            <div className='gap' />
+            <button className='btnEssential' onClick={handleClick}>Add a task</button>
+        </div>
     );
 };

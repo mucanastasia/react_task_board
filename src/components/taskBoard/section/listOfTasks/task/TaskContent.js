@@ -14,7 +14,7 @@ export default function TaskContent({ task, id }) {
     return (
         <>
             <div className='taskTitle'>
-                <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={() => processCheck(task.id, task.status)} />
+                <button className={`btnIco ${task.done ? 'btnDone' : 'btnCheck'}`} onClick={() => processCheck(task)} />
                 {
                     task.isEditingName
                         ? <Input type='name' id={id} task={task} value={task.name} placeholder='Add a task name here' />

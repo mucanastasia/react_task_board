@@ -9,12 +9,12 @@ export default function DeveloperToolsTaskBoard() {
     const handleAutoFillTasks = () => {
         const autoFillTasks = exampleTasks;
         setTasks(autoFillTasks);
-        updateLocalstorage('storedTasks', autoFillTasks);
+        updateLocalstorage(autoFillTasks);
     };
 
     const handleDeleteAll = () => {
         setTasks([]);
-        updateLocalstorage('storedTasks', []);
+        updateLocalstorage([]);
     };
 
     return (

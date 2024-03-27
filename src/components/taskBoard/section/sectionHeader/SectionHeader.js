@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTasks } from '../../../../TasksContext';
-import taskHelper from '../../../../helpers/taskHelpers';
+import taskHelpers from '../../../../helpers/taskHelpers';
 
 export default function SectionHeader({ sectionId, name }) {
     const { tasks } = useTasks();
-    const { countTasksInSection } = taskHelper(tasks);
+    const { countTasksInSection } = taskHelpers(tasks);
 
     return (
         <div className={`title title_${sectionId}`}>
