@@ -10,6 +10,9 @@ export default function TaskContent({ task, id }) {
     const handleEdit = () => {
         updateTask(id, { ...task, isEditingName: true, isEditingDescription: true });
     };
+    const handleDelete = () => {
+        deleteTask(task.id);
+    };
 
     return (
         <>
@@ -21,7 +24,7 @@ export default function TaskContent({ task, id }) {
                         : <h5>{task.name}</h5>
                 }
                 <button className='btnIco btnEdit' onClick={handleEdit} />
-                <button className='btnIco btnDelete' onClick={() => deleteTask(task.id)} />
+                <button className='btnIco btnDelete' onClick={handleDelete} />
             </div>
 
             {

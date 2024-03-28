@@ -11,10 +11,8 @@ export default function Section({ sectionId, name }) {
     // const [showColorGap, setShowColorGap] = useState({ section: '', top: false, bottom: false, });
     //
     const [isOverContainer, setIsOverContainer] = useState({ top: false, bottom: false, section: '', });
-    // const [sortIdAbove, setSortIdAbove] = useState(0);
 
-    //TODO: rename
-    const handleDragOverContainer = (e, sectionId) => {
+    const handleDragOver = (e) => {
         e.preventDefault();
         const containerRect = e.currentTarget.getBoundingClientRect();
         const isNearTop = (e.clientY - containerRect.top) < 60; // 60px from the top of the container
@@ -22,12 +20,12 @@ export default function Section({ sectionId, name }) {
         if (isNearTop) {
             // setShowColorGap({ ...showColorGap, top: true, bottom: false, section: sectionId });
             setIsOverContainer({ top: true, bottom: false, section: sectionId, });
-            //console.log(isOverContainer);
+            // console.log('container top ', sectionId, ':', isOverContainer);
             return;
         }
         setIsOverContainer({ top: false, bottom: true, section: sectionId, });
         // setShowColorGap({ ...showColorGap, bottom: true, top: false, section: sectionId });
-        //console.log('container ', sectionId, ':', isOverContainer);
+        // console.log('container bottom ', sectionId, ':', isOverContainer);
     };
 
     const handleDrop = (e) => {
@@ -36,8 +34,7 @@ export default function Section({ sectionId, name }) {
         processDropOnSection(e, sectionId, isOverContainer);
     };
 
-    //TODO: rename
-    const handleDragLeaveContainer = () => {
+    const handleDragLeave = () => {
         setIsOverContainer({ top: false, bottom: false, section: '', });
         // setShowColorGap({ ...showColorGap, bottom: false, top: false, section: '' });
         // console.log('container Leave:', isOverContainer);
@@ -50,8 +47,8 @@ export default function Section({ sectionId, name }) {
     return (
         <div className={`container_${sectionId}`}
             onDrop={handleDrop}
-            onDragOver={(e) => handleDragOverContainer(e, sectionId)} //TODO: handler
-            onDragLeave={handleDragLeaveContainer}>
+            onDragOver={handleDragOver} //TODO: handler
+            onDragLeave={handleDragLeave}>
 
             <SectionHeader sectionId={sectionId} name={name} />
             <ListOfTasks sectionId={sectionId} />

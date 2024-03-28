@@ -10,12 +10,12 @@ export default function Task({ task, id }) {
     const { tasks, setTasks } = useTasks();
     const { getSortIdAbove, processDropBetween } = taskHelpers(tasks, setTasks);
 
-    const handleDragStart = (e, taskId) => {
+    const handleDragStart = (e) => {
         setTimeout(() => {
             e.target.classList.add('grabbing', 'taskMoving');
         }, 50);
-        e.dataTransfer.setData('text/plain', taskId.toString());
-        //console.log('Task that im dragging {taskId}: ', taskId);
+        e.dataTransfer.setData('text/plain', task.id.toString());
+        // console.log('Task that im dragging {taskId}: ', task.id);
         createDragImage(e);
     };
 
@@ -50,7 +50,7 @@ export default function Task({ task, id }) {
             {showColorGap.top && <div className='gap colorGap' />}
             <div className='task'
                 draggable={!task.isEditingName && !task.isEditingDescription}
-                onDragStart={(e) => handleDragStart(e, task.id)} //TODO: handler
+                onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}

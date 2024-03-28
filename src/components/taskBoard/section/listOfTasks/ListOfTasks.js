@@ -8,7 +8,6 @@ export default function ListOfTasks({ sectionId }) {
     const { getFilteredAndSortedList } = taskHelpers(tasks, setTasks);
 
     const renderList = (sectionId) => {
-        //TODO: filter and sort func from taskHelpers
         const list = getFilteredAndSortedList(sectionId)
             .map((task) => (
                 <Task
