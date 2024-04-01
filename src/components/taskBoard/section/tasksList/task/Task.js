@@ -16,7 +16,6 @@ export default function Task({ task, id }) {
             e.target.classList.add('grabbing', 'taskMoving');
         }, 50);
         e.dataTransfer.setData('text/plain', task.id.toString());
-        // console.log('Task that im dragging {taskId}: ', task.id);
         createDragImage(e);
     };
 

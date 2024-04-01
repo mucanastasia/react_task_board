@@ -60,16 +60,12 @@ export default function taskHelpers(tasks, setTasks) {
 
     const getSortIdAbove = (draggedTaskId, taskSortId, sectionId, { top, bottom }) => {
         let sortIdAbove = 0;
-        // console.log('Task, where the task were droped {sortId}: ', overSortId);
         if (bottom) {
             sortIdAbove = taskSortId;
-            // console.log('bottom');
         } else if (top) {
             const tasksAbove = getSectionTasks(sectionId)
                 .filter((task) => task.id !== draggedTaskId && task.sortId < taskSortId);
-            // console.log(tasksAbove);
             sortIdAbove = tasksAbove.length > 0 ? tasksAbove.at([tasksAbove.length - 1]).sortId : 0;
-            // console.log('top');
         }
         return sortIdAbove;
     };
