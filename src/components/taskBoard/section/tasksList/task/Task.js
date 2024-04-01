@@ -3,6 +3,7 @@ import { createDragImage } from '../../../../../helpers/dragHelpers';
 import { useTasks } from '../../../../../TasksContext';
 import taskHelpers from '../../../../../helpers/taskHelpers';
 import TaskContent from './TaskContent';
+import DropPointer from '../../DropPointer';
 
 export default function Task({ task, id }) {
     const [showColorGap, setShowColorGap] = useState({ top: false, bottom: false });
@@ -32,22 +33,24 @@ export default function Task({ task, id }) {
         positionPercentage <= 50 ? setShowColorGap({ top: true, bottom: false }) : setShowColorGap({ top: false, bottom: true });
     };
 
-    const handleDragLeaveOrDrop = (e) => {
+    const handleDragLeaveOrDrop = () => {
         setShowColorGap({ top: false, bottom: false });
     };
 
     const handleDrop = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        console.log('drop over a task');
-        sortIdAbove = getSortIdAbove(task.sortId, task.status, showColorGap);
-        processDropBetween(e, task.status, sortIdAbove);
-        handleDragLeaveOrDrop(e);
+        const draggedTaskId = +e.dataTransfer.getData('text/plain');
+        if (task.id !== draggedTaskId) {
+            sortIdAbove = getSortIdAbove(draggedTaskId, task.sortId, task.status, showColorGap);
+            processDropBetween(draggedTaskId, task.status, sortIdAbove);
+        }
+        handleDragLeaveOrDrop();
     };
 
     return (
         <>
-            {showColorGap.top && <div className='gap colorGap' />}
+            <DropPointer show={showColorGap.top} />
             <div className='task'
                 draggable={!task.isEditingName && !task.isEditingDescription}
                 onDragStart={handleDragStart}
@@ -59,7 +62,7 @@ export default function Task({ task, id }) {
                 <TaskContent task={task} id={id} />
 
             </div>
-            {showColorGap.bottom && <div className='gap colorGap' />}
+            <DropPointer show={showColorGap.bottom} />
         </>
     );
 }

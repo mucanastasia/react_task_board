@@ -2,13 +2,20 @@ import { updateLocalstorage } from "../services/localStorageService";
 
 export default function taskHelpers(tasks, setTasks) {
 
-    const getFilteredAndSortedList = (sectionId) => {
+    const sortIdOffset = 1000000;
+
+    const getSectionTasks = (sectionId) => {
         return tasks.filter(task => task.status === sectionId).sort((a, b) => a.sortId - b.sortId);
     };
 
     const getSortIdToAppend = (sectionId) => {
-        const filteredAndSortedList = getFilteredAndSortedList(sectionId);
-        return filteredAndSortedList.length > 0 ? filteredAndSortedList.at([filteredAndSortedList.length - 1]).sortId + 1000000 : 1000000
+        const sectionTasks = getSectionTasks(sectionId);
+        return sectionTasks.length > 0 ? sectionTasks.at([sectionTasks.length - 1]).sortId + sortIdOffset : sortIdOffset;
+    };
+
+    const saveTasks = (updatedTasks) => {
+        setTasks(updatedTasks);
+        updateLocalstorage(updatedTasks);
     };
 
     const createTask = (sectionId) => {
@@ -33,18 +40,16 @@ export default function taskHelpers(tasks, setTasks) {
 
     const updateTask = (taskId, updatedTaskData) => {
         const updatedTasks = tasks.map(task => task.id === taskId ? { ...task, ...updatedTaskData } : task);
-        setTasks(updatedTasks);
-        updateLocalstorage(updatedTasks);
+        saveTasks(updatedTasks);
     };
 
     const deleteTask = (taskId) => {
         const updatedTasks = tasks.filter(task => task.id !== taskId);
-        setTasks(updatedTasks);
-        updateLocalstorage(updatedTasks);
+        saveTasks(updatedTasks);
     };
 
     const countTasksInSection = (sectionId) => {
-        return getFilteredAndSortedList(sectionId).length;
+        return getSectionTasks(sectionId).length;
     };
 
     const processCheck = (task) => {
@@ -53,15 +58,15 @@ export default function taskHelpers(tasks, setTasks) {
         updateTask(task.id, { ...task, done: !task.done, status: newStatus, sortId: newSortId });
     };
 
-    const getSortIdAbove = (taskSortId, sectionId, position) => {
+    const getSortIdAbove = (draggedTaskId, taskSortId, sectionId, { top, bottom }) => {
         let sortIdAbove = 0;
         // console.log('Task, where the task were droped {sortId}: ', overSortId);
-        if (position.bottom && !position.top) {
+        if (bottom) {
             sortIdAbove = taskSortId;
             // console.log('bottom');
-        } else if (position.top && !position.bottom) {
-            const tasksAbove = getFilteredAndSortedList(sectionId)
-                .filter((task) => task.status === sectionId && task.sortId < taskSortId);
+        } else if (top) {
+            const tasksAbove = getSectionTasks(sectionId)
+                .filter((task) => task.id !== draggedTaskId && task.sortId < taskSortId);
             // console.log(tasksAbove);
             sortIdAbove = tasksAbove.length > 0 ? tasksAbove.at([tasksAbove.length - 1]).sortId : 0;
             // console.log('top');
@@ -69,46 +74,34 @@ export default function taskHelpers(tasks, setTasks) {
         return sortIdAbove;
     };
 
-    const getSortIdToInsertBetween = (tasksBelow, sortIdAbove) => {
-        return tasksBelow.length > 0 ? tasksBelow.at(0).sortId : sortIdAbove + 2000000;
+    const getSortIdBetween = (draggedTaskId, newStatus, sortIdAbove) => {
+        const tasksBelow = getSectionTasks(newStatus)
+            .filter((task) => task.id !== draggedTaskId && task.sortId > sortIdAbove);
+        if (tasksBelow.length === 0) {
+            return sortIdAbove + sortIdOffset;
+        }
+        const sortIdBelow = tasksBelow.at(0).sortId;
+        return (sortIdAbove + sortIdBelow) / 2;
     };
 
-    const updateDroppedTask = (e, newStatus, sortIdAbove, sortIdBelow) => {
-        const taskId = e.dataTransfer.getData('text/plain');
-        const updatedTasks = tasks.map((task) => {
-            if (task.id === +taskId) {
-                if ((sortIdAbove === task.sortId || task.sortId === sortIdBelow) && task.status === newStatus) {
-                    return task;
-                } else {
-                    return { ...task, sortId: (sortIdAbove + sortIdBelow) / 2, status: newStatus, done: newStatus === 'done' };
-                }
+    const processDropBetween = (draggedTaskId, newStatus, sortIdAbove) => {
+        const newSortId = getSortIdBetween(draggedTaskId, newStatus, sortIdAbove);
+        updateTask(draggedTaskId, { sortId: newSortId, status: newStatus, done: newStatus === 'done' });
+    };
+
+    const processDropOnSection = (draggedTaskId, { top, bottom, sectionId }) => {
+        if (bottom) {
+            const sectionTasks = getSectionTasks(sectionId);
+            if (sectionTasks.length === 0 || sectionTasks[sectionTasks.length - 1].id !== draggedTaskId) {
+                const newSortId = getSortIdToAppend(sectionId);
+                updateTask(draggedTaskId, { sortId: newSortId, status: sectionId, done: sectionId === 'done' });
             }
-            return task;
-        });
-        setTasks(updatedTasks);
-        updateLocalstorage(updatedTasks);
-    };
-
-    const processDropBetween = (e, newStatus, sortIdAbove) => {
-        const tasksBelow = getFilteredAndSortedList(newStatus)
-            .filter((task) => task.status === newStatus && task.sortId > sortIdAbove);
-        const sortIdBelow = getSortIdToInsertBetween(tasksBelow, sortIdAbove);
-        updateDroppedTask(e, newStatus, sortIdAbove, sortIdBelow);
-    };
-
-    const processDropOnSection = (e, newStatus, isOverContainer) => {
-        const tasksBelow = getFilteredAndSortedList(newStatus);
-
-        if (isOverContainer.bottom && isOverContainer.section === newStatus) {
-            const sortIdBelow = getSortIdToAppend(newStatus);
-            updateDroppedTask(e, newStatus, sortIdBelow, sortIdBelow);
-
-        } else if (isOverContainer.top && isOverContainer.section === newStatus) {
+        } else if (top) {
             const sortIdAbove = 0;
-            const sortIdBelow = getSortIdToInsertBetween(tasksBelow, sortIdAbove);
-            updateDroppedTask(e, newStatus, sortIdAbove, sortIdBelow);
+            const newSortId = getSortIdBetween(draggedTaskId, sectionId, sortIdAbove);
+            updateTask(draggedTaskId, { sortId: newSortId, status: sectionId, done: sectionId === 'done' });
         }
     };
 
-    return { getFilteredAndSortedList, addTask, updateTask, deleteTask, countTasksInSection, processCheck, getSortIdAbove, processDropOnSection, processDropBetween };
+    return { getSectionTasks, addTask, updateTask, deleteTask, countTasksInSection, processCheck, getSortIdAbove, processDropOnSection, processDropBetween, saveTasks };
 }
