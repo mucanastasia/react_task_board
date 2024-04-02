@@ -5,8 +5,8 @@ import taskHelpers from '../../../../../helpers/taskHelpers';
 import TaskContent from './TaskContent';
 import DropPointer from '../../DropPointer';
 
-export default function Task({ task, id }) {
-    const [showColorGap, setShowColorGap] = useState({ top: false, bottom: false });
+export default function Task({ task }) {
+    const [showPointer, setShowPointer] = useState({ top: false, bottom: false });
     let sortIdAbove = 0;
     const { tasks, setTasks } = useTasks();
     const { getSortIdAbove, processDropBetween } = taskHelpers(tasks, setTasks);
@@ -29,11 +29,11 @@ export default function Task({ task, id }) {
         e.stopPropagation();
         const containerRect = e.currentTarget.getBoundingClientRect();
         const positionPercentage = ((e.clientY - containerRect.top) / containerRect.height) * 100;
-        positionPercentage <= 50 ? setShowColorGap({ top: true, bottom: false }) : setShowColorGap({ top: false, bottom: true });
+        positionPercentage <= 50 ? setShowPointer({ top: true, bottom: false }) : setShowPointer({ top: false, bottom: true });
     };
 
     const handleDragLeaveOrDrop = () => {
-        setShowColorGap({ top: false, bottom: false });
+        setShowPointer({ top: false, bottom: false });
     };
 
     const handleDrop = (e) => {
@@ -41,7 +41,7 @@ export default function Task({ task, id }) {
         e.preventDefault();
         const draggedTaskId = +e.dataTransfer.getData('text/plain');
         if (task.id !== draggedTaskId) {
-            sortIdAbove = getSortIdAbove(draggedTaskId, task.sortId, task.status, showColorGap);
+            sortIdAbove = getSortIdAbove(draggedTaskId, task.sortId, task.status, showPointer);
             processDropBetween(draggedTaskId, task.status, sortIdAbove);
         }
         handleDragLeaveOrDrop();
@@ -49,7 +49,7 @@ export default function Task({ task, id }) {
 
     return (
         <>
-            <DropPointer show={showColorGap.top} />
+            <DropPointer show={showPointer.top} />
             <div className='task'
                 draggable={!task.isEditingName && !task.isEditingDescription}
                 onDragStart={handleDragStart}
@@ -58,10 +58,10 @@ export default function Task({ task, id }) {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeaveOrDrop} >
 
-                <TaskContent task={task} id={id} />
+                <TaskContent task={task} />
 
             </div>
-            <DropPointer show={showColorGap.bottom} />
+            <DropPointer show={showPointer.bottom} />
         </>
     );
 }

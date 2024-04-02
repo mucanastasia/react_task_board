@@ -13,7 +13,6 @@ export default function ListOfTasks({ sectionId }) {
                 <Task
                     key={task.id}
                     task={task}
-                    id={task.id}
                 />
             ));
         return list;

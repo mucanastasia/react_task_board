@@ -28,7 +28,6 @@ export default function taskHelpers(tasks, setTasks) {
             status: sectionId,
             isEditingName: true,
             isEditingDescription: true,
-            done: sectionId === 'done',
         };
         return newTask;
     };
@@ -55,7 +54,7 @@ export default function taskHelpers(tasks, setTasks) {
     const processCheck = (task) => {
         const newStatus = (task.status === 'done') ? 'toDo' : 'done';
         const newSortId = getSortIdToAppend(newStatus);
-        updateTask(task.id, { ...task, done: !task.done, status: newStatus, sortId: newSortId });
+        updateTask(task.id, { status: newStatus, sortId: newSortId });
     };
 
     const getSortIdAbove = (draggedTaskId, taskSortId, sectionId, { top, bottom }) => {
@@ -63,6 +62,7 @@ export default function taskHelpers(tasks, setTasks) {
         if (bottom) {
             sortIdAbove = taskSortId;
         } else if (top) {
+            // NOTE: finding sortIdAbove of taskSortId when inserting draggedTaskId above taskSortId
             const tasksAbove = getSectionTasks(sectionId)
                 .filter((task) => task.id !== draggedTaskId && task.sortId < taskSortId);
             sortIdAbove = tasksAbove.length > 0 ? tasksAbove.at([tasksAbove.length - 1]).sortId : 0;
@@ -82,20 +82,22 @@ export default function taskHelpers(tasks, setTasks) {
 
     const processDropBetween = (draggedTaskId, newStatus, sortIdAbove) => {
         const newSortId = getSortIdBetween(draggedTaskId, newStatus, sortIdAbove);
-        updateTask(draggedTaskId, { sortId: newSortId, status: newStatus, done: newStatus === 'done' });
+        updateTask(draggedTaskId, { sortId: newSortId, status: newStatus });
     };
 
     const processDropOnSection = (draggedTaskId, { top, bottom, sectionId }) => {
         if (bottom) {
             const sectionTasks = getSectionTasks(sectionId);
-            if (sectionTasks.length === 0 || sectionTasks[sectionTasks.length - 1].id !== draggedTaskId) {
-                const newSortId = getSortIdToAppend(sectionId);
-                updateTask(draggedTaskId, { sortId: newSortId, status: sectionId, done: sectionId === 'done' });
+            if (sectionTasks.length > 0 && sectionTasks[sectionTasks.length - 1].id === draggedTaskId) {
+                // NOTE: fixing increasing sortId when dropping the last task at the bottom of a section (the same position)
+                return;
             }
+            const newSortId = getSortIdToAppend(sectionId);
+            updateTask(draggedTaskId, { sortId: newSortId, status: sectionId });
         } else if (top) {
             const sortIdAbove = 0;
             const newSortId = getSortIdBetween(draggedTaskId, sectionId, sortIdAbove);
-            updateTask(draggedTaskId, { sortId: newSortId, status: sectionId, done: sectionId === 'done' });
+            updateTask(draggedTaskId, { sortId: newSortId, status: sectionId });
         }
     };
 

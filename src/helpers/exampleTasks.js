@@ -7,7 +7,6 @@ export const exampleTasks = [
         status: 'done',
         isEditingName: false,
         isEditingDescription: false,
-        done: true,
     },
     {
         id: 2,
@@ -17,7 +16,6 @@ export const exampleTasks = [
         status: 'done',
         isEditingName: false,
         isEditingDescription: false,
-        done: true,
     },
     {
         id: 3,
@@ -27,7 +25,6 @@ export const exampleTasks = [
         status: 'inProgress',
         isEditingName: false,
         isEditingDescription: false,
-        done: false,
     },
     {
         id: 4,
@@ -37,7 +34,6 @@ export const exampleTasks = [
         status: 'inProgress',
         isEditingName: false,
         isEditingDescription: false,
-        done: false,
     },
     {
         id: 5,
@@ -47,7 +43,6 @@ export const exampleTasks = [
         status: 'inProgress',
         isEditingName: false,
         isEditingDescription: false,
-        done: false,
     },
     {
         id: 6,
@@ -57,7 +52,6 @@ export const exampleTasks = [
         status: 'done',
         isEditingName: false,
         isEditingDescription: false,
-        done: true,
     },
     {
         id: 7,
@@ -67,7 +61,6 @@ export const exampleTasks = [
         status: 'toDo',
         isEditingName: false,
         isEditingDescription: false,
-        done: false,
     },
     {
         id: 8,
@@ -77,7 +70,6 @@ export const exampleTasks = [
         status: 'toDo',
         isEditingName: false,
         isEditingDescription: false,
-        done: false,
     },
     {
         id: 9,
@@ -87,7 +79,6 @@ export const exampleTasks = [
         status: 'toDo',
         isEditingName: false,
         isEditingDescription: false,
-        done: false,
     },
     {
         id: 10,
@@ -97,6 +88,5 @@ export const exampleTasks = [
         status: 'toDo',
         isEditingName: false,
         isEditingDescription: false,
-        done: false,
     },
 ];
