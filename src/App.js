@@ -1,5 +1,5 @@
 import React from 'react';
-import { TasksProvider } from './TasksContext';
+import { TasksProvider } from './contexts/TasksContext';
 import TaskBoard from './components/taskBoard/TaskBoard';
 import './App.css';
 

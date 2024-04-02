@@ -1,11 +1,13 @@
 import React from 'react';
-import { useTasks } from '../../../../../TasksContext';
+import { useTasks } from '../../../../../contexts/TasksContext';
+import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import taskHelper from '../../../../../helpers/taskHelpers';
 import Input from './Input';
 
-export default function TaskContent({ task }) {
+export default function TaskContent() {
     const { tasks, setTasks } = useTasks();
     const { updateTask, deleteTask, processCheck } = taskHelper(tasks, setTasks);
+    const { task } = useCurrentTask();
 
     const handleEdit = () => {
         updateTask(task.id, { ...task, isEditingName: true, isEditingDescription: true });
@@ -20,7 +22,7 @@ export default function TaskContent({ task }) {
                 <button className={`btnIco ${task.status === 'done' ? 'btnDone' : 'btnCheck'}`} onClick={() => processCheck(task)} />
                 {
                     task.isEditingName
-                        ? <Input type='name' task={task} value={task.name} placeholder='Add a task name here' />
+                        ? <Input type='name' value={task.name} placeholder='Add a task name here' />
                         : <h5>{task.name}</h5>
                 }
                 <button className='btnIco btnEdit' onClick={handleEdit} />
@@ -29,7 +31,7 @@ export default function TaskContent({ task }) {
 
             {
                 task.isEditingDescription
-                    ? <Input type='description' task={task} value={task.description} placeholder='Add a description here' />
+                    ? <Input type='description' value={task.description} placeholder='Add a description here' />
                     : <p>{task.description}</p>
             }
         </>

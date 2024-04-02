@@ -1,10 +1,12 @@
 import React from 'react';
-import { useTasks } from '../../../../../TasksContext';
+import { useTasks } from '../../../../../contexts/TasksContext';
+import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import taskHelper from '../../../../../helpers/taskHelpers';
 
-export default function Input({ task, type, value, placeholder }) {
+export default function Input({ type, value, placeholder }) {
     const { tasks, setTasks } = useTasks();
     const { updateTask } = taskHelper(tasks, setTasks);
+    const { task } = useCurrentTask();
 
     const handleChange = (e) => {
         type === 'name' && updateTask(task.id, { name: e.target.value });

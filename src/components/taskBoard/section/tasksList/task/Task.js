@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { createDragImage } from '../../../../../helpers/dragHelpers';
-import { useTasks } from '../../../../../TasksContext';
+import { useTasks } from '../../../../../contexts/TasksContext';
+import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import taskHelpers from '../../../../../helpers/taskHelpers';
 import TaskContent from './TaskContent';
 import DropPointer from '../../DropPointer';
 
-export default function Task({ task }) {
+export default function Task() {
     const [showPointer, setShowPointer] = useState({ top: false, bottom: false });
     let sortIdAbove = 0;
     const { tasks, setTasks } = useTasks();
     const { getSortIdAbove, processDropBetween } = taskHelpers(tasks, setTasks);
+    const { task } = useCurrentTask();
 
     const handleDragStart = (e) => {
         setTimeout(() => {
@@ -58,7 +60,7 @@ export default function Task({ task }) {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeaveOrDrop} >
 
-                <TaskContent task={task} />
+                <TaskContent />
 
             </div>
             <DropPointer show={showPointer.bottom} />

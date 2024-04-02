@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useTasks } from '../../TasksContext';
+import { useTasks } from '../../contexts/TasksContext.js';
 import { getTasksFromLocalstorage } from '../../services/localStorageService';
+import { SectionProvider } from '../../contexts/SectionContext.js';
 import Section from './section/Section.js';
 import DeveloperToolsTaskBoard from './DeveloperToolsTaskBoard';
 
@@ -16,9 +17,17 @@ export default function TaskBoard() {
     return (
         <>
             <div className='container'>
-                <Section sectionId='toDo' name='To do' />
-                <Section sectionId='inProgress' name='In progress' />
-                <Section sectionId='done' name='Done' />
+                <SectionProvider sectionId='toDo' name='To do' >
+                    <Section />
+                </SectionProvider>
+
+                <SectionProvider sectionId='inProgress' name='In progress' >
+                    <Section />
+                </SectionProvider>
+
+                <SectionProvider sectionId='done' name='done' >
+                    <Section />
+                </SectionProvider>
             </div>
             <DeveloperToolsTaskBoard />
         </>
