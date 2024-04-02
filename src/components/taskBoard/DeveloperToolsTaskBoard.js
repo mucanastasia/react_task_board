@@ -2,6 +2,7 @@ import React from 'react';
 import { useTasks } from '../../contexts/TasksContext';
 import taskHelpers from '../../helpers/taskHelpers';
 import { exampleTasks } from '../../helpers/exampleTasks';
+import './developerToolsTaskBoard.css';
 
 export default function DeveloperToolsTaskBoard() {
     const { tasks, setTasks } = useTasks();

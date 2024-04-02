@@ -3,6 +3,7 @@ import { useTasks } from '../../../../../contexts/TasksContext';
 import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import taskHelper from '../../../../../helpers/taskHelpers';
 import Input from './Input';
+import './taskContent.css';
 
 export default function TaskContent() {
     const { tasks, setTasks } = useTasks();

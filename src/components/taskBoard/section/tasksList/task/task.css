@@ -1,0 +1,48 @@
+.task {
+    background: #ffffff;
+    padding: 8px;
+    margin: 6px 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 94px;
+    z-index: 1;
+    opacity: 1;
+    transition: 0.2s ease;
+    border: 1px solid transparent;
+    cursor: text;
+}
+
+.task:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.task:last-child {
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.task:only-child {
+    border-radius: 6px;
+}
+
+.task[draggable="true"] {
+    cursor: move;
+    cursor: grab;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.grabbing * {
+    cursor: move !important;
+    cursor: -webkit-grabbing !important;
+    cursor: -moz-grabbing !important;
+    cursor: grabbing !important;
+}
+
+.taskMoving {
+    opacity: 0.4;
+    border: 1px dashed #e4cbfa;
+    transition: ease 0.2s;
+}

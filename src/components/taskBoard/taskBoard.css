@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    gap: 18px;
+}
+
+@media only screen and (min-width: 769px) {
+    .container {
+        margin: 2%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 10px;
+    }
+}

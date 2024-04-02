@@ -5,6 +5,7 @@ import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import taskHelpers from '../../../../../helpers/taskHelpers';
 import TaskContent from './TaskContent';
 import DropPointer from '../../../DropPointer';
+import './task.css';
 
 export default function Task() {
     const [showPointer, setShowPointer] = useState({ top: false, bottom: false });

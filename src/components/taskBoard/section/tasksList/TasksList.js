@@ -21,8 +21,8 @@ export default function ListOfTasks() {
     };
 
     return (
-        <>
+        <div>
             {renderList(sectionId)}
-        </>
+        </div>
     );
 }

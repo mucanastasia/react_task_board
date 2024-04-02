@@ -5,6 +5,7 @@ import taskHelpers from '../../../helpers/taskHelpers.js';
 import SectionHeader from './SectionHeader.js';
 import TasksList from './tasksList/TasksList.js';
 import DropPointer from '../DropPointer.js';
+import './section.css';
 
 export default function Section() {
     const { tasks, setTasks } = useTasks();

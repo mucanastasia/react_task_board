@@ -2,6 +2,7 @@ import React from 'react';
 import { useTasks } from '../../../../../contexts/TasksContext';
 import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import taskHelper from '../../../../../helpers/taskHelpers';
+import './input.css';
 
 export default function Input({ type, value, placeholder }) {
     const { tasks, setTasks } = useTasks();
