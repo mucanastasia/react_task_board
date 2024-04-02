@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTasks } from '../../contexts/TasksContext.js';
-import { getTasksFromLocalstorage } from '../../services/localStorageService';
+import { getTasksFromLocalStorage } from '../../services/localStorageService';
 import { SectionProvider } from '../../contexts/SectionContext.js';
 import Section from './section/Section.js';
 import DeveloperToolsTaskBoard from './DeveloperToolsTaskBoard';
@@ -9,7 +9,7 @@ export default function TaskBoard() {
     const { setTasks } = useTasks();
 
     useEffect(() => {
-        const storedTasks = getTasksFromLocalstorage();
+        const storedTasks = getTasksFromLocalStorage();
         setTasks(storedTasks);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

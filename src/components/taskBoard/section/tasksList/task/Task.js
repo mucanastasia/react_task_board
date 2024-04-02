@@ -4,7 +4,7 @@ import { useTasks } from '../../../../../contexts/TasksContext';
 import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import taskHelpers from '../../../../../helpers/taskHelpers';
 import TaskContent from './TaskContent';
-import DropPointer from '../../DropPointer';
+import DropPointer from '../../../DropPointer';
 
 export default function Task() {
     const [showPointer, setShowPointer] = useState({ top: false, bottom: false });

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useTasks } from '../../../contexts/TasksContext.js';
 import { useSection } from '../../../contexts/SectionContext.js';
 import taskHelpers from '../../../helpers/taskHelpers.js';
-import SectionHeader from './sectionHeader/SectionHeader.js';
+import SectionHeader from './SectionHeader.js';
 import TasksList from './tasksList/TasksList.js';
-import DropPointer from './DropPointer.js';
+import DropPointer from '../DropPointer.js';
 
 export default function Section() {
     const { tasks, setTasks } = useTasks();

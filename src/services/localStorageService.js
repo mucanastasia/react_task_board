@@ -1,6 +1,6 @@
 const key = 'storedTasks';
 
-export const getTasksFromLocalstorage = () => {
+export const getTasksFromLocalStorage = () => {
     try {
         const storedTasks = JSON.parse(localStorage.getItem(key) || '[]');
         return storedTasks;
@@ -10,7 +10,7 @@ export const getTasksFromLocalstorage = () => {
     }
 };
 
-export const updateLocalstorage = (updatedTasks) => {
+export const updateLocalStorage = (updatedTasks) => {
     const filteredUpdatedTasks = updatedTasks.filter((task) => (task.name?.trim() || '').length > 0 && (task.description?.trim() || '').length > 0);
     localStorage.setItem(key, JSON.stringify(filteredUpdatedTasks));
 };

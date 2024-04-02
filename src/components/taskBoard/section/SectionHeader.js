@@ -1,7 +1,7 @@
 import React from 'react';
-import { useTasks } from '../../../../contexts/TasksContext';
-import { useSection } from '../../../../contexts/SectionContext';
-import taskHelpers from '../../../../helpers/taskHelpers';
+import { useTasks } from '../../../contexts/TasksContext';
+import { useSection } from '../../../contexts/SectionContext';
+import taskHelpers from '../../../helpers/taskHelpers';
 
 export default function SectionHeader() {
     const { tasks } = useTasks();

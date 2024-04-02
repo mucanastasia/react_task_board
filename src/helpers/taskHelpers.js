@@ -1,4 +1,4 @@
-import { updateLocalstorage } from "../services/localStorageService";
+import { updateLocalStorage } from "../services/localStorageService";
 
 export default function taskHelpers(tasks, setTasks) {
 
@@ -15,7 +15,7 @@ export default function taskHelpers(tasks, setTasks) {
 
     const saveTasks = (updatedTasks) => {
         setTasks(updatedTasks);
-        updateLocalstorage(updatedTasks);
+        updateLocalStorage(updatedTasks);
     };
 
     const createTask = (sectionId) => {
