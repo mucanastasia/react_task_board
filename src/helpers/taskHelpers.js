@@ -62,7 +62,7 @@ export default function taskHelpers(tasks, setTasks) {
         if (bottom) {
             sortIdAbove = taskSortId;
         } else if (top) {
-            // NOTE: finding sortIdAbove of taskSortId when inserting draggedTaskId above taskSortId
+            // find task right above taskSortId
             const tasksAbove = getSectionTasks(sectionId)
                 .filter((task) => task.id !== draggedTaskId && task.sortId < taskSortId);
             sortIdAbove = tasksAbove.length > 0 ? tasksAbove.at([tasksAbove.length - 1]).sortId : 0;
@@ -77,6 +77,7 @@ export default function taskHelpers(tasks, setTasks) {
             return sortIdAbove + sortIdOffset;
         }
         const sortIdBelow = tasksBelow.at(0).sortId;
+        // assign sortId exactly in the middle between sortId above and sortId below
         return (sortIdAbove + sortIdBelow) / 2;
     };
 
@@ -89,7 +90,7 @@ export default function taskHelpers(tasks, setTasks) {
         if (bottom) {
             const sectionTasks = getSectionTasks(sectionId);
             if (sectionTasks.length > 0 && sectionTasks[sectionTasks.length - 1].id === draggedTaskId) {
-                // NOTE: fixing increasing sortId when dropping the last task at the bottom of a section (the same position)
+                // no action required if the task is already at the bottom of that section
                 return;
             }
             const newSortId = getSortIdToAppend(sectionId);

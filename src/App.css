@@ -1,22 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Helvetica, sans-serif;
+  font-family: Inter;
   color: #181818;
   font-size: 14px;
   background-color: #ffffff;
 }
 
-h1 {
-  font-weight: bold;
-  font-size: 28px;
-  color: #437bce;
-  padding: 0 10px;
-}
-
-.containerTitle {
-  max-width: 750px;
+button {
+  font-family: Inter;
 }

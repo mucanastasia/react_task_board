@@ -26,7 +26,7 @@ export default function TaskBoard() {
                     <Section />
                 </SectionProvider>
 
-                <SectionProvider sectionId='done' name='done' >
+                <SectionProvider sectionId='done' name='Done' >
                     <Section />
                 </SectionProvider>
             </div>

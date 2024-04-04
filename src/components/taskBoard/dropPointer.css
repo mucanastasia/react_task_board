@@ -5,8 +5,9 @@
 }
 
 .colorGap {
-    background: #9a68d3;
+    background: #6938EF;
     margin: -5px 0;
+    border-radius: 2px;
     height: 4px;
     opacity: 0;
     z-index: 1000;

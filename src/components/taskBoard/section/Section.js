@@ -40,7 +40,7 @@ export default function Section() {
     };
 
     return (
-        <div className={`container_${sectionId}`}
+        <div className={`section container_${sectionId}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}>
