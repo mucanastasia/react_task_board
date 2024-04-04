@@ -1,0 +1,46 @@
+.section {
+    flex: 1;
+    border-radius: 16px;
+    margin: 10px 0;
+    padding: 12px 16px;
+    max-width: 650px;
+    min-width: 380px;
+    min-height: 126px;
+    transition: 0.4s ease;
+}
+
+.container_toDo {
+    background: #eeeeee;
+}
+
+.container_inProgress {
+    background: #e2ecf5;
+}
+
+.container_done {
+    background: #def2d3;
+}
+
+.btnEssential {
+    font-size: 14px;
+    background-image: url('/src/assets/icons/cross.svg');
+    background-repeat: no-repeat;
+    background-position: 6px;
+    background-color: transparent;
+    text-align: left;
+    padding: 0 10px 0 28px;
+    width: 100%;
+    height: 34px;
+    border: 0;
+    color: #5e5e5e;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    margin-bottom: 16px;
+    margin-top: 2px;
+}
+
+.btnEssential:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, 0.4);
+    transition: 0.3s ease;
+}

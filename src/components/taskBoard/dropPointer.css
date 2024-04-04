@@ -1,0 +1,25 @@
+.gap {
+    margin: 6px 0;
+    background: transparent;
+    height: 0px;
+}
+
+.colorGap {
+    background: #6938EF;
+    margin: -5px 0;
+    border-radius: 2px;
+    height: 4px;
+    opacity: 0;
+    z-index: 1000;
+    animation: fadeIn 250ms ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,31 @@
+.title {
+    background-repeat: no-repeat;
+    background-position: 0px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 2px 20px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.title_toDo {
+    background-image: url('/src/assets/icons/grey.svg');
+}
+
+.title_inProgress {
+    background-image: url('/src/assets/icons/blue.svg');
+}
+
+.title_done {
+    background-image: url('/src/assets/icons/green.svg');
+}
+
+.title > span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #828282;
+    padding: 2px 0 2px 14px;
+}
