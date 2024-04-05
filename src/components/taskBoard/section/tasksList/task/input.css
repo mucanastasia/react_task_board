@@ -6,6 +6,19 @@
   font-family: Inter;
 }
 
+.task input::placeholder {
+  color:#717171;
+}
+
+.task.dark input {
+  border-bottom: #585858 dotted 1px;
+}
+
+.task.dark input::placeholder {
+  color:#4c4d50;
+}
+
+
 .task input:focus {
   outline: 0;
 }

@@ -110,6 +110,11 @@ p {
     margin: 0 12px 14px 32px;
 }
 
+.task.dark .name,
+.task.dark .description {
+    color: #aab4bd;
+}
+
 .name {
     width: 100%;
     font-size: 16px;
