@@ -1,26 +1,34 @@
 {
   "files": {
-    "main.css": "/react_task_board/static/css/main.a9298f15.css",
-    "main.js": "/react_task_board/static/js/main.56671209.js",
+    "main.css": "/react_task_board/static/css/main.24e8290c.css",
+    "main.js": "/react_task_board/static/js/main.82312c58.js",
     "static/js/453.139604bf.chunk.js": "/react_task_board/static/js/453.139604bf.chunk.js",
+    "static/media/delete_light.svg": "/react_task_board/static/media/delete_light.6e6ef3d49aa061ef6bf9.svg",
     "static/media/delete_dark.svg": "/react_task_board/static/media/delete_dark.4b9f70f348e49880973a.svg",
+    "static/media/delete_all_light.svg": "/react_task_board/static/media/delete_all_light.1eed49f5ec200c7f734a.svg",
+    "static/media/auto_fill_light.svg": "/react_task_board/static/media/auto_fill_light.d9d1c229011b3060b6b7.svg",
     "index.html": "/react_task_board/index.html",
     "static/media/delete_all.svg": "/react_task_board/static/media/delete_all.cbad3390f0d148c57ca6.svg",
     "static/media/auto_fill.svg": "/react_task_board/static/media/auto_fill.254fe7009887d9c0e03b.svg",
+    "static/media/edit_light.svg": "/react_task_board/static/media/edit_light.026f2a9cba8dee57dd0d.svg",
     "static/media/edit_dark.svg": "/react_task_board/static/media/edit_dark.1bb9acc231df8b25b4e7.svg",
+    "static/media/done_light.svg": "/react_task_board/static/media/done_light.e84f51ab755dee22d91e.svg",
     "static/media/done.svg": "/react_task_board/static/media/done.4e4b6d6309d0dc2f20c6.svg",
+    "static/media/check_hover_light.svg": "/react_task_board/static/media/check_hover_light.353afd760bffc09cda01.svg",
     "static/media/check_hover.svg": "/react_task_board/static/media/check_hover.729c876697626d665fa5.svg",
+    "static/media/cross_light.svg": "/react_task_board/static/media/cross_light.9659428c58c7ef79508b.svg",
     "static/media/cross.svg": "/react_task_board/static/media/cross.b8fe639bd5695573114a.svg",
+    "static/media/check_light.svg": "/react_task_board/static/media/check_light.dde387bee83b4efc838d.svg",
     "static/media/check_dark.svg": "/react_task_board/static/media/check_dark.bacb279c2f0981192d5e.svg",
+    "static/media/green.svg": "/react_task_board/static/media/green.5e3da8977cf91140b23d.svg",
     "static/media/blue.svg": "/react_task_board/static/media/blue.f09d0a9bd8246fc44112.svg",
-    "static/media/green.svg": "/react_task_board/static/media/green.9c3fab15af580c55a4df.svg",
     "static/media/grey.svg": "/react_task_board/static/media/grey.0f3c33cc30ac8a4caae6.svg",
-    "main.a9298f15.css.map": "/react_task_board/static/css/main.a9298f15.css.map",
-    "main.56671209.js.map": "/react_task_board/static/js/main.56671209.js.map",
+    "main.24e8290c.css.map": "/react_task_board/static/css/main.24e8290c.css.map",
+    "main.82312c58.js.map": "/react_task_board/static/js/main.82312c58.js.map",
     "453.139604bf.chunk.js.map": "/react_task_board/static/js/453.139604bf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9298f15.css",
-    "static/js/main.56671209.js"
+    "static/css/main.24e8290c.css",
+    "static/js/main.82312c58.js"
   ]
 }
