@@ -1,8 +1,8 @@
 .btnSecond {
     opacity: 30%;
-    background-color: rgb(255, 255, 255, 0.4);
     background-repeat: no-repeat;
     background-position: 26px;
+    background-color: transparent;
     text-align: left;
     padding: 0 26px 0 52px;
     width: 300px;
@@ -17,6 +17,10 @@
     margin-left: 20px;
 }
 
+.btnSecond.dark {
+    color: #aab4bd;
+}
+
 .btnSecond:hover {
     opacity: 70%;
     cursor: pointer;
@@ -28,6 +32,14 @@
 
 .deleteAll {
     background-image: url('/src/assets/icons/delete_all.svg');
+}
+
+.autoFill.dark {
+    background-image: url('/src/assets/icons/light/auto_fill_light.svg');
+}
+
+.deleteAll.dark {
+    background-image: url('/src/assets/icons/light/delete_all_light.svg');
 }
 
 .containerButtons {

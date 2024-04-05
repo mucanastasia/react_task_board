@@ -21,6 +21,21 @@
     background: #def2d3;
 }
 
+
+.container_toDo.dark {
+    background: #121111;
+}
+
+.container_inProgress.dark {
+    background: #0c0e1f;
+}
+
+.container_done.dark {
+    background: #081715;
+}
+
+
+
 .btnEssential {
     font-size: 14px;
     background-image: url('/src/assets/icons/cross.svg');
@@ -43,4 +58,13 @@
     cursor: pointer;
     background-color: rgb(255, 255, 255, 0.4);
     transition: 0.3s ease;
+}
+
+.btnEssential.dark {
+    background-image: url('/src/assets/icons/light/cross_light.svg');
+    color: #70757a;
+}
+
+.btnEssential.dark:hover {
+    background-color: rgb(255, 255, 255, 0.028);
 }

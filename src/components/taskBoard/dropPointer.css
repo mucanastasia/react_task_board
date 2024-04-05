@@ -14,6 +14,10 @@
     animation: fadeIn 250ms ease forwards;
 }
 
+.colorGap.dark {
+    background: #9B8AFB;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

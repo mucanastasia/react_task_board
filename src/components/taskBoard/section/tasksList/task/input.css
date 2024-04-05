@@ -1,12 +1,11 @@
-input {
+.task input {
   border: 0;
   border-bottom: #a5a5a5 dotted 1px;
   background-color: transparent;
   color: #464646;
   font-family: Inter;
-  font-size: 14px;
 }
 
-input:focus {
+.task input:focus {
   outline: 0;
 }

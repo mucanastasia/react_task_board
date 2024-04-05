@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTasks } from '../../../contexts/TasksContext.js';
 import { useSection } from '../../../contexts/SectionContext.js';
+import { useTheme } from '../../../contexts/ThemeContext.js';
 import taskHelpers from '../../../helpers/taskHelpers.js';
 import SectionHeader from './SectionHeader.js';
 import TasksList from './tasksList/TasksList.js';
@@ -10,6 +11,7 @@ import './section.css';
 export default function Section() {
     const { tasks, setTasks } = useTasks();
     const { sectionId } = useSection();
+    const { theme } = useTheme();
     const { addTask, processDropOnSection } = taskHelpers(tasks, setTasks);
     const [positionOverSection, setPositionOverSection] = useState({ top: false, bottom: false, sectionId: '', });
 
@@ -40,7 +42,7 @@ export default function Section() {
     };
 
     return (
-        <div className={`section container_${sectionId}`}
+        <div className={`section container_${sectionId} ${theme === 'dark' ? 'dark' : 'light'}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}>
@@ -51,7 +53,7 @@ export default function Section() {
             <DropPointer show={positionOverSection.bottom} />
 
             <div className='gap' />
-            <button className='btnEssential' onClick={handleClick}>Add a task</button>
+            <button className={`btnEssential ${theme === 'dark' ? 'dark' : 'light'}`} onClick={handleClick}>Add a task</button>
         </div>
     );
 };
