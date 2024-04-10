@@ -55,7 +55,7 @@ export default function Task() {
     return (
         <>
             <DropPointer show={showPointer.top} />
-            <div className={`task ${theme === 'dark' ? 'dark' : 'light'}`}
+            <div className={`task ${theme}`}
                 draggable={!task.isEditingName && !task.isEditingDescription}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}

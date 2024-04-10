@@ -1,24 +1,35 @@
 .task input {
   border: 0;
-  border-bottom: #a5a5a5 dotted 1px;
   background-color: transparent;
-  color: #464646;
   font-family: Inter;
 }
 
-.task input::placeholder {
-  color:#717171;
+.task.light input {
+  border-bottom: #a5a5a5 dotted 1px;
 }
 
 .task.dark input {
   border-bottom: #585858 dotted 1px;
 }
 
-.task.dark input::placeholder {
-  color:#4c4d50;
+.task.light input::placeholder {
+  color:#717171;
 }
 
+.task.dark input::placeholder {
+  color:rgb(255, 255, 255, 0.3);
+}
 
 .task input:focus {
   outline: 0;
+}
+
+.task.light .name,
+.task.light .description {
+    color: #181818;
+}
+
+.task.dark .name,
+.task.dark .description {
+    color: #aab4bd;
 }

@@ -15,21 +15,26 @@ export default function TaskContent() {
     const handleEdit = () => {
         updateTask(task.id, { ...task, isEditingName: true, isEditingDescription: true });
     };
+
     const handleDelete = () => {
         deleteTask(task.id);
+    };
+
+    const handleClick = () => {
+        processCheck(task);
     };
 
     return (
         <>
             <div className='taskTitle'>
-                <button className={`btnIco ${task.status === 'done' ? 'btnDone' : 'btnCheck'} ${theme === 'dark' ? 'dark' : 'light'}`} onClick={() => processCheck(task)} />
+                <button className={`btnIco ${task.status === 'done' ? 'btnDone' : 'btnCheck'} ${theme}`} onClick={handleClick} />
                 {
                     task.isEditingName
                         ? <Input type='name' value={task.name} placeholder='Add a task name here' />
                         : <h5>{task.name}</h5>
                 }
-                <button className={`btnIco btnEdit ${theme === 'dark' ? 'dark' : 'light'}`} onClick={handleEdit} />
-                <button className={`btnIco btnDelete ${theme === 'dark' ? 'dark' : 'light'}`} onClick={handleDelete} />
+                <button className={`btnIco btnEdit ${theme}`} onClick={handleEdit} />
+                <button className={`btnIco btnDelete ${theme}`} onClick={handleDelete} />
             </div>
 
             {

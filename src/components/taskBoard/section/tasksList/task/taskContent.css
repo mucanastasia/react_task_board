@@ -21,18 +21,33 @@ button {
 }
 
 .btnCheck {
-    background-image: url('/src/assets/icons/check_dark.svg');
     margin: 14px 14px 10px 14px;
     opacity: 50%;
 }
 
-.btnCheck:hover {
-    background-image: url('/src/assets/icons/check_hover.svg');
+.btnCheck.light {
+    background-image: url('/src/assets/icons/light_theme/check_dark.svg');
+}
+
+.btnCheck.light:hover {
+    background-image: url('/src/assets/icons/light_theme/check_hover.svg');
+}
+
+.btnCheck.dark {
+    background-image: url('/src/assets/icons/dark_theme/check_light.svg');
+}
+
+.btnCheck.dark:hover {
+    background-image: url('/src/assets/icons/dark_theme/check_hover_light.svg');
 }
 
 .btnDone {
-    background-image: url('/src/assets/icons/done.svg');
+    background-image: url('/src/assets/icons/light_theme/done.svg');
     margin: 14px 14px 10px 14px;
+}
+
+.btnDone.dark {
+    background-image: url('/src/assets/icons/dark_theme/done_light.svg');
 }
 
 .btnEdit, .btnDelete {
@@ -44,13 +59,27 @@ button {
 }
 
 .btnEdit {
-    background-image: url('/src/assets/icons/edit_dark.svg');
     margin: 10px 4px 0px 0px;
 }
 
+.btnEdit.light {
+    background-image: url('/src/assets/icons/light_theme/edit_dark.svg');
+}
+
+.btnEdit.dark {
+    background-image: url('/src/assets/icons/dark_theme/edit_light.svg');
+}
+
 .btnDelete {
-    background-image: url('/src/assets/icons/delete_dark.svg');
     margin: 10px 14px 0px 4px;
+}
+
+.btnDelete.light {
+    background-image: url('/src/assets/icons/light_theme/delete_dark.svg');
+}
+
+.btnDelete.dark {
+    background-image: url('/src/assets/icons/dark_theme/delete_light.svg');
 }
 
 .btnEdit:hover,
@@ -61,30 +90,12 @@ button {
     border-radius: 14px;
 }
 
-.btnEdit:hover {
+.btnEdit.light:hover {
     background-color: #FFD53F;
 }
 
-.btnDelete:hover {
+.btnDelete.light:hover {
     background-color: #F9B3DC;
-}
-
-/* aab4bd */
-
-.btnCheck.dark {
-    background-image: url('/src/assets/icons/light/check_light.svg');
-}
-.btnCheck.dark:hover {
-    background-image: url('/src/assets/icons/light/check_hover_light.svg');
-}
-.btnDone.dark {
-    background-image: url('/src/assets/icons/light/done_light.svg');
-}
-.btnEdit.dark {
-    background-image: url('/src/assets/icons/light/edit_light.svg');
-}
-.btnDelete.dark {
-    background-image: url('/src/assets/icons/light/delete_light.svg');
 }
 
 .btnEdit.dark:hover {
@@ -108,11 +119,6 @@ p {
     padding: 0 0 0 14px;
     flex: 8;
     margin: 0 12px 14px 32px;
-}
-
-.task.dark .name,
-.task.dark .description {
-    color: #aab4bd;
 }
 
 .name {

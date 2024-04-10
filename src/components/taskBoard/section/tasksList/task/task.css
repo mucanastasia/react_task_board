@@ -12,12 +12,12 @@
     cursor: text;
 }
 
-.task.dark {
-    background: rgba(75, 126, 157, 0.1);
-}
-
 .task.light {
     background: #ffffff;
+}
+
+.task.dark {
+    background: rgba(75, 126, 157, 0.1);
 }
 
 .task:first-child {

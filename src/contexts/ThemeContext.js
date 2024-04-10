@@ -3,12 +3,11 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-    // Initialize theme from localStorage or default to 'light'
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
-    // Update localStorage when the theme changes
     useEffect(() => {
         localStorage.setItem('theme', theme);
+        document.body.className = theme;
     }, [theme]);
 
     const toggleTheme = () => {

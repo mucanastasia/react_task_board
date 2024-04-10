@@ -42,7 +42,7 @@ export default function Section() {
     };
 
     return (
-        <div className={`section container_${sectionId} ${theme === 'dark' ? 'dark' : 'light'}`}
+        <div className={`section container_${sectionId} ${theme}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}>
@@ -53,7 +53,7 @@ export default function Section() {
             <DropPointer show={positionOverSection.bottom} />
 
             <div className='gap' />
-            <button className={`btnEssential ${theme === 'dark' ? 'dark' : 'light'}`} onClick={handleClick}>Add a task</button>
+            <button className={`btnEssential ${theme}`} onClick={handleClick}>Add a task</button>
         </div>
     );
 };
