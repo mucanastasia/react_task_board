@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react_task_board/static/css/main.8ffccd5d.css",
-    "main.js": "/react_task_board/static/js/main.6a39df3e.js",
+    "main.css": "/react_task_board/static/css/main.a49955f4.css",
+    "main.js": "/react_task_board/static/js/main.e2ea4c2a.js",
     "static/js/453.139604bf.chunk.js": "/react_task_board/static/js/453.139604bf.chunk.js",
     "static/media/delete_light.svg": "/react_task_board/static/media/delete_light.6e6ef3d49aa061ef6bf9.svg",
     "static/media/delete_dark.svg": "/react_task_board/static/media/delete_dark.4b9f70f348e49880973a.svg",
@@ -23,12 +23,12 @@
     "static/media/green.svg": "/react_task_board/static/media/green.5e3da8977cf91140b23d.svg",
     "static/media/blue.svg": "/react_task_board/static/media/blue.f09d0a9bd8246fc44112.svg",
     "static/media/grey.svg": "/react_task_board/static/media/grey.0f3c33cc30ac8a4caae6.svg",
-    "main.8ffccd5d.css.map": "/react_task_board/static/css/main.8ffccd5d.css.map",
-    "main.6a39df3e.js.map": "/react_task_board/static/js/main.6a39df3e.js.map",
+    "main.a49955f4.css.map": "/react_task_board/static/css/main.a49955f4.css.map",
+    "main.e2ea4c2a.js.map": "/react_task_board/static/js/main.e2ea4c2a.js.map",
     "453.139604bf.chunk.js.map": "/react_task_board/static/js/453.139604bf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8ffccd5d.css",
-    "static/js/main.6a39df3e.js"
+    "static/css/main.a49955f4.css",
+    "static/js/main.e2ea4c2a.js"
   ]
 }
