@@ -10,27 +10,27 @@
 }
 
 .container_toDo.light {
-    background: #eeeeee;
+    background: #ECEDF0;
 }
 
 .container_inProgress.light {
-    background: #e2ecf5;
+    background: #DFF2FF;
 }
 
 .container_done.light {
-    background: #def2d3;
+    background: #DDF5EB;
 }
 
 .container_toDo.dark {
-    background: #121111;
+    background: #0E0E0E;
 }
 
 .container_inProgress.dark {
-    background: #0c0e1f;
+    background: #00111E;
 }
 
 .container_done.dark {
-    background: #081715;
+    background: #001A0F;
 }
 
 .btnEssential {
@@ -60,7 +60,7 @@
 }
 
 .btnEssential.light:hover {
-    background-color: rgb(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .btnEssential.dark {
@@ -69,5 +69,5 @@
 }
 
 .btnEssential.dark:hover {
-    background-color: rgb(255, 255, 255, 0.028);
+    background-color: rgba(176, 255, 250, 0.04);
 }

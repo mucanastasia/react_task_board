@@ -50,7 +50,8 @@ button {
     background-image: url('/src/assets/icons/dark_theme/done_light.svg');
 }
 
-.btnEdit, .btnDelete {
+.btnEdit,
+.btnDelete {
     background-repeat: no-repeat;
     background-position: center;
     width: 26px;
@@ -91,18 +92,19 @@ button {
 }
 
 .btnEdit.light:hover {
-    background-color: #FFD53F;
+    background-color: #FFD336;
 }
 
 .btnDelete.light:hover {
-    background-color: #F9B3DC;
+    background-color: #FFA5CB;
 }
 
 .btnEdit.dark:hover {
-    background-color: #75693f;
+    background-color: #FFC700;
 }
+
 .btnDelete.dark:hover {
-    background-color: #794262;
+    background-color: #FF63A4;
 }
 
 h5 {
@@ -140,6 +142,7 @@ p {
 }
 
 @supports (background: -webkit-named-image(i)) {
+
     /* Styles for Safari only */
     .description {
         line-height: 17px;

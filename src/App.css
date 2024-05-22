@@ -9,18 +9,18 @@ body {
   font-family: Inter;
   font-size: 14px;
   transition:
-	background-color 0.3s,
-	color 0.3s;
+    background-color 0.3s,
+    color 0.3s;
 }
 
 body.light {
-	background-color: #ffffff;
+  background-color: #ffffff;
   color: #181818;
 }
 
 body.dark {
-	background-color: #161a1d;
-	color: #aab4bd;
+  background-color: #1C2022;
+  color: #d9e1e7;
 }
 
 button {
