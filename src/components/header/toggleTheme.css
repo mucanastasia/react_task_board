@@ -2,16 +2,17 @@
 
 :root {
 	--trans-dur: 0.3s;
-	--trans-timing: cubic-bezier(0.76,0.05,0.24,0.95);
-	--trans-timing-in: cubic-bezier(0.76,0.05,0.86,0.06);
-	--trans-timing-out: cubic-bezier(0.05,0.76,0.06,0.86);
+	--trans-timing: cubic-bezier(0.76, 0.05, 0.24, 0.95);
+	--trans-timing-in: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+	--trans-timing-out: cubic-bezier(0.05, 0.76, 0.06, 0.86);
 }
 
 .toggleContainer {
-    padding: 16px 0px;
+	padding: 16px 0px;
 }
 
-label, .toggleContainer input.switch__input {
+label,
+.toggleContainer input.switch__input {
 	cursor: pointer;
 }
 
@@ -36,6 +37,15 @@ label, .toggleContainer input.switch__input {
 		transform calc(var(--trans-dur) / 2);
 }
 
+@supports (background: -webkit-named-image(i)) {
+
+	/* Styles for Safari only */
+	.switch__icon {
+		top: -24px;
+		right: -48px;
+	}
+}
+
 .switch__icon polyline {
 	transition: stroke-dashoffset calc(var(--trans-dur) / 2);
 }
@@ -53,9 +63,9 @@ label, .toggleContainer input.switch__input {
 }
 
 .switch__input {
-    background-color: #6938EF;
+	background-color: #6938EF;
 	border-radius: 16px;
-    border: 1px solid #6938EF;
+	border: 1px solid #6938EF;
 	outline: transparent;
 	position: relative;
 	width: 52px;
@@ -75,7 +85,7 @@ label, .toggleContainer input.switch__input {
 }
 
 .switch__input:before {
-    background-color: #6938EF;
+	background-color: #6938EF;
 	border-radius: inherit;
 }
 
@@ -93,31 +103,31 @@ label, .toggleContainer input.switch__input {
 }
 
 .switch__input:checked {
-    background-color: #7A5AF8;
-    border-color: #7A5AF8;
+	background-color: #7A5AF8;
+	border-color: #7A5AF8;
 }
 
 .switch__input:checked:after {
-    background-color: #ffffff;
+	background-color: #ffffff;
 	transform: translateX(26px);
 }
 
-.switch__input:checked ~ .switch__icon--light,
-.switch__input:checked ~ .switch__icon--light polyline {
+.switch__input:checked~.switch__icon--light,
+.switch__input:checked~.switch__icon--light polyline {
 	transition-delay: 0s;
 	transition-timing-function: var(--trans-timing-in);
 }
 
-.switch__input:checked ~ .switch__icon--light {
+.switch__input:checked~.switch__icon--light {
 	opacity: 0;
 	transform: translateX(-4px) rotate(-30deg) scale(0.75);
 }
 
-.switch__input:checked ~ .switch__icon--light polyline {
+.switch__input:checked~.switch__icon--light polyline {
 	stroke-dashoffset: 1.5;
 }
 
-.switch__input:checked ~ .switch__icon--dark {
+.switch__input:checked~.switch__icon--dark {
 	opacity: 1;
 	transform: translateX(-26px);
 	transition-delay: calc(var(--trans-dur) / 2);

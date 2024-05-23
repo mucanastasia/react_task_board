@@ -8,13 +8,13 @@ header {
 }
 
 header.light {
-	background-color: #ffffff;
-	border-bottom: 1px solid #dadce0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dadce0;
 }
 
 header.dark {
-	background-color: #161a1d;
-	border-bottom: 1px solid #2d2d2f;
+    background-color: #161a1d;
+    border-bottom: 1px solid #2d2d2f;
 }
 
 h1 {
@@ -25,11 +25,11 @@ h1 {
 }
 
 h1.light {
-	color: #181818;
+    color: #181818;
 }
 
 h1.dark {
-	color: #aab4bd;
+    color: #d9e1e7;
 }
 
 .boardName {

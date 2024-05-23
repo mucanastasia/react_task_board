@@ -9,15 +9,15 @@
 }
 
 .task.dark input {
-  border-bottom: #585858 dotted 1px;
+  border-bottom: #5f5f5f dotted 1px;
 }
 
 .task.light input::placeholder {
-  color:#717171;
+  color: #717171;
 }
 
 .task.dark input::placeholder {
-  color:rgb(255, 255, 255, 0.3);
+  color: rgb(255, 255, 255, 0.4);
 }
 
 .task input:focus {
@@ -26,10 +26,10 @@
 
 .task.light .name,
 .task.light .description {
-    color: #181818;
+  color: #181818;
 }
 
 .task.dark .name,
 .task.dark .description {
-    color: #aab4bd;
+  color: #d9e1e7;
 }
