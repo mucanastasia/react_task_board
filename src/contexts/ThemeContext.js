@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getThemeFromLocalStorage, setThemeInLocalStorage } from '../services/localStorageService';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    const [theme, setTheme] = useState(getThemeFromLocalStorage);
 
     useEffect(() => {
-        localStorage.setItem('theme', theme);
+        setThemeInLocalStorage(theme);
         document.body.className = theme;
     }, [theme]);
 

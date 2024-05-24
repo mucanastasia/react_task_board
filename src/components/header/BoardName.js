@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
+import { getBoardNameFromLocalStorage, setBoardNameInLocalStorage } from "../../services/localStorageService";
 import './boardName.css';
 
 export default function BoardName() {
     const { theme } = useTheme();
-    const [boardName, setBoardName] = useState(JSON.parse(localStorage.getItem('boardName')) || { name: 'Untitled task board', isEditing: false });
+    const [boardName, setBoardName] = useState(getBoardNameFromLocalStorage);
 
     useEffect(() => {
-        if (!boardName.isEditing) {
-            localStorage.setItem('boardName', JSON.stringify(boardName));
-        }
+        setBoardNameInLocalStorage(boardName);
     }, [boardName]);
 
     const handleBlur = (e) => {
