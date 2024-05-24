@@ -17,46 +17,6 @@ header.dark {
     border-bottom: 1px solid #2d2d2f;
 }
 
-h1 {
-    margin: 0;
-    font-weight: 500;
-    font-size: 20px;
-    padding: 18px 0 0 0;
-}
-
-h1.light {
-    color: #181818;
-}
-
-h1.dark {
-    color: #d9e1e7;
-}
-
-.boardName {
-    display: flex;
-}
-
-.btnEditBoardName {
-    flex: 1;
-    width: 46px;
-    opacity: 0;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: 14px 22px;
-}
-
-.btnEditBoardName.light {
-    background-image: url('/src/assets/icons/light_theme/edit_dark.svg');
-}
-
-.btnEditBoardName.dark {
-    background-image: url('/src/assets/icons/dark_theme/edit_light.svg');
-}
-
-div.boardName:hover .btnEditBoardName {
-    opacity: 0.5;
-}
-
 @media only screen and (min-width: 769px) {
     header {
         padding: 0 2%;

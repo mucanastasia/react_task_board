@@ -2,6 +2,7 @@ import React from 'react';
 import './header.css';
 import { useTheme } from '../../contexts/ThemeContext';
 import { ToggleTheme } from './ToggleTheme';
+import BoardName from './BoardName';
 
 
 export default function Header() {
@@ -9,10 +10,7 @@ export default function Header() {
 
     return (
         <header className={theme}>
-            <div className='boardName'>
-                <h1 className={theme}>Please name your task board</h1>
-                <button className={`btnEditBoardName ${theme}`} />
-            </div>
+            <BoardName />
             <ToggleTheme />
         </header>
     );
