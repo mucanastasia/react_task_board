@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
 import './toggleTheme.css';
 
-export function ToggleTheme() {
+export default function ToggleTheme() {
     const { theme, toggleTheme } = useTheme();
 
     const handleSwitch = () => {
