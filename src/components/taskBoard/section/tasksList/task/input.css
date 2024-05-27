@@ -1,12 +1,35 @@
-input {
+.task input {
   border: 0;
-  border-bottom: #a5a5a5 dotted 1px;
   background-color: transparent;
-  color: #464646;
   font-family: Inter;
-  font-size: 14px;
 }
 
-input:focus {
+.task.light input {
+  border-bottom: #a5a5a5 dotted 1px;
+}
+
+.task.dark input {
+  border-bottom: #5f5f5f dotted 1px;
+}
+
+.task.light input::placeholder {
+  color: #717171;
+}
+
+.task.dark input::placeholder {
+  color: rgb(255, 255, 255, 0.4);
+}
+
+.task input:focus {
   outline: 0;
+}
+
+.task.light .name,
+.task.light .description {
+  color: #181818;
+}
+
+.task.dark .name,
+.task.dark .description {
+  color: #d9e1e7;
 }

@@ -1,0 +1,135 @@
+/* Credit: Toggle theme switcher https://codepen.io/jkantner/pen/eYPYppR?editors=1100 */
+
+:root {
+	--trans-dur: 0.3s;
+	--trans-timing: cubic-bezier(0.76, 0.05, 0.24, 0.95);
+	--trans-timing-in: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+	--trans-timing-out: cubic-bezier(0.05, 0.76, 0.06, 0.86);
+}
+
+.toggleContainer {
+	padding: 16px 0px;
+}
+
+label,
+.toggleContainer input.switch__input {
+	cursor: pointer;
+}
+
+.switch {
+	margin: auto;
+	position: relative;
+}
+
+.switch__icon,
+.switch__input {
+	display: block;
+}
+
+.switch__icon {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	width: 16px;
+	height: 16px;
+	transition:
+		opacity calc(var(--trans-dur) / 2),
+		transform calc(var(--trans-dur) / 2);
+}
+
+@supports (background: -webkit-named-image(i)) {
+
+	/* Styles for Safari only */
+	.switch__icon {
+		top: -24px;
+		right: -48px;
+	}
+}
+
+.switch__icon polyline {
+	transition: stroke-dashoffset calc(var(--trans-dur) / 2);
+}
+
+.switch__icon--light,
+.switch__icon--light polyline {
+	transition-delay: calc(var(--trans-dur) / 2);
+	transition-timing-function: var(--trans-timing-out);
+}
+
+.switch__icon--dark {
+	opacity: 0;
+	transform: translateX(-24px) rotate(30deg) scale(0.75);
+	transition-timing-function: var(--trans-timing-in);
+}
+
+.switch__input {
+	background-color: #6938EF;
+	border-radius: 16px;
+	border: 1px solid #6938EF;
+	outline: transparent;
+	position: relative;
+	width: 52px;
+	height: 26px;
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-tap-highlight-color: transparent;
+	transition:
+		background-color var(--trans-dur) var(--trans-timing),
+}
+
+.switch__input:before,
+.switch__input:after {
+	content: "";
+	display: block;
+	position: absolute;
+}
+
+.switch__input:before {
+	background-color: #6938EF;
+	border-radius: inherit;
+}
+
+.switch__input:after {
+	background-color: #ffffff;
+	border-radius: 50%;
+	top: 2px;
+	left: 2px;
+	width: 20px;
+	height: 20px;
+	transition:
+		background-color var(--trans-dur) var(--trans-timing),
+		transform var(--trans-dur) var(--trans-timing);
+	z-index: 1;
+}
+
+.switch__input:checked {
+	background-color: #7A5AF8;
+	border-color: #7A5AF8;
+}
+
+.switch__input:checked:after {
+	background-color: #ffffff;
+	transform: translateX(26px);
+}
+
+.switch__input:checked~.switch__icon--light,
+.switch__input:checked~.switch__icon--light polyline {
+	transition-delay: 0s;
+	transition-timing-function: var(--trans-timing-in);
+}
+
+.switch__input:checked~.switch__icon--light {
+	opacity: 0;
+	transform: translateX(-4px) rotate(-30deg) scale(0.75);
+}
+
+.switch__input:checked~.switch__icon--light polyline {
+	stroke-dashoffset: 1.5;
+}
+
+.switch__input:checked~.switch__icon--dark {
+	opacity: 1;
+	transform: translateX(-26px);
+	transition-delay: calc(var(--trans-dur) / 2);
+	transition-timing-function: var(--trans-timing-out);
+}

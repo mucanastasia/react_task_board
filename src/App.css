@@ -7,9 +7,20 @@
 body {
   margin: 0;
   font-family: Inter;
-  color: #181818;
   font-size: 14px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+body.light {
   background-color: #ffffff;
+  color: #181818;
+}
+
+body.dark {
+  background-color: #1C2022;
+  color: #d9e1e7;
 }
 
 button {

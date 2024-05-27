@@ -1,0 +1,30 @@
+header {
+    height: 64px;
+    z-index: 2000;
+    border-bottom: 1px solid #dadce0;
+    padding: 10px 2% 0 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+header.light {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dadce0;
+}
+
+header.dark {
+    background-color: #161a1d;
+    border-bottom: 1px solid #2d2d2f;
+}
+
+@media only screen and (min-width: 769px) {
+    header {
+        padding: 0 2%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    header {
+        padding: 0 10px;
+    }
+}

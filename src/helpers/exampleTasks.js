@@ -90,3 +90,8 @@ export const exampleTasks = [
         isEditingDescription: false,
     },
 ];
+
+export const exampleBoardName = {
+    name: 'Research Project Management',
+    isEditing: false,
+};

@@ -9,21 +9,32 @@
     transition: 0.4s ease;
 }
 
-.container_toDo {
-    background: #eeeeee;
+.container_toDo.light {
+    background: #ECEDF0;
 }
 
-.container_inProgress {
-    background: #e2ecf5;
+.container_inProgress.light {
+    background: #DFF2FF;
 }
 
-.container_done {
-    background: #def2d3;
+.container_done.light {
+    background: #DDF5EB;
+}
+
+.container_toDo.dark {
+    background: #0E0E0E;
+}
+
+.container_inProgress.dark {
+    background: #00111E;
+}
+
+.container_done.dark {
+    background: #001A0F;
 }
 
 .btnEssential {
     font-size: 14px;
-    background-image: url('/src/assets/icons/cross.svg');
     background-repeat: no-repeat;
     background-position: 6px;
     background-color: transparent;
@@ -32,7 +43,6 @@
     width: 100%;
     height: 34px;
     border: 0;
-    color: #5e5e5e;
     border-radius: 8px;
     transition: 0.3s ease;
     margin-bottom: 16px;
@@ -41,6 +51,23 @@
 
 .btnEssential:hover {
     cursor: pointer;
-    background-color: rgb(255, 255, 255, 0.4);
     transition: 0.3s ease;
+}
+
+.btnEssential.light {
+    background-image: url('/src/assets/icons/light_theme/cross.svg');
+    color: #5e5e5e;
+}
+
+.btnEssential.light:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btnEssential.dark {
+    background-image: url('/src/assets/icons/dark_theme/cross_light.svg');
+    color: #70757a;
+}
+
+.btnEssential.dark:hover {
+    background-color: rgba(176, 255, 250, 0.04);
 }

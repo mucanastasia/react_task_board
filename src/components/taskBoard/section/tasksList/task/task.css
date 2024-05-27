@@ -1,5 +1,4 @@
 .task {
-    background: #ffffff;
     padding: 8px;
     margin: 6px 0;
     display: flex;
@@ -11,6 +10,14 @@
     transition: 0.2s ease;
     border: 1px solid transparent;
     cursor: text;
+}
+
+.task.light {
+    background: #ffffff;
+}
+
+.task.dark {
+    background: rgba(176, 255, 250, 0.08);
 }
 
 .task:first-child {

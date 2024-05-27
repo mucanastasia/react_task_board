@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createDragImage } from '../../../../../helpers/dragHelpers';
 import { useTasks } from '../../../../../contexts/TasksContext';
 import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
+import { useTheme } from '../../../../../contexts/ThemeContext';
 import taskHelpers from '../../../../../helpers/taskHelpers';
 import TaskContent from './TaskContent';
 import DropPointer from '../../../DropPointer';
@@ -13,13 +14,14 @@ export default function Task() {
     const { tasks, setTasks } = useTasks();
     const { getSortIdAbove, processDropBetween } = taskHelpers(tasks, setTasks);
     const { task } = useCurrentTask();
+    const { theme } = useTheme();
 
     const handleDragStart = (e) => {
         setTimeout(() => {
             e.target.classList.add('grabbing', 'taskMoving');
         }, 50);
         e.dataTransfer.setData('text/plain', task.id.toString());
-        createDragImage(e);
+        createDragImage(e, theme);
     };
 
     const handleDragEnd = (e) => {
@@ -53,7 +55,7 @@ export default function Task() {
     return (
         <>
             <DropPointer show={showPointer.top} />
-            <div className='task'
+            <div className={`task ${theme}`}
                 draggable={!task.isEditingName && !task.isEditingDescription}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
