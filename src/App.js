@@ -4,14 +4,17 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import TaskBoard from './components/taskBoard/TaskBoard';
 import Header from './components/header/Header';
 import './App.css';
+import { BoardNameProvider } from './contexts/BoardNameContext';
 
 function App() {
   return (
     <ThemeProvider>
-      <Header />
-      <TasksProvider>
-        <TaskBoard />
-      </TasksProvider>
+      <BoardNameProvider>
+        <Header />
+        <TasksProvider>
+          <TaskBoard />
+        </TasksProvider>
+      </BoardNameProvider>
     </ThemeProvider>
   );
 }

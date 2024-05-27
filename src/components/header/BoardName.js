@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
-import { getBoardNameFromLocalStorage, setBoardNameInLocalStorage } from "../../services/localStorageService";
+import { useBoardName } from '../../contexts/BoardNameContext';
 import './boardName.css';
 
 export default function BoardName() {
     const { theme } = useTheme();
-    const [boardName, setBoardName] = useState(getBoardNameFromLocalStorage);
 
-    useEffect(() => {
-        setBoardNameInLocalStorage(boardName);
-    }, [boardName]);
+    const { boardName, setBoardName } = useBoardName();
 
     const handleBlur = (e) => {
         const name = e.target.value;
@@ -42,7 +39,6 @@ export default function BoardName() {
                 onKeyDown={handleKeyEnter}
                 placeholder='Name your task board'
                 autoFocus />}
-
 
             {!boardName.isEditing && <button className={`btnEditBoardName ${theme}`} onClick={handleClick} />}
         </div>
