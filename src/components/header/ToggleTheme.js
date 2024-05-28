@@ -2,17 +2,13 @@ import React from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
 import './toggleTheme.css';
 
-export function ToggleTheme() {
+export default function ToggleTheme() {
     const { theme, toggleTheme } = useTheme();
-
-    const handleSwitch = () => {
-        toggleTheme(!theme);
-    };
 
     return (
         <div className='toggleContainer'>
             <label className='switch'>
-                <input className='switch__input' type='checkbox' role='switch' defaultChecked={theme === 'dark'} onClick={handleSwitch} />
+                <input className='switch__input' type='checkbox' role='switch' defaultChecked={theme === 'dark'} onClick={toggleTheme} />
                 <svg className='switch__icon switch__icon--light' viewBox='0 0 12 12' width='12px' height='12px' aria-hidden='true'>
                     <g fill='none' stroke='#fff' strokeWidth='1' strokeLinecap='round'>
                         <circle cx='6' cy='6' r='2' />

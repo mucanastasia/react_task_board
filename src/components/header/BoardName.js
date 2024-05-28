@@ -28,7 +28,7 @@ export default function BoardName() {
 
     return (
         <div className='boardName'>
-            <span className={`boardName ${theme}`} />
+            <span className={`boardName ${theme}`} data-testid='double-slash' />
             {!boardName.isEditing && <h1 className={theme}>{boardName.name}</h1>}
 
             {boardName.isEditing && <input
