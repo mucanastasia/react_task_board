@@ -1,6 +1,4 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import Section from '../Section';
 import { useTasks } from '../../../../contexts/TasksContext';
 import { useSection } from '../../../../contexts/SectionContext';
@@ -50,6 +48,12 @@ describe('Section Component', () => {
         }));
     });
 
+    const createBubbledEvent = (type, props = {}) => {
+        const event = new Event(type, { bubbles: true });
+        Object.assign(event, props);
+        return event;
+    };
+
     test('Renders Section without crashing', () => {
         render(<Section />);
         expect(screen.getByText('SectionHeader Component')).toBeInTheDocument();
@@ -64,26 +68,98 @@ describe('Section Component', () => {
         expect(addTask).toHaveBeenCalledWith('toDo');
     });
 
-    test('Handles Drag Over', () => {
+    test('Handles Drag Over at Top', () => {
         render(<Section />);
         const sectionDiv = screen.getByTitle('toDo');
+        const containerRect = {
+            bottom: 646.1171875,
+            height: 549,
+            left: 23.1171875,
+            right: 403.1171875,
+            top: 97.1171875,
+            width: 380,
+            x: 23.1171875,
+            y: 97.1171875,
+        };
 
-        fireEvent.dragOver(sectionDiv); // It drags over somewhere at the bottom
+        sectionDiv.getBoundingClientRect = () => containerRect;
+
+        fireEvent(sectionDiv, createBubbledEvent('dragover', {
+            clientY: containerRect.top + 50
+        }));
+
         expect(screen.getByText('DropPointer Component')).toBeInTheDocument();
     });
 
-    test('Handles Drop', () => {
+    test('Handles Drop at Top', () => {
         render(<Section />);
         const sectionDiv = screen.getByTitle('toDo');
-        fireEvent.dragOver(sectionDiv); // It drags over somewhere at the bottom
+        const containerRect = {
+            bottom: 646.1171875,
+            height: 549,
+            left: 23.1171875,
+            right: 403.1171875,
+            top: 97.1171875,
+            width: 380,
+            x: 23.1171875,
+            y: 97.1171875,
+        };
+
+        sectionDiv.getBoundingClientRect = () => containerRect;
+
+        fireEvent(sectionDiv, createBubbledEvent('dragover', {
+            clientY: containerRect.top + 50
+        }));
 
         expect(screen.getByText('DropPointer Component')).toBeInTheDocument();
 
-        fireEvent.drop(sectionDiv, {
-            dataTransfer: { getData: () => '1' },
-        });
+        const dataTransfer = {
+            getData: jest.fn().mockReturnValue('1'),
+            setData: jest.fn(),
+            dropEffect: 'move'
+        };
 
-        expect(screen.queryByText('DropPointer Component')).not.toBeInTheDocument();
+        fireEvent(sectionDiv, createBubbledEvent('drop', {
+            dataTransfer,
+            clientY: containerRect.top + 50
+        }));
+
+        expect(processDropOnSection).toHaveBeenCalledWith(1, { top: true, bottom: false, sectionId: 'toDo' });
+    });
+
+    test('Handles Drop at Bottom', () => {
+        render(<Section />);
+        const sectionDiv = screen.getByTitle('toDo');
+        const containerRect = {
+            bottom: 646.1171875,
+            height: 549,
+            left: 23.1171875,
+            right: 403.1171875,
+            top: 97.1171875,
+            width: 380,
+            x: 23.1171875,
+            y: 97.1171875,
+        };
+
+        sectionDiv.getBoundingClientRect = () => containerRect;
+
+        fireEvent(sectionDiv, createBubbledEvent('dragover', {
+            clientY: containerRect.bottom - 20
+        }));
+
+        expect(screen.getByText('DropPointer Component')).toBeInTheDocument();
+
+        const dataTransfer = {
+            getData: jest.fn().mockReturnValue('1'),
+            setData: jest.fn(),
+            dropEffect: 'move'
+        };
+
+        fireEvent(sectionDiv, createBubbledEvent('drop', {
+            dataTransfer,
+            clientY: containerRect.bottom - 20
+        }));
+
         expect(processDropOnSection).toHaveBeenCalledWith(1, { top: false, bottom: true, sectionId: 'toDo' });
     });
 
@@ -91,10 +167,14 @@ describe('Section Component', () => {
         render(<Section />);
         const sectionDiv = screen.getByTitle('toDo');
 
-        fireEvent.dragOver(sectionDiv); // It drags over somewhere at the bottom
+        fireEvent(sectionDiv, createBubbledEvent('dragover', {
+            clientY: 120
+        }));
+
         expect(screen.getByText('DropPointer Component')).toBeInTheDocument();
 
-        fireEvent.dragLeave(sectionDiv);
+        fireEvent(sectionDiv, createBubbledEvent('dragleave'));
+
         expect(screen.queryByText('DropPointer Component')).not.toBeInTheDocument();
     });
 });
