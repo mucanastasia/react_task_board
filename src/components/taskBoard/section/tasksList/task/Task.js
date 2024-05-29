@@ -54,8 +54,8 @@ export default function Task() {
 
     return (
         <>
-            <DropPointer show={showPointer.top} />
-            <div className={`task ${theme}`}
+            <DropPointer show={showPointer.top} data-testid='drop-pointer-top' />
+            <div data-testid='task' className={`task ${theme}`}
                 draggable={!task.isEditingName && !task.isEditingDescription}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
@@ -66,7 +66,7 @@ export default function Task() {
                 <TaskContent />
 
             </div>
-            <DropPointer show={showPointer.bottom} />
+            <DropPointer show={showPointer.bottom} data-testid='drop-pointer-bottom' />
         </>
     );
 }

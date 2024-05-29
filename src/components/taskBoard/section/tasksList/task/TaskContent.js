@@ -27,14 +27,14 @@ export default function TaskContent() {
     return (
         <>
             <div className='taskTitle'>
-                <button className={`btnIco ${task.status === 'done' ? 'btnDone' : 'btnCheck'} ${theme}`} onClick={handleClick} />
+                <button className={`btnIco ${task.status === 'done' ? 'btnDone' : 'btnCheck'} ${theme}`} onClick={handleClick} aria-label='check' />
                 {
                     task.isEditingName
                         ? <Input type='name' value={task.name} placeholder='Add a task name here' />
                         : <h5>{task.name}</h5>
                 }
-                <button className={`btnIco btnEdit ${theme}`} onClick={handleEdit} />
-                <button className={`btnIco btnDelete ${theme}`} onClick={handleDelete} />
+                <button className={`btnIco btnEdit ${theme}`} onClick={handleEdit} aria-label='edit' />
+                <button className={`btnIco btnDelete ${theme}`} onClick={handleDelete} aria-label='delete' />
             </div>
 
             {
