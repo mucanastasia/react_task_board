@@ -5,7 +5,7 @@ import { CurrentTaskProvider } from '../../../../contexts/CurrentTaskContext.js'
 import taskHelpers from '../../../../helpers/taskHelpers.js';
 import Task from './task/Task.js';
 
-export default function ListOfTasks() {
+export default function TasksList() {
     const { tasks, setTasks } = useTasks();
     const { getSectionTasks } = taskHelpers(tasks, setTasks);
     const { sectionId } = useSection();
@@ -21,7 +21,7 @@ export default function ListOfTasks() {
     };
 
     return (
-        <div>
+        <div data-testid='tasks-list'>
             {renderList(sectionId)}
         </div>
     );
