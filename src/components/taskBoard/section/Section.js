@@ -43,6 +43,7 @@ export default function Section() {
 
     return (
         <div className={`section container_${sectionId} ${theme}`}
+            title={sectionId}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}>

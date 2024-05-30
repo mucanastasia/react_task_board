@@ -7,7 +7,7 @@ export default function DropPointer({ show }) {
 
     return (
         <>
-            {show && <div className={`gap colorGap ${theme}`} />}
+            {show && <div className={`gap colorGap ${theme}`} data-testid='drop-pointer' />}
         </>
     );
 }
