@@ -102,5 +102,5 @@ export default function taskHelpers(tasks, setTasks) {
         }
     };
 
-    return { getSectionTasks, addTask, updateTask, deleteTask, countTasksInSection, processCheck, getSortIdAbove, processDropOnSection, processDropBetween, saveTasks };
+    return { getSectionTasks, addTask, updateTask, deleteTask, countTasksInSection, processCheck, getSortIdAbove, processDropOnSection, processDropBetween, saveTasks, createTask, getSortIdToAppend, getSortIdBetween };
 }
