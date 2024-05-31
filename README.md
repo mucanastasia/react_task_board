@@ -2,9 +2,12 @@
 
 Welcome to the **React Task Board with DnD** project! This is a pet project developed for educational purposes, designed to explore and implement a custom drag-and-drop functionality (DnD without libraries). This project is currently in an active development stage, and new features are being added regularly.
 
+Check out the live demo of the project here: [(https://mucanastasia.github.io/react_task_board)](https://mucanastasia.github.io/react_task_board/).
+
+<img width="80%" alt="Task Board Preview" src="https://github.com/mucanastasia/mucanastasia/blob/98b002461f71d52370332d17d8693a07f4a508ae/reactTaskBoard_31_05_24.png" />
+
 ## Table of Contents
 
-- [Live Demo](#live-demo)
 - [About the Project](#about-the-project)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
@@ -12,10 +15,6 @@ Welcome to the **React Task Board with DnD** project! This is a pet project deve
 - [Testing](#testing)
 - [Future Plans](#future-plans)
 - [Feedback and Contact](#feedback-and-contact)
-
-## Live Demo
-
-Check out the live demo of the project [here](https://mucanastasia.github.io/react_task_board/).
 
 ## About the Project
 
