@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react_task_board/static/css/main.bcbd4fc1.css",
-    "main.js": "/react_task_board/static/js/main.ffd5161e.js",
+    "main.js": "/react_task_board/static/js/main.226b58f0.js",
     "static/js/453.139604bf.chunk.js": "/react_task_board/static/js/453.139604bf.chunk.js",
     "static/media/delete_light.svg": "/react_task_board/static/media/delete_light.067420bb38f506f5d948.svg",
+    "index.html": "/react_task_board/index.html",
     "static/media/delete_dark.svg": "/react_task_board/static/media/delete_dark.4b9f70f348e49880973a.svg",
     "static/media/delete_all_light.svg": "/react_task_board/static/media/delete_all_light.1eed49f5ec200c7f734a.svg",
     "static/media/auto_fill_light.svg": "/react_task_board/static/media/auto_fill_light.d9d1c229011b3060b6b7.svg",
-    "index.html": "/react_task_board/index.html",
     "static/media/delete_all.svg": "/react_task_board/static/media/delete_all.cbad3390f0d148c57ca6.svg",
     "static/media/auto_fill.svg": "/react_task_board/static/media/auto_fill.254fe7009887d9c0e03b.svg",
     "static/media/edit_light.svg": "/react_task_board/static/media/edit_light.f2f067b7e0cf2338a761.svg",
@@ -24,11 +24,11 @@
     "static/media/green.svg": "/react_task_board/static/media/green.e8a4dc188b74b58bdbed.svg",
     "static/media/grey.svg": "/react_task_board/static/media/grey.40c13e5461eb6d9d24da.svg",
     "main.bcbd4fc1.css.map": "/react_task_board/static/css/main.bcbd4fc1.css.map",
-    "main.ffd5161e.js.map": "/react_task_board/static/js/main.ffd5161e.js.map",
+    "main.226b58f0.js.map": "/react_task_board/static/js/main.226b58f0.js.map",
     "453.139604bf.chunk.js.map": "/react_task_board/static/js/453.139604bf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bcbd4fc1.css",
-    "static/js/main.ffd5161e.js"
+    "static/js/main.226b58f0.js"
   ]
 }
