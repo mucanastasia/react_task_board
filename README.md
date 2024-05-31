@@ -59,7 +59,7 @@ To run the project locally, follow these steps:
     ```bash
     npm start
 
-Once the development server is running, you can access the task board application in your browser at http://localhost:3000
+Once the development server is running, you can access the task board application in your browser at `http://localhost:3000`.
 
 ## Testing
 
