@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './sidebar.css';
+import { getSidebarStatusFromLocalStorage, setSidebarStatusInLocalStorage } from '../../services/localStorageService';
 import BoardsList from './BoardsList';
+import './sidebar.css';
 
 export default function Sidebar() {
-    const storedIsOpen = localStorage.getItem('isSidebarOpen');
-    const initialIsOpen = storedIsOpen ? JSON.parse(storedIsOpen) : false;
-    const [isOpen, setIsOpen] = useState(initialIsOpen);
+    const [isOpen, setIsOpen] = useState(getSidebarStatusFromLocalStorage);
 
     useEffect(() => {
-        localStorage.setItem('isSidebarOpen', JSON.stringify(isOpen));
+        setSidebarStatusInLocalStorage(isOpen);
         isOpen ? document.body.style.margin = '0 0 0 240px' : document.body.style.margin = '0 0 0 64px';
     }, [isOpen]);
 
@@ -48,31 +47,3 @@ export default function Sidebar() {
         </nav>
     );
 };
-
-
-
-// const navItems = [{
-//     name: 'home',
-//     icon: 'home'
-// },
-// {
-//     name: 'statistics',
-//     icon: 'stats'
-// },
-// {
-//     name: 'research project management',
-//     icon: 'board'
-// },
-// {
-//     name: 'board number 2',
-//     icon: 'board'
-// },
-// {
-//     name: 'board number 3',
-//     icon: 'board'
-// },
-// {
-//     name: 'add a board',
-//     icon: 'add_board'
-// },
-// ];

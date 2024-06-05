@@ -38,3 +38,17 @@ export const getThemeFromLocalStorage = () => {
 export const setThemeInLocalStorage = (theme) => {
     localStorage.setItem('theme', theme);
 };
+
+export const getSidebarStatusFromLocalStorage = () => {
+    try {
+        const storedIsOpen = JSON.parse(localStorage.getItem('isSidebarOpen')) || false;
+        return storedIsOpen;
+    } catch (error) {
+        console.error('Error parsing stored isSidebarOpen:', error);
+        return false;
+    }
+};
+
+export const setSidebarStatusInLocalStorage = (isOpen) => {
+    localStorage.setItem('isSidebarOpen', JSON.stringify(isOpen));
+};
