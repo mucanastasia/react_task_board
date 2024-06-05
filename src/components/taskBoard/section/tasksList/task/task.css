@@ -10,6 +10,7 @@
     transition: 0.2s ease;
     border: 1px solid transparent;
     cursor: text;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .task.light {
