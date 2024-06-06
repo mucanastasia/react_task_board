@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/react_task_board/static/css/main.bcbd4fc1.css",
-    "main.js": "/react_task_board/static/js/main.226b58f0.js",
+    "main.css": "/react_task_board/static/css/main.41470632.css",
+    "main.js": "/react_task_board/static/js/main.92115fc0.js",
     "static/js/453.139604bf.chunk.js": "/react_task_board/static/js/453.139604bf.chunk.js",
+    "static/media/stats.svg": "/react_task_board/static/media/stats.0d2513d63c9b9afeb339.svg",
     "static/media/delete_light.svg": "/react_task_board/static/media/delete_light.067420bb38f506f5d948.svg",
     "index.html": "/react_task_board/index.html",
     "static/media/delete_dark.svg": "/react_task_board/static/media/delete_dark.4b9f70f348e49880973a.svg",
@@ -11,24 +12,29 @@
     "static/media/delete_all.svg": "/react_task_board/static/media/delete_all.cbad3390f0d148c57ca6.svg",
     "static/media/auto_fill.svg": "/react_task_board/static/media/auto_fill.254fe7009887d9c0e03b.svg",
     "static/media/edit_light.svg": "/react_task_board/static/media/edit_light.f2f067b7e0cf2338a761.svg",
+    "static/media/add_board.svg": "/react_task_board/static/media/add_board.1a919162d48ba8ca7aae.svg",
     "static/media/edit_dark.svg": "/react_task_board/static/media/edit_dark.1bb9acc231df8b25b4e7.svg",
     "static/media/done.svg": "/react_task_board/static/media/done.50dbb5e4053d3d1d0908.svg",
     "static/media/done_light.svg": "/react_task_board/static/media/done_light.8832fab7246b7a203abf.svg",
     "static/media/check_hover_light.svg": "/react_task_board/static/media/check_hover_light.82b7bce1a7c8672bd013.svg",
+    "static/media/board.svg": "/react_task_board/static/media/board.3bc3846cb09368c4f99d.svg",
     "static/media/check_hover.svg": "/react_task_board/static/media/check_hover.729c876697626d665fa5.svg",
     "static/media/cross_light.svg": "/react_task_board/static/media/cross_light.9659428c58c7ef79508b.svg",
     "static/media/cross.svg": "/react_task_board/static/media/cross.b8fe639bd5695573114a.svg",
     "static/media/check_light.svg": "/react_task_board/static/media/check_light.96a99ff7a3b4bcc2c3d2.svg",
     "static/media/check_dark.svg": "/react_task_board/static/media/check_dark.bacb279c2f0981192d5e.svg",
+    "static/media/close.svg": "/react_task_board/static/media/close.0947739b254a546178b8.svg",
+    "static/media/home.svg": "/react_task_board/static/media/home.603492b2476455034244.svg",
+    "static/media/open.svg": "/react_task_board/static/media/open.5ac635b249566af97da2.svg",
     "static/media/blue.svg": "/react_task_board/static/media/blue.e060b8818a142d531cf1.svg",
     "static/media/green.svg": "/react_task_board/static/media/green.e8a4dc188b74b58bdbed.svg",
     "static/media/grey.svg": "/react_task_board/static/media/grey.40c13e5461eb6d9d24da.svg",
-    "main.bcbd4fc1.css.map": "/react_task_board/static/css/main.bcbd4fc1.css.map",
-    "main.226b58f0.js.map": "/react_task_board/static/js/main.226b58f0.js.map",
+    "main.41470632.css.map": "/react_task_board/static/css/main.41470632.css.map",
+    "main.92115fc0.js.map": "/react_task_board/static/js/main.92115fc0.js.map",
     "453.139604bf.chunk.js.map": "/react_task_board/static/js/453.139604bf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bcbd4fc1.css",
-    "static/js/main.226b58f0.js"
+    "static/css/main.41470632.css",
+    "static/js/main.92115fc0.js"
   ]
 }
