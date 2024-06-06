@@ -7,19 +7,19 @@ export default function BoardsList({ isOpen }) {
             name: 'Research Project Management',
             id: '1',
             active: true,
-            src: '/board_1',
+            src: './board_1',
         },
         {
             name: 'Task board 2',
             id: '2',
             active: false,
-            src: '/board_2',
+            src: './board_2',
         },
         {
             name: 'Task board 3',
             id: '3',
             active: false,
-            src: '/board_3',
+            src: './board_3',
         },
     ];
 
