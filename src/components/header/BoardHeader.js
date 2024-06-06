@@ -2,17 +2,15 @@ import React from 'react';
 import './header.css';
 import { useTheme } from '../../contexts/ThemeContext';
 import ToggleTheme from './ToggleTheme';
+import BoardName from './BoardName';
 
 
-export default function Header({ name }) {
+export default function BoardHeader() {
     const { theme } = useTheme();
 
     return (
         <header className={theme}>
-            <div className='headerName'>
-                <span className={`doubleSlash ${theme}`} data-testid='double-slash' />
-                <h1 className={theme}>{name}</h1>
-            </div>
+            <BoardName />
             <ToggleTheme />
         </header>
     );

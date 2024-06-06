@@ -17,6 +17,45 @@ header.dark {
     border-bottom: 1px solid #2d2d2f;
 }
 
+h1 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 18px 0 0 0;
+}
+
+h1.light {
+    color: #181818;
+}
+
+span.doubleSlash::before {
+    content: "//";
+    font-weight: 900;
+    font-size: 22px;
+    margin-top: 15px;
+    margin-right: 6px;
+}
+
+span.doubleSlash.light::before {
+    color: #6938EF;
+}
+
+h1.dark {
+    color: #d9e1e7;
+}
+
+span.doubleSlash.dark::before {
+    color: #8A64F3;
+}
+
+.doubleSlash {
+    display: flex;
+}
+
+.headerName {
+    display: flex;
+}
+
 @media only screen and (min-width: 769px) {
     header {
         padding: 0 2%;

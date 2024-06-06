@@ -3,7 +3,6 @@ import { TasksProvider } from './contexts/TasksContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { BoardNameProvider } from './contexts/BoardNameContext';
 import TaskBoard from './components/taskBoard/TaskBoard';
-import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
@@ -14,7 +13,6 @@ function App() {
     <ThemeProvider>
       <BoardNameProvider>
         <Sidebar />
-        <Header />
         <TasksProvider>
           <Routes>
             <Route path='/stats' element={<Statistics />} />
