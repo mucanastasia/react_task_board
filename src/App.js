@@ -7,6 +7,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Statistics from './components/statistics/Statistics';
+import Home from './components/home/Home';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Sidebar />
         <TasksProvider>
           <Routes>
+            <Route path='/' element={<Home />} />
             <Route path='/stats' element={<Statistics />} />
             <Route path='/board_1' element={<TaskBoard />} />
           </Routes>

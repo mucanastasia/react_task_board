@@ -20,11 +20,13 @@ export default function Sidebar() {
         <nav className={`sidebar ${isOpen ? 'open' : ''}`}>
             <ul>
                 <div className='upperNav'>
-                    <li className='homeNav'>
-                        <span className='icon icon_home'></span>
-                        {!isOpen && <span className='tooltip'>Home</span>}
-                        <span className={`text ${isOpen ? 'visible' : ''}`}>Home</span>
-                    </li>
+                    <Link to='/' >
+                        <li className='homeNav'>
+                            <span className='icon icon_home'></span>
+                            {!isOpen && <span className='tooltip'>Home</span>}
+                            <span className={`text ${isOpen ? 'visible' : ''}`}>Home</span>
+                        </li>
+                    </Link>
                     <Link to='/stats' >
                         <li>
                             <i className='icon icon_stats'></i>
