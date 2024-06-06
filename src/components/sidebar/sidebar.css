@@ -56,7 +56,6 @@
     border-left: 2px solid #6938EF;
 }
 
-
 .sidebar.open ul li {
     width: 100%;
 }
@@ -64,7 +63,6 @@
 .sidebar ul li.active {
     border-left: 2px solid #ffffff;
 }
-
 
 .sidebar ul li:hover {
     border-left: 2px solid #ffffff;
@@ -145,10 +143,6 @@ span.span_id {
     margin-right: 18px;
     margin-left: 18px;
     transition: 0.25s ease;
-}
-
-.icon:hover {
-    cursor: pointer;
 }
 
 .icon_home {
