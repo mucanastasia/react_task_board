@@ -54,19 +54,28 @@
     position: relative;
     box-sizing: border-box;
     border-left: 2px solid #6938EF;
+    transition: border-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.open ul li {
     width: 100%;
 }
 
-.sidebar ul li.active {
+.sidebar ul li:hover {
     border-left: 2px solid #ffffff;
 }
 
-.sidebar ul li:hover {
+div.upperNav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+div.upperNav a:visited {
+    color: #ffffff;
+}
+
+a.active>li {
     border-left: 2px solid #ffffff;
-    transition: border-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar ul li.sidebar_toggle:hover {
@@ -105,16 +114,6 @@
     background-color: inherit;
     border-radius: 1px;
 }
-
-div.upperNav a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-div.upperNav a:visited {
-    color: #ffffff;
-}
-
 
 span.text {
     font-size: 12px;

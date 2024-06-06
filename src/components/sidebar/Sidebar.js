@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getSidebarStatusFromLocalStorage, setSidebarStatusInLocalStorage } from '../../services/localStorageService';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import BoardsList from './BoardsList';
 import './sidebar.css';
 
@@ -20,20 +20,20 @@ export default function Sidebar() {
         <nav className={`sidebar ${isOpen ? 'open' : ''}`}>
             <ul>
                 <div className='upperNav'>
-                    <Link to='/' >
+                    <NavLink to='/' exact activeClassName='active' >
                         <li className='homeNav'>
                             <span className='icon icon_home'></span>
                             {!isOpen && <span className='tooltip'>Home</span>}
                             <span className={`text ${isOpen ? 'visible' : ''}`}>Home</span>
                         </li>
-                    </Link>
-                    <Link to='/stats' >
+                    </NavLink>
+                    <NavLink to='/stats' activeClassName='active' >
                         <li>
                             <i className='icon icon_stats'></i>
                             {!isOpen && <span className='tooltip'>Statistics</span>}
                             <span className={`text ${isOpen ? 'visible' : ''}`}>Statistics</span>
                         </li>
-                    </Link>
+                    </NavLink>
                     <BoardsList isOpen={isOpen} />
                 </div>
                 <div className='lowerNav'>
