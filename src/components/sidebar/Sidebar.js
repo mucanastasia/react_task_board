@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getSidebarStatusFromLocalStorage, setSidebarStatusInLocalStorage } from '../../services/localStorageService';
+import { Link } from 'react-router-dom';
 import BoardsList from './BoardsList';
 import './sidebar.css';
 
@@ -24,11 +25,13 @@ export default function Sidebar() {
                         {!isOpen && <span className='tooltip'>Home</span>}
                         <span className={`text ${isOpen ? 'visible' : ''}`}>Home</span>
                     </li>
-                    <li>
-                        <i className='icon icon_stats'></i>
-                        {!isOpen && <span className='tooltip'>Statistics</span>}
-                        <span className={`text ${isOpen ? 'visible' : ''}`}>Statistics</span>
-                    </li>
+                    <Link to='/stats' >
+                        <li>
+                            <i className='icon icon_stats'></i>
+                            {!isOpen && <span className='tooltip'>Statistics</span>}
+                            <span className={`text ${isOpen ? 'visible' : ''}`}>Statistics</span>
+                        </li>
+                    </Link>
                     <BoardsList isOpen={isOpen} />
                 </div>
                 <div className='lowerNav'>

@@ -73,8 +73,6 @@
     border-left: 2px solid #6938EF;
 }
 
-
-
 .sidebar ul li .tooltip {
     position: absolute;
     background-color: #313443;
@@ -106,6 +104,15 @@
     height: 6px;
     background-color: inherit;
     border-radius: 1px;
+}
+
+div.upperNav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+div.upperNav a:visited {
+    color: #ffffff;
 }
 
 
