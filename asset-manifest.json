@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react_task_board/static/css/main.582313d5.css",
-    "main.js": "/react_task_board/static/js/main.47e05bc1.js",
+    "main.js": "/react_task_board/static/js/main.a2b3f848.js",
     "static/js/453.139604bf.chunk.js": "/react_task_board/static/js/453.139604bf.chunk.js",
     "static/media/stats.svg": "/react_task_board/static/media/stats.0d2513d63c9b9afeb339.svg",
     "static/media/delete_light.svg": "/react_task_board/static/media/delete_light.067420bb38f506f5d948.svg",
@@ -30,11 +30,11 @@
     "static/media/green.svg": "/react_task_board/static/media/green.e8a4dc188b74b58bdbed.svg",
     "static/media/grey.svg": "/react_task_board/static/media/grey.40c13e5461eb6d9d24da.svg",
     "main.582313d5.css.map": "/react_task_board/static/css/main.582313d5.css.map",
-    "main.47e05bc1.js.map": "/react_task_board/static/js/main.47e05bc1.js.map",
+    "main.a2b3f848.js.map": "/react_task_board/static/js/main.a2b3f848.js.map",
     "453.139604bf.chunk.js.map": "/react_task_board/static/js/453.139604bf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.582313d5.css",
-    "static/js/main.47e05bc1.js"
+    "static/js/main.a2b3f848.js"
   ]
 }
