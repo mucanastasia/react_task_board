@@ -25,8 +25,8 @@ export default function BoardsList({ isOpen }) {
 
     const renderBoardsList = () => {
         const list = boardsList.map((board) => (
-            <NavLink to={board.src} activeClassName='active'>
-                <li key={board.id}>
+            <NavLink to={board.src} activeclassname='active' key={board.id}>
+                <li>
                     <span className='icon icon_board'></span>
                     <span className='span_id'>{board.id}</span>
                     {!isOpen && <span className='tooltip'>{board.name}</span>}

@@ -116,12 +116,12 @@ a.active>li {
 }
 
 span.text {
-    font-size: 12px;
+    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 164px;
-    width: calc(100% - 64px);
+    width: calc(100% - 104px);
     opacity: 0;
     transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     visibility: hidden;

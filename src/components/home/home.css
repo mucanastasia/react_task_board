@@ -3,6 +3,7 @@ h2 {
     font-weight: 300;
     letter-spacing: 1px;
     font-size: 48px;
+    margin: 30px 40px 40px 40px;
 }
 
 h3 {
@@ -12,7 +13,20 @@ h3 {
     font-size: 18px;
 }
 
-.header {
+.wave-header h3>a {
+    line-height: 24px;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px transparent solid;
+    transition: 0.35s;
+}
+
+.wave-header h3>a:hover {
+    color: #ffffff;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.6);
+}
+
+.wave-header {
     position: relative;
     text-align: center;
     background: linear-gradient(60deg, #6938EF 0%, #84CAFF 100%);
