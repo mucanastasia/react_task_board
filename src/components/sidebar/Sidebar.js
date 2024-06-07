@@ -9,7 +9,8 @@ export default function Sidebar() {
 
     useEffect(() => {
         setSidebarStatusInLocalStorage(isOpen);
-        isOpen ? document.body.style.margin = '0 0 0 240px' : document.body.style.margin = '0 0 0 64px';
+        //TODO: sidebarContext >> use isOpen to shrink a page
+        isOpen ? document.body.childNodes[3].childNodes[1].style.margin = '0 0 0 240px' : document.body.childNodes[3].childNodes[1].style.margin = '0 0 0 64px';
     }, [isOpen]);
 
     const toggleSidebar = () => {
