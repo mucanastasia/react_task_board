@@ -5,7 +5,7 @@ import ToggleTheme from './ToggleTheme';
 import BoardName from './BoardName';
 
 
-export default function BoardHeader() {
+export default function BoardHeader({ board }) {
     const { theme } = useTheme();
 
     return (
