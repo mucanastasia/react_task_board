@@ -1,12 +1,12 @@
 import React from 'react';
-import { useTasks } from '../../../../../contexts/TasksContext';
+import { useBoard } from '../../../../../contexts/BoardContext';
 import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
-import taskHelper from '../../../../../helpers/taskHelpers';
+import taskHelpers from '../../../../../helpers/taskHelpers';
 import './input.css';
 
 export default function Input({ type, value, placeholder }) {
-    const { tasks, setTasks } = useTasks();
-    const { updateTask } = taskHelper(tasks, setTasks);
+    const { tasks, setTasks, currentBoardId } = useBoard();
+    const { updateTask } = taskHelpers(tasks, setTasks, currentBoardId);
     const { task } = useCurrentTask();
 
     const handleChange = (e) => {

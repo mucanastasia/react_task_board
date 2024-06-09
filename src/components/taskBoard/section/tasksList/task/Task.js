@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createDragImage } from '../../../../../helpers/dragHelpers';
-import { useTasks } from '../../../../../contexts/TasksContext';
+import { useBoard } from '../../../../../contexts/BoardContext';
 import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
 import { useTheme } from '../../../../../contexts/ThemeContext';
 import taskHelpers from '../../../../../helpers/taskHelpers';
@@ -11,8 +11,8 @@ import './task.css';
 export default function Task() {
     const [showPointer, setShowPointer] = useState({ top: false, bottom: false });
     let sortIdAbove = 0;
-    const { tasks, setTasks } = useTasks();
-    const { getSortIdAbove, processDropBetween } = taskHelpers(tasks, setTasks);
+    const { tasks, setTasks, currentBoardId } = useBoard();
+    const { getSortIdAbove, processDropBetween } = taskHelpers(tasks, setTasks, currentBoardId);
     const { task } = useCurrentTask();
     const { theme } = useTheme();
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { useTasks } from '../../../contexts/TasksContext';
+import { useBoard } from '../../../contexts/BoardContext';
 import { useSection } from '../../../contexts/SectionContext';
 import taskHelpers from '../../../helpers/taskHelpers';
 import './sectionHeader.css';
 
 export default function SectionHeader() {
-    const { tasks } = useTasks();
+    const { tasks } = useBoard();
     const { countTasksInSection } = taskHelpers(tasks);
     const { sectionId, name } = useSection();
 

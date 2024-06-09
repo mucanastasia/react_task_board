@@ -1,14 +1,14 @@
 import React from 'react';
-import { useTasks } from '../../../../../contexts/TasksContext';
+import { useBoard } from '../../../../../contexts/BoardContext';
 import { useCurrentTask } from '../../../../../contexts/CurrentTaskContext';
-import taskHelper from '../../../../../helpers/taskHelpers';
+import taskHelpers from '../../../../../helpers/taskHelpers';
 import Input from './Input';
 import './taskContent.css';
 import { useTheme } from '../../../../../contexts/ThemeContext';
 
 export default function TaskContent() {
-    const { tasks, setTasks } = useTasks();
-    const { updateTask, deleteTask, processCheck } = taskHelper(tasks, setTasks);
+    const { tasks, setTasks, currentBoardId } = useBoard();
+    const { updateTask, deleteTask, processCheck } = taskHelpers(tasks, setTasks, currentBoardId);
     const { task } = useCurrentTask();
     const { theme } = useTheme();
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTasks } from '../../../contexts/TasksContext.js';
+import { useBoard } from '../../../contexts/BoardContext.js';
 import { useSection } from '../../../contexts/SectionContext.js';
 import { useTheme } from '../../../contexts/ThemeContext.js';
 import taskHelpers from '../../../helpers/taskHelpers.js';
@@ -9,10 +9,10 @@ import DropPointer from '../DropPointer.js';
 import './section.css';
 
 export default function Section() {
-    const { tasks, setTasks } = useTasks();
+    const { tasks, setTasks, currentBoardId } = useBoard();
     const { sectionId } = useSection();
     const { theme } = useTheme();
-    const { addTask, processDropOnSection } = taskHelpers(tasks, setTasks);
+    const { addTask, processDropOnSection } = taskHelpers(tasks, setTasks, currentBoardId);
     const [positionOverSection, setPositionOverSection] = useState({ top: false, bottom: false, sectionId: '', });
 
     const handleDragOver = (e) => {
