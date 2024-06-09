@@ -1,26 +1,28 @@
 import React from 'react';
-import { useTasks } from '../../contexts/TasksContext';
+import { useBoard } from '../../contexts/BoardContext';
+import { useCurrentBoard } from '../../contexts/CurrentBoardContext';
 import taskHelpers from '../../helpers/taskHelpers';
+import boardHelpers from '../../helpers/boardHelpers';
 import { exampleTasks, exampleBoardName } from '../../helpers/exampleTasks';
 import './developerToolsTaskBoard.css';
 import { useTheme } from '../../contexts/ThemeContext';
-import { useBoardName } from '../../contexts/BoardNameContext';
 
 export default function DeveloperToolsTaskBoard() {
-    const { tasks, setTasks } = useTasks();
+    const { tasks, setTasks, boards, setBoards, currentBoardId } = useBoard();
+    const { updateBoardName } = boardHelpers(boards, setBoards);
+    const { board } = useCurrentBoard();
     const { theme } = useTheme();
-    const { setBoardName } = useBoardName();
-    const { saveTasks } = taskHelpers(tasks, setTasks);
+    const { saveTasks } = taskHelpers(tasks, setTasks, currentBoardId);
 
     const handleAutoFill = () => {
         const autoFillTasks = exampleTasks;
         saveTasks(autoFillTasks);
-        setBoardName(exampleBoardName);
+        updateBoardName(board.id, { name: exampleBoardName });
     };
 
     const handleDeleteAll = () => {
         saveTasks([]);
-        setBoardName({ name: 'Untitled task board', isEditing: false });
+        updateBoardName(board.id, { name: 'Untitled task board' });
     };
 
     return (

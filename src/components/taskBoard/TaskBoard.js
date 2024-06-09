@@ -22,21 +22,21 @@ export default function TaskBoard({ board }) {
         <>
             <CurrentBoardProvider board={board} >
                 <BoardHeader />
+                <div className='container'>
+                    <SectionProvider sectionId='toDo' name='To do' >
+                        <Section />
+                    </SectionProvider>
+
+                    <SectionProvider sectionId='inProgress' name='In progress' >
+                        <Section />
+                    </SectionProvider>
+
+                    <SectionProvider sectionId='done' name='Done' >
+                        <Section />
+                    </SectionProvider>
+                </div>
+                <DeveloperToolsTaskBoard />
             </CurrentBoardProvider>
-            <div className='container'>
-                <SectionProvider sectionId='toDo' name='To do' >
-                    <Section />
-                </SectionProvider>
-
-                <SectionProvider sectionId='inProgress' name='In progress' >
-                    <Section />
-                </SectionProvider>
-
-                <SectionProvider sectionId='done' name='Done' >
-                    <Section />
-                </SectionProvider>
-            </div>
-            <DeveloperToolsTaskBoard />
         </>
     );
 }

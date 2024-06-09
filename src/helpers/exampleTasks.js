@@ -91,7 +91,4 @@ export const exampleTasks = [
     },
 ];
 
-export const exampleBoardName = {
-    name: 'Research Project Management',
-    isEditing: false,
-};
+export const exampleBoardName = 'Research Project Management';
