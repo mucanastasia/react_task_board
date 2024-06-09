@@ -1,8 +1,25 @@
-const key = 'storedTasks';
+// Board methods
 
-export const getTasksFromLocalStorage = () => {
+export const getBoardsFromLocalStorage = () => {
     try {
-        const storedTasks = JSON.parse(localStorage.getItem(key) || '[]');
+        const storedBoards = JSON.parse(localStorage.getItem('storedBoardsName') || '[]');
+        return storedBoards;
+    } catch (error) {
+        console.error('Error parsing stored boards data:', error);
+        return [];
+    }
+};
+
+export const setBoardsInLocalStorage = (updatedBoards) => {
+    const filteredUpdatedBoards = updatedBoards.filter((board) => (board.name?.trim() || '').length > 0);
+    localStorage.setItem('storedBoardsName', JSON.stringify(filteredUpdatedBoards));
+};
+
+// Tasks methods
+
+export const getTasksFromLocalStorage = (boardId) => {
+    try {
+        const storedTasks = JSON.parse(localStorage.getItem(boardId) || '[]');
         return storedTasks;
     } catch (error) {
         console.error('Error parsing stored tasks:', error);
@@ -10,26 +27,12 @@ export const getTasksFromLocalStorage = () => {
     }
 };
 
-export const updateLocalStorage = (updatedTasks) => {
+export const setTasksInLocalStorage = (boardId, updatedTasks) => {
     const filteredUpdatedTasks = updatedTasks.filter((task) => (task.name?.trim() || '').length > 0 && (task.description?.trim() || '').length > 0);
-    localStorage.setItem(key, JSON.stringify(filteredUpdatedTasks));
+    localStorage.setItem(boardId, JSON.stringify(filteredUpdatedTasks));
 };
 
-export const getBoardNameFromLocalStorage = () => {
-    try {
-        const storedBoardName = JSON.parse(localStorage.getItem('boardName')) || { name: 'Untitled task board', isEditing: false };
-        return storedBoardName;
-    } catch (error) {
-        console.error('Error parsing stored boardName:', error);
-        return { name: 'Untitled task board', isEditing: false };
-    }
-};
-
-export const setBoardNameInLocalStorage = (boardName) => {
-    if (!boardName.isEditing) {
-        localStorage.setItem('boardName', JSON.stringify(boardName));
-    }
-};
+// Theme methods
 
 export const getThemeFromLocalStorage = () => {
     return localStorage.getItem('theme') || 'light';
@@ -38,6 +41,8 @@ export const getThemeFromLocalStorage = () => {
 export const setThemeInLocalStorage = (theme) => {
     localStorage.setItem('theme', theme);
 };
+
+// Sidebar methods
 
 export const getSidebarStatusFromLocalStorage = () => {
     try {

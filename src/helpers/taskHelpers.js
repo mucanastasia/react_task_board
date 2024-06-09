@@ -1,6 +1,6 @@
-import { updateLocalStorage } from "../services/localStorageService";
+import { setTasksInLocalStorage } from "../services/localStorageService";
 
-export default function taskHelpers(tasks, setTasks) {
+export default function taskHelpers(tasks, setTasks, boardId) {
 
     const sortIdOffset = 1000000;
 
@@ -15,7 +15,7 @@ export default function taskHelpers(tasks, setTasks) {
 
     const saveTasks = (updatedTasks) => {
         setTasks(updatedTasks);
-        updateLocalStorage(updatedTasks);
+        setTasksInLocalStorage(boardId, updatedTasks);
     };
 
     const createTask = (sectionId) => {
