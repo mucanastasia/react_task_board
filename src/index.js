@@ -4,12 +4,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter } from 'react-router-dom';
 import './index.css';
+import { BoardProvider } from './contexts/BoardContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <App />
+      <BoardProvider>
+        <App />
+      </BoardProvider>
     </HashRouter>
   </React.StrictMode>
 );
