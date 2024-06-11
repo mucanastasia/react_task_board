@@ -121,7 +121,7 @@ span.text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: calc(100% - 74px);
+    width: calc(100% - 78px);
     opacity: 0;
     transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     visibility: hidden;

@@ -26,12 +26,12 @@ export default function DeveloperToolsTaskBoard() {
     };
 
     return (
-        <div className='containerButtons'>
+        <>
             {
                 tasks.length === 0
-                    ? <button className={`btnSecond autoFill ${theme}`} onClick={handleAutoFill}>Auto fill task board</button>
-                    : <button className={`btnSecond deleteAll ${theme}`} onClick={handleDeleteAll}>Delete all tasks</button>
+                    ? <div className={`breadcrumb-option ${theme}`} onClick={handleAutoFill}>Auto fill tasks</div>
+                    : <div className={`breadcrumb-option ${theme}`} onClick={handleDeleteAll}>Delete all tasks</div>
             }
-        </div>
+        </>
     );
 };

@@ -1,0 +1,42 @@
+.breadcrumb {
+    margin: 10px 20px 20px 20px;
+}
+
+.breadcrumb>span {
+    font-size: 26px;
+    letter-spacing: -1.6px;
+    color: rgb(0, 0, 0, 0.5);
+}
+
+.breadcrumb>span:hover {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+
+
+.breadcrumb-options {
+    position: absolute;
+    top: 53px;
+    right: 98px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #dedede;
+    z-index: 2;
+    padding: 4px;
+}
+
+.breadcrumb-option {
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.breadcrumb-option:last-child:hover {
+    color: #e10000;
+}
+
+.breadcrumb-option:hover {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}

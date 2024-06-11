@@ -1,4 +1,4 @@
-import { setBoardsInLocalStorage } from '../services/localStorageService';
+import { setBoardsInLocalStorage, deleteBoardFromLocalStorage } from '../services/localStorageService';
 
 export default function boardHelpers(boards, setBoards) {
 
@@ -7,33 +7,36 @@ export default function boardHelpers(boards, setBoards) {
         setBoardsInLocalStorage(updatedBoards);
     };
 
-    const createBoard = () => {
+    const createBoard = (boardName) => {
         const newBoardId = `board_${Date.now()}`;
         const newBoard = {
             id: newBoardId,
-            name: `Untitled task board ${newBoardId}`,
+            name: boardName?.length > 0 ? boardName : 'Untitled board',
             path: `/${newBoardId}`,
             isEditing: false,
         };
         return newBoard;
     };
 
-    const addBoard = () => {
-        const newBoard = createBoard();
+    const addBoard = (boardName) => {
+        const newBoard = createBoard(boardName);
         const updatedBoards = [...boards, newBoard];
         saveBoards(updatedBoards);
+        return (newBoard);
     };
-
-    // const deleteBoard = () => { 
-
-    // };
 
     const updateBoardName = (boardId, updatedBoardData) => {
         const updatedBoards = boards.map(board => board.id === boardId ? { ...board, ...updatedBoardData } : board);
         saveBoards(updatedBoards);
     };
 
-    return { addBoard, updateBoardName }
+    const deleteBoard = (boardId) => {
+        const updatedBoards = boards.filter(board => board.id !== boardId);
+        saveBoards(updatedBoards);
+        deleteBoardFromLocalStorage(boardId);
+    };
+
+    return { addBoard, updateBoardName, deleteBoard }
 
 };
 

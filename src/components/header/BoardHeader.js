@@ -1,9 +1,9 @@
 import React from 'react';
-import './header.css';
 import { useTheme } from '../../contexts/ThemeContext';
 import ToggleTheme from './ToggleTheme';
 import BoardName from './BoardName';
-
+import './header.css';
+import BreadcrumbMenu from './BreadcrumbMenu';
 
 export default function BoardHeader({ board }) {
     const { theme } = useTheme();
@@ -11,7 +11,10 @@ export default function BoardHeader({ board }) {
     return (
         <header className={theme}>
             <BoardName />
-            <ToggleTheme />
+            <div className='board-header-container'>
+                <BreadcrumbMenu />
+                <ToggleTheme />
+            </div>
         </header>
     );
 }

@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useBoard } from '../../contexts/BoardContext';
 import { getSidebarStatusFromLocalStorage, setSidebarStatusInLocalStorage } from '../../services/localStorageService';
 import { NavLink } from 'react-router-dom';
-import boardHelpers from '../../helpers/boardHelpers';
 import BoardsList from './BoardsList';
+import Modal from '../modal/Modal';
+import AddBoardModalContent from '../modal/AddBoardModalContent';
 import './sidebar.css';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Sidebar() {
-    const { boards, setBoards } = useBoard();
-    const { addBoard } = boardHelpers(boards, setBoards);
+    const { boards } = useBoard();
     const [isOpen, setIsOpen] = useState(getSidebarStatusFromLocalStorage);
+    const [name, setName] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         setSidebarStatusInLocalStorage(isOpen);
@@ -22,8 +25,13 @@ export default function Sidebar() {
         setIsOpen(!isOpen);
     };
 
-    const handleClick = () => {
-        addBoard();
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setName('');
     };
 
     return (
@@ -44,10 +52,12 @@ export default function Sidebar() {
                             <span className={`text ${isOpen ? 'visible' : ''}`}>Statistics</span>
                         </li>
                     </NavLink>
-                    <BoardsList isOpen={isOpen} boards={boards} />
+                    <AnimatePresence>
+                        <BoardsList isOpen={isOpen} boards={boards} />
+                    </AnimatePresence>
                 </div>
                 <div className='lowerNav'>
-                    <li onClick={handleClick} >
+                    <li onClick={handleOpenModal} >
                         <span className='icon icon_add_board'></span>
                         {!isOpen && <span className='tooltip'>Add a board</span>}
                         <span className={`text ${isOpen ? 'visible' : ''}`}>Add a board</span>
@@ -59,6 +69,14 @@ export default function Sidebar() {
                     </li>
                 </div>
             </ul>
+            <AnimatePresence>
+                {
+                    showModal &&
+                    <Modal key="Add_modal" show={showModal} onClose={handleCloseModal} modalName='Add a new board'>
+                        <AddBoardModalContent setShow={setShowModal} name={name} setName={setName} close={handleCloseModal} />
+                    </Modal>
+                }
+            </AnimatePresence>
         </nav>
     );
 };

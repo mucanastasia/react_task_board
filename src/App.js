@@ -22,15 +22,13 @@ export default function App() {
   return (
     <ThemeProvider>
       <Sidebar />
-      <div className='page'>
-        <AnimatePresence mode='wait'>
-          <Routes location={location} key={location.pathname}>
-            <Route path='/' element={<PageTransition><Home /></PageTransition>} />
-            <Route path='/stats' element={<PageTransition><Statistics /></PageTransition>} />
-            {renderBoardsRoute()}
-          </Routes>
-        </AnimatePresence>
-      </div>
+      <AnimatePresence mode='wait'>
+        <Routes location={location} key={location.pathname}>
+          <Route path='/' element={<PageTransition><Home /></PageTransition>} />
+          <Route path='/stats' element={<PageTransition><Statistics /></PageTransition>} />
+          {renderBoardsRoute()}
+        </Routes>
+      </AnimatePresence>
     </ThemeProvider>
   );
 };

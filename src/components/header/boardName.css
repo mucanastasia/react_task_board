@@ -38,11 +38,12 @@ input.boardName:focus {
 
 .btnEditBoardName {
     flex: 1;
-    width: 46px;
+    width: 36px;
     opacity: 0;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: 14px 22px;
+    cursor: pointer;
 }
 
 .btnEditBoardName.light {
@@ -53,6 +54,64 @@ input.boardName:focus {
     background-image: url('/src/assets/icons/dark_theme/edit_light.svg');
 }
 
-div.boardName:hover .btnEditBoardName {
+.btnDeleteBoard {
+    flex: 1;
+    width: 50px;
+    opacity: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 14px 22px;
+    cursor: pointer;
+}
+
+.btnDeleteBoard.light {
+    background-image: url('/src/assets/icons/light_theme/delete_dark.svg');
+}
+
+.btnDeleteBoard.dark {
+    background-image: url('/src/assets/icons/dark_theme/delete_light.svg');
+}
+
+div.boardName:hover button.btnEditBoardName,
+div.boardName:hover button.btnDeleteBoard {
     opacity: 0.5;
+}
+
+div.boardName:hover button.btnEditBoardName:hover,
+div.boardName:hover button.btnDeleteBoard:hover {
+    opacity: 1;
+}
+
+.boardName .tooltip {
+    color: #ffffff;
+    position: relative;
+    background-color: #313443;
+    padding: 8px 8px;
+    border-radius: 6px;
+    top: 30px;
+    opacity: 0;
+    font-size: 12px;
+    width: max-content;
+    visibility: hidden;
+    z-index: 1;
+    white-space: nowrap;
+    transition: opacity 0.25s ease-in-out 1.2s;
+}
+
+.boardName .tooltip:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    transform: rotate(45deg);
+    width: 10px;
+    height: 6px;
+    background-color: inherit;
+    border-radius: 1px;
+}
+
+button.btnDeleteBoard:hover .tooltip,
+button.btnEditBoardName:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }

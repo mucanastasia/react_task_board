@@ -15,6 +15,10 @@ export const setBoardsInLocalStorage = (updatedBoards) => {
     localStorage.setItem('storedBoardsName', JSON.stringify(filteredUpdatedBoards));
 };
 
+export const deleteBoardFromLocalStorage = (boardId) => {
+    localStorage.removeItem(boardId);
+};
+
 // Tasks methods
 
 export const getTasksFromLocalStorage = (boardId) => {

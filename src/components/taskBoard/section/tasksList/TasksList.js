@@ -21,8 +21,10 @@ export default function TasksList() {
     };
 
     return (
+
         <div data-testid='tasks-list'>
             {renderList(sectionId)}
         </div>
+
     );
 }

@@ -1,0 +1,74 @@
+.modal-content input.boardName {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 8px 0 12px 0;
+}
+
+.modal-body button {
+    width: 100%;
+    line-height: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 22px;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+
+.modal-body button.essential {
+    color: #ffffff;
+    background-color: #6938EF;
+}
+
+.modal-body button.essential:hover {
+    background-color: #5925DC;
+}
+
+.modal-body button.essential:disabled {
+    background-color: #949494;
+    cursor: not-allowed;
+}
+
+.modal-body button.essential.loading:disabled {
+    background-color: #6938EF;
+    cursor: not-allowed;
+}
+
+.modal-body button.second {
+    color: #6938EF;
+    background-color: #e3e3e3;
+}
+
+.modal-body button.second:hover {
+    background-color: #d5d4d4;
+}
+
+.modal-body button.deleteButton {
+    color: #ffffff;
+    background-color: #d50e00;
+}
+
+.modal-body button.deleteButton:hover {
+    background-color: #b60c00;
+}
+
+.spinner {
+    margin-bottom: -4px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-left-color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
