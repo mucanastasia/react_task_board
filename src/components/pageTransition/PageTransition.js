@@ -2,28 +2,24 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const pageVariants = {
-  initial: {
-    opacity: 0,
-  },
-  in: {
-    opacity: 1,
-    y: 0,
-  },
-  out: {
-    opacity: 0,
-  },
+  initial: { opacity: 0, x: 0 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 0 },
 };
 
 const pageTransition = {
+  type: 'linear',
   duration: 0.25,
 };
 
-export default function PageTransition({ children }) {
+export default function PageTransition({ children, className, keyProp }) {
   return (
     <motion.div
-      initial='initial'
-      animate='in'
-      exit='out'
+      className={className}
+      key={keyProp}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       variants={pageVariants}
       transition={pageTransition}
     >

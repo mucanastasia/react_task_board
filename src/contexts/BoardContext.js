@@ -17,7 +17,6 @@ export const BoardProvider = ({ children }) => {
         if (currentBoardId) {
             const boardTasks = getTasksFromLocalStorage(currentBoardId);
             setTasks(boardTasks);
-            console.log(currentBoardId);
         }
     }, [currentBoardId]);
 

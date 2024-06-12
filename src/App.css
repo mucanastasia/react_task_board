@@ -28,8 +28,7 @@ button {
   font-family: Inter;
 }
 
-
-.page {
+.content {
   flex-grow: 1;
-  transition: margin 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }

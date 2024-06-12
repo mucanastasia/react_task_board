@@ -13,7 +13,6 @@ export default function AddBoardModalContent({ setShow, name, setName }) {
     const handleClick = () => {
         setLoading(true);
         const newBoard = addBoard(name);
-        console.log(newBoard.path);
         setTimeout(() => {
             navigate(newBoard.path);
             setName('');

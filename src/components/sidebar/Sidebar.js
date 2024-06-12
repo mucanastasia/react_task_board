@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useBoard } from '../../contexts/BoardContext';
-import { getSidebarStatusFromLocalStorage, setSidebarStatusInLocalStorage } from '../../services/localStorageService';
+import { useSidebar } from '../../contexts/SidebarContext';
 import { NavLink } from 'react-router-dom';
 import BoardsList from './BoardsList';
 import Modal from '../modal/Modal';
 import AddBoardModalContent from '../modal/AddBoardModalContent';
 import './sidebar.css';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Sidebar() {
     const { boards } = useBoard();
-    const [isOpen, setIsOpen] = useState(getSidebarStatusFromLocalStorage);
+    const { isOpen, setIsOpen } = useSidebar();
     const [name, setName] = useState('');
     const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        setSidebarStatusInLocalStorage(isOpen);
-        //TODO: sidebarContext >> use isOpen to shrink a page
-        // isOpen ? document.body.childNodes[3].childNodes[1].style.margin = '0 0 0 240px' : document.body.childNodes[3].childNodes[1].style.margin = '0 0 0 64px';
-        isOpen ? document.body.style.margin = '0 0 0 240px' : document.body.style.margin = '0 0 0 64px';
-    }, [isOpen]);
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
@@ -35,7 +28,12 @@ export default function Sidebar() {
     };
 
     return (
-        <nav className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <motion.nav className={`sidebar ${isOpen ? 'open' : ''}`}
+            key='sidebar'
+            initial={false}
+            animate={{ width: isOpen ? 240 : 64 }}
+            transition={{ type: "linear", duration: 0.25 }}
+        >
             <ul>
                 <div className='upperNav'>
                     <NavLink to='/' exact='true' activeclassname='active' >
@@ -77,6 +75,6 @@ export default function Sidebar() {
                     </Modal>
                 }
             </AnimatePresence>
-        </nav>
+        </motion.nav>
     );
 };

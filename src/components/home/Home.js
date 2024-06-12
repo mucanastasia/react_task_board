@@ -1,10 +1,11 @@
 import React from 'react';
+import PageTransition from '../pageTransition/PageTransition';
 import './home.css';
 
 export default function Home() {
 
     return (
-        <div className='wave-header'>
+        <PageTransition className='wave-header' keyProp='home'>
             <div className='inner-header flex'>
                 <h2 className='textContainer'>Welcome to the Task Board Application</h2>
                 <h3 className='textCopyright'>© 2024 <a href='https://github.com/mucanastasia'>mucanastasia</a></h3>
@@ -30,6 +31,6 @@ export default function Home() {
                     </g>
                 </svg>
             </div>
-        </div>
+        </PageTransition>
     );
 };
