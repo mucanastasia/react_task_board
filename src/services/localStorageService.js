@@ -16,14 +16,14 @@ export const setBoardsInLocalStorage = (updatedBoards) => {
 };
 
 export const deleteBoardFromLocalStorage = (boardId) => {
-    localStorage.removeItem(boardId);
+    localStorage.removeItem(`board_${boardId}`);
 };
 
 // Tasks methods
 
 export const getTasksFromLocalStorage = (boardId) => {
     try {
-        const storedTasks = JSON.parse(localStorage.getItem(boardId) || '[]');
+        const storedTasks = JSON.parse(localStorage.getItem(`board_${boardId}`) || '[]');
         return storedTasks;
     } catch (error) {
         console.error('Error parsing stored tasks:', error);
@@ -33,7 +33,7 @@ export const getTasksFromLocalStorage = (boardId) => {
 
 export const setTasksInLocalStorage = (boardId, updatedTasks) => {
     const filteredUpdatedTasks = updatedTasks.filter((task) => (task.name?.trim() || '').length > 0 && (task.description?.trim() || '').length > 0);
-    localStorage.setItem(boardId, JSON.stringify(filteredUpdatedTasks));
+    localStorage.setItem(`board_${boardId}`, JSON.stringify(filteredUpdatedTasks));
 };
 
 // Theme methods

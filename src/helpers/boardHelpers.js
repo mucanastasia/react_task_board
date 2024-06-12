@@ -8,11 +8,11 @@ export default function boardHelpers(boards, setBoards) {
     };
 
     const createBoard = (boardName) => {
-        const newBoardId = `board_${Date.now()}`;
+        const newBoardId = Date.now();
         const newBoard = {
             id: newBoardId,
             name: boardName?.length > 0 ? boardName : 'Untitled board',
-            path: `/${newBoardId}`,
+            path: `/boards/${newBoardId}`,
             isEditing: false,
         };
         return newBoard;
