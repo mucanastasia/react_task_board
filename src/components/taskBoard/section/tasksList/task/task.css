@@ -7,10 +7,11 @@
     min-height: 94px;
     z-index: 1;
     opacity: 1;
-    transition: 0.2s ease;
+    /* transition: 0.2s ease; */
     border: 1px solid transparent;
     cursor: text;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    /* transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); */
+    background: #ffffff;
 }
 
 .task.light {
@@ -50,7 +51,12 @@
 }
 
 .taskMoving {
-    opacity: 0.4;
+    opacity: 0.4 !important;
     border: 1px dashed #e4cbfa;
-    transition: ease 0.2s;
+    /* transition: ease 0.2s; */
+}
+
+.task.dropped {
+    background-color: #FFD700;
+    /* Gold background color for dropped state */
 }

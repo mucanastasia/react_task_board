@@ -6,7 +6,8 @@
     max-width: 650px;
     min-width: 380px;
     min-height: 126px;
-    transition: 0.4s ease;
+    /* transition: 0.4s ease; */
+    /* transition: all 0.5s ease-in-out; */
 }
 
 .container_toDo.light {
@@ -44,14 +45,14 @@
     height: 34px;
     border: 0;
     border-radius: 8px;
-    transition: 0.3s ease;
+    /* transition: 0.3s ease; */
     margin-bottom: 16px;
     margin-top: 2px;
 }
 
 .btnEssential:hover {
     cursor: pointer;
-    transition: 0.3s ease;
+    /* transition: 0.3s ease; */
 }
 
 .btnEssential.light {

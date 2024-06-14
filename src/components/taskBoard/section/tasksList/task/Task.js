@@ -7,6 +7,7 @@ import taskHelpers from '../../../../../helpers/taskHelpers';
 import TaskContent from './TaskContent';
 import DropPointer from '../../../DropPointer';
 import './task.css';
+import { motion } from 'framer-motion';
 
 export default function Task() {
     const [showPointer, setShowPointer] = useState({ top: false, bottom: false });
@@ -17,16 +18,20 @@ export default function Task() {
     const { theme } = useTheme();
 
     const handleDragStart = (e) => {
-        setTimeout(() => {
-            e.target.classList.add('grabbing', 'taskMoving');
-        }, 50);
-        e.dataTransfer.setData('text/plain', task.id.toString());
-        createDragImage(e, theme);
+        if (e.dataTransfer) {
+            setTimeout(() => {
+                e.target.classList.add('grabbing', 'taskMoving');
+            }, 50);
+            e.dataTransfer.setData('text/plain', task.id.toString());
+            createDragImage(e, theme);
+        }
     };
 
     const handleDragEnd = (e) => {
         e.target.classList.remove('grabbing', 'taskMoving');
-        e.dataTransfer.clearData();
+        if (e.dataTransfer) {
+            e.dataTransfer.clearData();
+        }
     };
 
     const handleDragOver = (e) => {
@@ -55,7 +60,19 @@ export default function Task() {
     return (
         <>
             <DropPointer show={showPointer.top} data-testid='drop-pointer-top' />
-            <div data-testid='task' className={`task ${theme}`}
+            <motion.div
+                key={`${currentBoardId}_${task.id}`}
+                layout
+                initial={{ opacity: 0.4 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                    opacity: { duration: 0.2, ease: 'linear' },
+                    layout: { duration: 0.4 },
+                }}
+
+                data-testid='task'
+                className={`task ${theme}`}
                 draggable={!task.isEditingName && !task.isEditingDescription}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
@@ -65,7 +82,8 @@ export default function Task() {
 
                 <TaskContent />
 
-            </div>
+
+            </motion.div>
             <DropPointer show={showPointer.bottom} data-testid='drop-pointer-bottom' />
         </>
     );

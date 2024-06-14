@@ -4,6 +4,7 @@ import { useSection } from '../../../../contexts/SectionContext.js';
 import { CurrentTaskProvider } from '../../../../contexts/CurrentTaskContext.js';
 import taskHelpers from '../../../../helpers/taskHelpers.js';
 import Task from './task/Task.js';
+import { AnimatePresence } from 'framer-motion';
 
 export default function TasksList() {
     const { tasks, setTasks, currentBoardId } = useBoard();
@@ -13,9 +14,9 @@ export default function TasksList() {
     const renderList = (sectionId) => {
         const list = getSectionTasks(sectionId)
             .map((task) => (
-                <CurrentTaskProvider key={task.id} task={task}>
-                    <Task />
-                </CurrentTaskProvider>
+                <CurrentTaskProvider key={`${currentBoardId}_${task.id}`} task={task}>
+                    <Task key={`${currentBoardId}_${task.id}`} />
+                </CurrentTaskProvider >
             ));
         return list;
     };
@@ -23,7 +24,9 @@ export default function TasksList() {
     return (
 
         <div data-testid='tasks-list'>
-            {renderList(sectionId)}
+            <AnimatePresence key={`${currentBoardId}_${sectionId}`}>
+                {renderList(sectionId)}
+            </AnimatePresence>
         </div>
 
     );

@@ -17,9 +17,9 @@ export default function PageTransition({ children, className, keyProp }) {
     <motion.div
       className={className}
       key={keyProp}
-      initial="initial"
-      animate="animate"
-      exit="exit"
+      initial='initial'
+      animate='animate'
+      exit='exit'
       variants={pageVariants}
       transition={pageTransition}
     >
