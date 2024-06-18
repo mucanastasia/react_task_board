@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useBoard } from "../../contexts/BoardContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import { useNavigate } from 'react-router-dom';
 import boardHelpers from '../../helpers/boardHelpers';
 import './modalContent.css';
@@ -9,6 +10,7 @@ export default function AddBoardModalContent({ setShow, name, setName }) {
     const navigate = useNavigate();
     const { boards, setBoards } = useBoard();
     const { addBoard } = boardHelpers(boards, setBoards);
+    const { theme } = useTheme();
 
     const handleClick = () => {
         setLoading(true);
@@ -27,8 +29,7 @@ export default function AddBoardModalContent({ setShow, name, setName }) {
 
     return (
         <>
-            <input className='boardName light'
-                // className={`boardName ${theme}`}
+            <input className={`boardName ${theme}`}
                 type='text'
                 defaultValue={name}
                 onChange={handleChange}
