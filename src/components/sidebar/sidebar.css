@@ -79,7 +79,6 @@ a.active>li {
 
 .sidebar ul li .tooltip {
     position: absolute;
-    background-color: #313443;
     padding: 8px 8px;
     border-radius: 6px;
     left: 64px;
@@ -89,6 +88,16 @@ a.active>li {
     visibility: hidden;
     z-index: 1;
     white-space: nowrap;
+}
+
+.sidebar ul li .tooltip.light {
+    color: #ffffff;
+    background-color: #313443;
+}
+
+.sidebar ul li .tooltip.dark {
+    color: #000000;
+    background-color: #e1e1e1;
 }
 
 .sidebar ul li:hover .tooltip {

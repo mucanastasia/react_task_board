@@ -13,8 +13,8 @@ header.light {
 }
 
 header.dark {
-    background-color: #161a1d;
-    border-bottom: 1px solid #2d2d2f;
+    background-color: #1C2022;
+    border-bottom: 1px solid #38383b;
 }
 
 h1 {
@@ -45,7 +45,7 @@ h1.dark {
 }
 
 span.doubleSlash.dark::before {
-    color: #8A64F3;
+    color: #6938EF;
 }
 
 .doubleSlash {

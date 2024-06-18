@@ -43,7 +43,7 @@ export default function BoardName() {
                 placeholder='Name your task board'
                 autoFocus />}
 
-            {!board.isEditing && <button className={`btnEditBoardName ${theme}`} onClick={handleClick}><span className='tooltip'>Edit board name</span></button>}
+            {!board.isEditing && <button className={`btnEditBoardName ${theme}`} onClick={handleClick}><span className={`tooltip ${theme}`}>Edit board name</span></button>}
         </div>
     );
 }

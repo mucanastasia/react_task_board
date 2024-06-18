@@ -3,9 +3,11 @@ import Modal from '../modal/Modal';
 import DeleteBoardModalContent from '../modal/DeleteBoardModal';
 import DeveloperToolsTaskBoard from '../taskBoard/DeveloperToolsTaskBoard';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from '../../contexts/ThemeContext';
 import './breadcrumbMenu.css';
 
-export default function BreadcrumbMenu({ board }) {
+export default function BreadcrumbMenu() {
+    const { theme } = useTheme();
     const [showOptions, setShowOptions] = useState(false);
     const optionsRef = useRef(null);
 
@@ -43,21 +45,20 @@ export default function BreadcrumbMenu({ board }) {
 
     return (
         <div className='breadcrumb' onClick={handleToggleOptions} ref={optionsRef}>
-            <span>...</span>
+            <span className={`${theme}`}>...</span>
             <AnimatePresence>
                 {showOptions &&
                     (<motion.div
-                        className='breadcrumb-options'
+                        className={`breadcrumb-options ${theme}`}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.25 }}
                     >
                         <DeveloperToolsTaskBoard />
-                        <div className='breadcrumb-option' onClick={handleOpenModal} >Delete board</div>
+                        <div className={`breadcrumb-option ${theme}`} onClick={handleOpenModal} >Delete board</div>
                     </motion.div>)}
             </AnimatePresence>
-
 
             <AnimatePresence>
                 {showModal && (

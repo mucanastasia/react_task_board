@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function BoardsList({ isOpen, boards }) {
+    const { theme } = useTheme();
 
     const renderBoardsList = () => {
         const boardsList = boards.map((board, index) => (
@@ -15,7 +17,7 @@ export default function BoardsList({ isOpen, boards }) {
                 >
                     <span className='icon icon_board'></span>
                     <span className='span_id'>{index + 1}</span>
-                    {!isOpen && <span className='tooltip'>{board.name}</span>}
+                    {!isOpen && <span className={`tooltip ${theme}`}>{board.name}</span>}
                     <span className={`text ${isOpen ? 'visible' : ''}`}>{board.name}</span>
                 </motion.li>
             </NavLink>

@@ -7,10 +7,8 @@
     min-height: 94px;
     z-index: 1;
     opacity: 1;
-    /* transition: 0.2s ease; */
     border: 1px solid transparent;
     cursor: text;
-    /* transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); */
     background: #ffffff;
 }
 
@@ -18,8 +16,16 @@
     background: #ffffff;
 }
 
-.task.dark {
-    background: rgba(176, 255, 250, 0.08);
+.container_toDo.dark .task {
+    background-color: #1B2121;
+}
+
+.container_inProgress.dark .task {
+    background-color: #0B2530;
+}
+
+.container_done.dark .task {
+    background-color: #0C2C23;
 }
 
 .task:first-child {
@@ -53,10 +59,4 @@
 .taskMoving {
     opacity: 0.4 !important;
     border: 1px dashed #e4cbfa;
-    /* transition: ease 0.2s; */
-}
-
-.task.dropped {
-    background-color: #FFD700;
-    /* Gold background color for dropped state */
 }
