@@ -1,11 +1,11 @@
-import { updateLocalStorage } from "../../services/localStorageService";
+import { setTasksInLocalStorage } from "../../services/localStorageService";
 import taskHelpers from "../taskHelpers";
 
 // Mock the updateLocalStorage function
 jest.mock('../../services/localStorageService');
 
 describe('taskHelpers', () => {
-    let tasks, setTasks, helpers;
+    let tasks, setTasks, helpers, boardId;
 
     beforeEach(() => {
         tasks = [
@@ -14,7 +14,8 @@ describe('taskHelpers', () => {
             { id: 3, sortId: 3000000, status: 'done' }
         ];
         setTasks = jest.fn();
-        helpers = taskHelpers(tasks, setTasks);
+        boardId = 1234567890;
+        helpers = taskHelpers(tasks, setTasks, boardId);
     });
 
     test('1 - getSectionTasks returns tasks for a section sorted by sortId', () => {
@@ -27,11 +28,11 @@ describe('taskHelpers', () => {
         expect(result).toBe(2000000);
     });
 
-    test('3 - saveTasks calls setTasks and updateLocalStorage', () => {
+    test('3 - saveTasks calls setTasks and setTasksInLocalStorage', () => {
         const newTasks = [...tasks, { id: 4, sortId: 2000000, status: 'toDo' }];
         helpers.saveTasks(newTasks);
         expect(setTasks).toHaveBeenCalledWith(newTasks);
-        expect(updateLocalStorage).toHaveBeenCalledWith(newTasks);
+        expect(setTasksInLocalStorage).toHaveBeenCalledWith(boardId, newTasks);
     });
 
     test('4 - createTask creates a new task with incremented id and sortId', () => {
