@@ -26,6 +26,7 @@ export default function App() {
         <motion.div
           key='content-page'
           className='content'
+          data-testid='content'
           initial={false}
           animate={{ marginLeft: isOpen ? 240 : 64 }}
           transition={{ type: 'linear', duration: 0.25 }}

@@ -1,16 +1,16 @@
 import {
+    getBoardsFromLocalStorage,
+    setBoardsInLocalStorage,
+    deleteBoardFromLocalStorage,
     getTasksFromLocalStorage,
-    updateLocalStorage,
-    getBoardNameFromLocalStorage,
-    setBoardNameInLocalStorage,
+    setTasksInLocalStorage,
     getThemeFromLocalStorage,
-    setThemeInLocalStorage
-} from '../localStorageService';
+    setThemeInLocalStorage,
+    getSidebarStatusFromLocalStorage,
+    setSidebarStatusInLocalStorage,
+} from '../../services/localStorageService';
 
 describe('localStorageService', () => {
-    const key = 'storedTasks';
-    const boardNameKey = 'boardName';
-    const themeKey = 'theme';
     let consoleErrorMock;
 
     beforeEach(() => {
@@ -22,59 +22,66 @@ describe('localStorageService', () => {
         consoleErrorMock.mockRestore();
     });
 
+    // Board methods tests
+    test('getBoardsFromLocalStorage returns boards from localStorage', () => {
+        const boards = [{ id: 1, name: 'Board 1', path: '/boards/1', isEditing: false }];
+        localStorage.setItem('storedBoardsName', JSON.stringify(boards));
+        const result = getBoardsFromLocalStorage();
+        expect(result).toEqual(boards);
+    });
+
+    test('getBoardsFromLocalStorage returns an empty array if there is an error', () => {
+        localStorage.setItem('storedBoardsName', 'invalid JSON');
+        const result = getBoardsFromLocalStorage();
+        expect(result).toEqual([]);
+    });
+
+    test('setBoardsInLocalStorage sets valid boards in localStorage', () => {
+        const boards = [
+            { id: 1, name: 'Board 1', path: '/boards/1', isEditing: false },
+            { id: 2, name: '', path: '/boards/2', isEditing: false }
+        ];
+        setBoardsInLocalStorage(boards);
+        const storedBoards = JSON.parse(localStorage.getItem('storedBoardsName'));
+        expect(storedBoards).toEqual([{ id: 1, name: 'Board 1', path: '/boards/1', isEditing: false }]);
+    });
+
+    test('deleteBoardFromLocalStorage removes a board from localStorage', () => {
+        const boardId = 1;
+        localStorage.setItem(`board_${boardId}`, JSON.stringify({ id: boardId }));
+        deleteBoardFromLocalStorage(boardId);
+        const storedBoard = localStorage.getItem(`board_${boardId}`);
+        expect(storedBoard).toBeNull();
+    });
+
+    // Tasks methods tests
     test('getTasksFromLocalStorage returns tasks from localStorage', () => {
         const tasks = [{ id: 1, name: 'Task 1', description: 'Description 1' }];
-        localStorage.setItem(key, JSON.stringify(tasks));
-        const result = getTasksFromLocalStorage();
+        localStorage.setItem('board_1', JSON.stringify(tasks));
+        const result = getTasksFromLocalStorage('1');
         expect(result).toEqual(tasks);
     });
 
     test('getTasksFromLocalStorage returns an empty array if there is an error', () => {
-        localStorage.setItem(key, 'invalid JSON');
-        const result = getTasksFromLocalStorage();
+        localStorage.setItem('board_1', 'invalid JSON');
+        const result = getTasksFromLocalStorage('1');
         expect(result).toEqual([]);
     });
 
-    test('updateLocalStorage updates localStorage with valid tasks', () => {
+    test('setTasksInLocalStorage sets valid tasks in localStorage', () => {
         const tasks = [
             { id: 1, name: 'Task 1', description: 'Description 1' },
             { id: 2, name: '', description: 'Description 2' },
             { id: 3, name: 'Task 3', description: '' }
         ];
-        updateLocalStorage(tasks);
-        const storedTasks = JSON.parse(localStorage.getItem(key));
+        setTasksInLocalStorage('1', tasks);
+        const storedTasks = JSON.parse(localStorage.getItem('board_1'));
         expect(storedTasks).toEqual([{ id: 1, name: 'Task 1', description: 'Description 1' }]);
     });
 
-    test('getBoardNameFromLocalStorage returns the board name from localStorage', () => {
-        const boardName = { name: 'My Board', isEditing: false };
-        localStorage.setItem(boardNameKey, JSON.stringify(boardName));
-        const result = getBoardNameFromLocalStorage();
-        expect(result).toEqual(boardName);
-    });
-
-    test('getBoardNameFromLocalStorage returns a default board name if there is an error', () => {
-        localStorage.setItem(boardNameKey, 'invalid JSON');
-        const result = getBoardNameFromLocalStorage();
-        expect(result).toEqual({ name: 'Untitled task board', isEditing: false });
-    });
-
-    test('setBoardNameInLocalStorage sets the board name in localStorage if not editing', () => {
-        const boardName = { name: 'My Board', isEditing: false };
-        setBoardNameInLocalStorage(boardName);
-        const storedBoardName = JSON.parse(localStorage.getItem(boardNameKey));
-        expect(storedBoardName).toEqual(boardName);
-    });
-
-    test('setBoardNameInLocalStorage does not set the board name in localStorage if editing', () => {
-        const boardName = { name: 'My Board', isEditing: true };
-        setBoardNameInLocalStorage(boardName);
-        const storedBoardName = localStorage.getItem(boardNameKey);
-        expect(storedBoardName).toBeNull();
-    });
-
+    // Theme methods tests
     test('getThemeFromLocalStorage returns the theme from localStorage', () => {
-        localStorage.setItem(themeKey, 'dark');
+        localStorage.setItem('theme', 'dark');
         const result = getThemeFromLocalStorage();
         expect(result).toBe('dark');
     });
@@ -86,7 +93,26 @@ describe('localStorageService', () => {
 
     test('setThemeInLocalStorage sets the theme in localStorage', () => {
         setThemeInLocalStorage('dark');
-        const storedTheme = localStorage.getItem(themeKey);
+        const storedTheme = localStorage.getItem('theme');
         expect(storedTheme).toBe('dark');
+    });
+
+    // Sidebar methods tests
+    test('getSidebarStatusFromLocalStorage returns the sidebar status from localStorage', () => {
+        localStorage.setItem('isSidebarOpen', JSON.stringify(true));
+        const result = getSidebarStatusFromLocalStorage();
+        expect(result).toBe(true);
+    });
+
+    test('getSidebarStatusFromLocalStorage returns false if there is an error', () => {
+        localStorage.setItem('isSidebarOpen', 'invalid JSON');
+        const result = getSidebarStatusFromLocalStorage();
+        expect(result).toBe(false);
+    });
+
+    test('setSidebarStatusInLocalStorage sets the sidebar status in localStorage', () => {
+        setSidebarStatusInLocalStorage(true);
+        const storedStatus = JSON.parse(localStorage.getItem('isSidebarOpen'));
+        expect(storedStatus).toBe(true);
     });
 });
