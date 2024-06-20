@@ -3,14 +3,140 @@ h2 {
     font-weight: 300;
     letter-spacing: 1px;
     font-size: 48px;
-    margin: 30px 40px 40px 40px;
+    margin: 160px 40px 40px 40px;
+    transition: all 1.2s ease;
 }
 
 h3 {
-    margin: 0 0 40px 0;
+    margin: 0 40px;
     font-family: Inter;
     font-weight: 300;
     font-size: 18px;
+    transition: all 1s ease;
+}
+
+/* New CSS for animations */
+.shrink-and-move-up {
+    font-size: 38px;
+    margin-top: -30px;
+    margin-bottom: 0;
+}
+
+.move-down {
+    margin: 10px;
+    font-size: 16px;
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    opacity: 0;
+    filter: blur(2px);
+    animation: appear 1s forwards;
+    animation-delay: 4.5s;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        filter: blur(2px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.newBoardSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 358px;
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.newBoardSection input.boardName.light {
+    color: #ffffff;
+}
+
+.newBoardSection input.boardName.light::placeholder {
+    color: #ead7ff;
+}
+
+.newBoardSection>button {
+    color: #ffffff;
+    background-color: rgb(105, 56, 239, 0.6);
+    width: 100%;
+    line-height: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+
+.newBoardSection>button:hover {
+    background-color: rgb(89, 37, 220, 0.6);
+}
+
+.newBoardSection>button:disabled {
+    background-color: rgb(255, 255, 255, 0.4);
+    cursor: not-allowed;
+}
+
+.navigation .boardsList {
+    display: flex;
+    flex-direction: column;
+    width: 358px;
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.boardsListItem {
+    display: flex;
+    color: #ffffff;
+    margin: 4px;
+    padding: 10px 20px 10px 10px;
+    background-color: rgb(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.boardsListItem:hover p {
+    color: rgb(105, 56, 239, 0.6);
+}
+
+.boardsListItem>p {
+    text-align: start;
+    margin: 4px 0 0 0;
+    line-height: 100%;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.5s ease;
+}
+
+.boardsListItem>span.span_id {
+    top: 8px;
+    left: -28px;
+}
+
+.navigation a {
+    text-decoration: none;
+}
+
+.navigation h5 {
+    margin: 0 0 14px 0;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: start;
 }
 
 .wave-header h3>a {
