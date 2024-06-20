@@ -36,7 +36,7 @@ export default function AddBoardModalContent({ setShow, name, setName }) {
                 placeholder='Name your task board'
                 autoFocus />
             <button className={`essential ${loading && 'loading'}`} onClick={handleClick} disabled={!name?.trim().length > 0 || loading}>
-                {loading ? <span className='spinner'></span> : 'Confirm'}</button>
+                {loading ? <span className='spinner' data-testid='spinner'></span> : 'Confirm'}</button>
         </>
     );
 };

@@ -15,6 +15,7 @@ export default function Modal({ onClose, modalName, children }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
+                data-testid='modal-overlay'
             >
                 <motion.div
                     className={`modal-content ${theme}`}
@@ -22,6 +23,7 @@ export default function Modal({ onClose, modalName, children }) {
                     initial={{ opacity: 0, y: 0, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
+                    data-testid='modal-content'
                 >
                     <div className='modal-header'>
                         <h1>{modalName}</h1>

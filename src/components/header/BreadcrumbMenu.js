@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Modal from '../modal/Modal';
-import DeleteBoardModalContent from '../modal/DeleteBoardModal';
+import DeleteBoardModalContent from '../modal/DeleteBoardModalContent';
 import DeveloperToolsTaskBoard from '../taskBoard/DeveloperToolsTaskBoard';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
