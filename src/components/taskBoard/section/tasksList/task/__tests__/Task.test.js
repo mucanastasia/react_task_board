@@ -1,13 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Task from '../Task';
-import { useTasks } from '../../../../../../contexts/TasksContext';
+import { useBoard } from '../../../../../../contexts/BoardContext';
 import { useCurrentTask } from '../../../../../../contexts/CurrentTaskContext';
 import { useTheme } from '../../../../../../contexts/ThemeContext';
 import taskHelpers from '../../../../../../helpers/taskHelpers';
 import { createDragImage } from '../../../../../../helpers/dragHelpers';
 
-jest.mock('../../../../../../contexts/TasksContext', () => ({
-    useTasks: jest.fn(),
+jest.mock('../../../../../../contexts/BoardContext', () => ({
+    useBoard: jest.fn(),
 }));
 
 jest.mock('../../../../../../contexts/CurrentTaskContext', () => ({
@@ -46,7 +46,7 @@ describe('Task Component', () => {
     }; // Mock realistic dimensions
 
     beforeEach(() => {
-        useTasks.mockReturnValue({
+        useBoard.mockReturnValue({
             tasks: [],
             setTasks,
         });

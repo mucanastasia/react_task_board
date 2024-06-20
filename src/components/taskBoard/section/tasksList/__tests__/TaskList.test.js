@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import TasksList from '../TasksList';
-import { useTasks } from '../../../../../contexts/TasksContext';
+import { useBoard } from '../../../../../contexts/BoardContext';
 import { useSection } from '../../../../../contexts/SectionContext';
 import taskHelpers from '../../../../../helpers/taskHelpers';
 
-jest.mock('../../../../../contexts/TasksContext', () => ({
-    useTasks: jest.fn(),
+jest.mock('../../../../../contexts/BoardContext', () => ({
+    useBoard: jest.fn(),
 }));
 
 jest.mock('../../../../../contexts/SectionContext', () => ({
@@ -27,7 +27,7 @@ describe('TasksList Component', () => {
     const getSectionTasks = jest.fn();
 
     beforeEach(() => {
-        useTasks.mockReturnValue({
+        useBoard.mockReturnValue({
             tasks: [
                 { id: 1, name: 'Task 1', status: 'toDo' },
                 { id: 2, name: 'Task 2', status: 'inProgress' },

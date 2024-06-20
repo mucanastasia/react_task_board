@@ -1,12 +1,12 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import TaskContent from '../TaskContent';
-import { useTasks } from '../../../../../../contexts/TasksContext';
+import { useBoard } from '../../../../../../contexts/BoardContext';
 import { useCurrentTask } from '../../../../../../contexts/CurrentTaskContext';
 import { useTheme } from '../../../../../../contexts/ThemeContext';
 import taskHelper from '../../../../../../helpers/taskHelpers';
 
-jest.mock('../../../../../../contexts/TasksContext', () => ({
-    useTasks: jest.fn(),
+jest.mock('../../../../../../contexts/BoardContext', () => ({
+    useBoard: jest.fn(),
 }));
 
 jest.mock('../../../../../../contexts/CurrentTaskContext', () => ({
@@ -33,7 +33,7 @@ describe('TaskContent Component', () => {
     const processCheck = jest.fn();
 
     beforeEach(() => {
-        useTasks.mockReturnValue({
+        useBoard.mockReturnValue({
             tasks: [],
             setTasks,
         });

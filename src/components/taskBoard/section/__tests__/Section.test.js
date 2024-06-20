@@ -1,12 +1,12 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Section from '../Section';
-import { useTasks } from '../../../../contexts/TasksContext';
+import { useBoard } from '../../../../contexts/BoardContext';
 import { useSection } from '../../../../contexts/SectionContext';
 import { useTheme } from '../../../../contexts/ThemeContext';
 import taskHelpers from '../../../../helpers/taskHelpers';
 
-jest.mock('../../../../contexts/TasksContext', () => ({
-    useTasks: jest.fn(),
+jest.mock('../../../../contexts/BoardContext', () => ({
+    useBoard: jest.fn(),
 }));
 
 jest.mock('../../../../contexts/SectionContext', () => ({
@@ -32,7 +32,7 @@ describe('Section Component', () => {
     const processDropOnSection = jest.fn();
 
     beforeEach(() => {
-        useTasks.mockReturnValue({
+        useBoard.mockReturnValue({
             tasks: [],
             setTasks,
         });

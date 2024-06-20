@@ -1,12 +1,12 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Input from '../Input';
-import { useTasks } from '../../../../../../contexts/TasksContext';
+import { useBoard } from '../../../../../../contexts/BoardContext';
 import { useCurrentTask } from '../../../../../../contexts/CurrentTaskContext';
 import taskHelper from '../../../../../../helpers/taskHelpers';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('../../../../../../contexts/TasksContext', () => ({
-    useTasks: jest.fn(),
+jest.mock('../../../../../../contexts/BoardContext', () => ({
+    useBoard: jest.fn(),
 }));
 
 jest.mock('../../../../../../contexts/CurrentTaskContext', () => ({
@@ -23,7 +23,7 @@ describe('Input Component', () => {
     const updateTask = jest.fn();
 
     beforeEach(() => {
-        useTasks.mockReturnValue({
+        useBoard.mockReturnValue({
             tasks: [],
             setTasks,
         });

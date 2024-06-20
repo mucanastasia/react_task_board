@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import SectionHeader from '../SectionHeader';
-import { useTasks } from '../../../../contexts/TasksContext';
+import { useBoard } from '../../../../contexts/BoardContext';
 import { useSection } from '../../../../contexts/SectionContext';
 import taskHelpers from '../../../../helpers/taskHelpers';
 
-jest.mock('../../../../contexts/TasksContext', () => ({
-    useTasks: jest.fn(),
+jest.mock('../../../../contexts/BoardContext', () => ({
+    useBoard: jest.fn(),
 }));
 
 jest.mock('../../../../contexts/SectionContext', () => ({
@@ -19,7 +19,7 @@ jest.mock('../../../../helpers/taskHelpers', () => ({
 
 describe('SectionHeader Component', () => {
     beforeEach(() => {
-        useTasks.mockReturnValue({ tasks: [] });
+        useBoard.mockReturnValue({ tasks: [] });
         useSection.mockReturnValue({ sectionId: 'toDo', name: 'To do' });
         taskHelpers.mockImplementation((tasks) => ({
             countTasksInSection: (sectionId) => tasks.filter(task => task.status === sectionId).length,
@@ -38,7 +38,7 @@ describe('SectionHeader Component', () => {
             { id: 2, name: 'Task 2', status: 'toDo' },
             { id: 3, name: 'Task 3', status: 'done' },
         ];
-        useTasks.mockReturnValue({ tasks });
+        useBoard.mockReturnValue({ tasks });
         render(<SectionHeader />);
         expect(screen.getByText('2')).toBeInTheDocument(); // 2 tasks in 'toDo' section
     });
