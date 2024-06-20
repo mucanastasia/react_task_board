@@ -1,40 +1,50 @@
 import { render, screen } from '@testing-library/react';
 import TaskBoard from '../TaskBoard';
-import { useTasks } from '../../../contexts/TasksContext';
+import { useBoard } from '../../../contexts/BoardContext';
 import { getTasksFromLocalStorage } from '../../../services/localStorageService';
+import { CurrentBoardProvider } from '../../../contexts/CurrentBoardContext';
+import { SectionProvider } from '../../../contexts/SectionContext';
 
-jest.mock('../../../contexts/TasksContext', () => ({
-    useTasks: jest.fn(),
+// Mock the useBoard hook
+jest.mock('../../../contexts/BoardContext', () => ({
+    useBoard: jest.fn(),
 }));
 
+// Mock the getTasksFromLocalStorage function
 jest.mock('../../../services/localStorageService', () => ({
     getTasksFromLocalStorage: jest.fn(),
 }));
 
+// Mock child components
+jest.mock('../../header/BoardHeader', () => () => <div>BoardHeader Component</div>);
 jest.mock('../section/Section', () => () => <div>Section Component</div>);
-jest.mock('../DeveloperToolsTaskBoard', () => () => <div>DeveloperToolsTaskBoard Component</div>);
+jest.mock('../../pageTransition/PageTransition', () => ({ children }) => <div>{children}</div>);
 
 describe('TaskBoard Component', () => {
+    const board = { id: 'test-board', name: 'Test Board' };
+
     beforeEach(() => {
-        useTasks.mockReturnValue({
+        useBoard.mockReturnValue({
             setTasks: jest.fn(),
+            setCurrentBoardId: jest.fn(),
         });
         getTasksFromLocalStorage.mockReturnValue([]);
     });
 
     test('Renders TaskBoard without crashing', () => {
-        render(<TaskBoard />);
+        render(<TaskBoard board={board} />);
 
         const sections = screen.getAllByText('Section Component');
         expect(sections).toHaveLength(3);
 
-        const devToolsTaskBoard = screen.getByText('DeveloperToolsTaskBoard Component');
-        expect(devToolsTaskBoard).toBeInTheDocument();
+        const boardHeader = screen.getByText('BoardHeader Component');
+        expect(boardHeader).toBeInTheDocument();
     });
 
     test('Loads tasks from local storage on mount', () => {
         const setTasks = jest.fn();
-        useTasks.mockReturnValue({ setTasks });
+        const setCurrentBoardId = jest.fn();
+        useBoard.mockReturnValue({ setTasks, setCurrentBoardId });
         const storedTasks = [{
             id: 1,
             sortId: '1000000',
@@ -46,8 +56,9 @@ describe('TaskBoard Component', () => {
         }];
         getTasksFromLocalStorage.mockReturnValue(storedTasks);
 
-        render(<TaskBoard />);
+        render(<TaskBoard board={board} />);
 
         expect(setTasks).toHaveBeenCalledWith(storedTasks);
+        expect(setCurrentBoardId).toHaveBeenCalledWith(board.id);
     });
 });
