@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Header from '../Header';
+import BoardHeader from '../BoardHeader';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 // Mock the useTheme hook
@@ -9,49 +9,47 @@ jest.mock('../../../contexts/ThemeContext', () => ({
 
 // Mock child components
 jest.mock('../ToggleTheme', () => () => <div>ToggleTheme Component</div>);
+jest.mock('../BoardName', () => () => <div>BoardName Component</div>);
+jest.mock('../BreadcrumbMenu', () => () => <div>BreadcrumbMenu Component</div>);
 
-describe('Header Component', () => {
-    test('Renders Header without crashing (light mode)', () => {
+describe('BoardHeader Component', () => {
+    test('Renders BoardHeader without crashing (light mode)', () => {
         useTheme.mockReturnValue({ theme: 'light' });
-        const name = 'Test Header';
+        const board = { name: 'Test Board' };
 
-        render(<Header name={name} />);
+        render(<BoardHeader board={board} />);
 
         const header = screen.getByRole('banner');
         expect(header).toBeInTheDocument();
         expect(header).toHaveClass('light');
         expect(header).not.toHaveClass('dark');
 
-        const doubleSlash = screen.getByTestId('double-slash');
-        expect(doubleSlash).toBeInTheDocument();
-        expect(doubleSlash).toHaveClass('light');
+        const boardName = screen.getByText('BoardName Component');
+        expect(boardName).toBeInTheDocument();
 
-        const headerName = screen.getByRole('heading', { name });
-        expect(headerName).toBeInTheDocument();
-        expect(headerName).toHaveClass('light');
+        const breadcrumbMenu = screen.getByText('BreadcrumbMenu Component');
+        expect(breadcrumbMenu).toBeInTheDocument();
 
         const toggleTheme = screen.getByText('ToggleTheme Component');
         expect(toggleTheme).toBeInTheDocument();
     });
 
-    test('Renders Header without crashing (dark mode)', () => {
+    test('Renders BoardHeader without crashing (dark mode)', () => {
         useTheme.mockReturnValue({ theme: 'dark' });
-        const name = 'Test Header';
+        const board = { name: 'Test Board' };
 
-        render(<Header name={name} />);
+        render(<BoardHeader board={board} />);
 
         const header = screen.getByRole('banner');
         expect(header).toBeInTheDocument();
         expect(header).toHaveClass('dark');
         expect(header).not.toHaveClass('light');
 
-        const doubleSlash = screen.getByTestId('double-slash');
-        expect(doubleSlash).toBeInTheDocument();
-        expect(doubleSlash).toHaveClass('dark');
+        const boardName = screen.getByText('BoardName Component');
+        expect(boardName).toBeInTheDocument();
 
-        const headerName = screen.getByRole('heading', { name });
-        expect(headerName).toBeInTheDocument();
-        expect(headerName).toHaveClass('dark');
+        const breadcrumbMenu = screen.getByText('BreadcrumbMenu Component');
+        expect(breadcrumbMenu).toBeInTheDocument();
 
         const toggleTheme = screen.getByText('ToggleTheme Component');
         expect(toggleTheme).toBeInTheDocument();

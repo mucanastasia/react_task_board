@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
 import ToggleTheme from '../ToggleTheme';
 import { useTheme } from '../../../contexts/ThemeContext';
 
@@ -46,10 +45,10 @@ describe('BoardName Component', () => {
         render(<ToggleTheme />);
 
         const toggleInput = screen.getByRole('switch');
-        userEvent.click(toggleInput);
+        fireEvent.click(toggleInput);
         expect(toggleInput).toBeChecked();
 
-        userEvent.click(toggleInput);
+        fireEvent.click(toggleInput);
         expect(toggleInput).not.toBeChecked();
     });
 });
