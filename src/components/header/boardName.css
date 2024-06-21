@@ -64,21 +64,11 @@ input.boardName:focus {
     cursor: pointer;
 }
 
-.btnDeleteBoard.light {
-    background-image: url('/src/assets/icons/light_theme/delete_dark.svg');
-}
-
-.btnDeleteBoard.dark {
-    background-image: url('/src/assets/icons/dark_theme/delete_light.svg');
-}
-
-div.boardName:hover button.btnEditBoardName,
-div.boardName:hover button.btnDeleteBoard {
+div.boardName:hover button.btnEditBoardName {
     opacity: 0.5;
 }
 
-div.boardName:hover button.btnEditBoardName:hover,
-div.boardName:hover button.btnDeleteBoard:hover {
+div.boardName:hover button.btnEditBoardName:hover {
     opacity: 1;
 }
 
@@ -122,4 +112,17 @@ button.btnDeleteBoard:hover .tooltip,
 button.btnEditBoardName:hover .tooltip {
     visibility: visible;
     opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .boardName h1.light,
+    .boardName h1.dark {
+        margin-top: 4px;
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 120px;
+    }
 }
