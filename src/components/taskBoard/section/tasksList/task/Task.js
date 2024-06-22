@@ -62,7 +62,7 @@ export default function Task() {
             <DropPointer show={showPointer.top} data-testid='drop-pointer-top' />
             <motion.div
                 key={`${currentBoardId}_${task.id}`}
-                layout
+                layout={!task.isEditingName && !task.isEditingDescription}
                 initial={{ opacity: 0.4 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

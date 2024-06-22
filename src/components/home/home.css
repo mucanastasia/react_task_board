@@ -257,9 +257,16 @@ h3 {
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 22px;
         margin: 160px 10px 40px 10px;
         font-weight: 400;
+        margin-top: -30px;
+        margin-bottom: 0;
+    }
+
+    h3 {
+        margin: 10px;
+        font-size: 16px;
     }
 
     .shrink-and-move-up {
@@ -282,5 +289,19 @@ h3 {
 
     .newBoardSection input.boardName {
         width: 100%;
+    }
+
+    h2,
+    h3,
+    .shrink-and-move-up,
+    .move-down {
+        transition: none;
+        animation: none;
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    .navigation {
+        animation-delay: 3s;
     }
 }
