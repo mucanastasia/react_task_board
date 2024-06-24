@@ -38,6 +38,8 @@ export default function Statistics() {
         return boardsList;
     };
 
+    //TODO: Divide into components + DARK THEME!!!
+
     return (
         <PageTransition keyProp='stats'>
             <Header name={`Statistics ${headerName}`} />

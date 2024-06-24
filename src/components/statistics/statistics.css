@@ -120,4 +120,8 @@ section.tabs>div.inProgress {
     section.tabs>div {
         width: 100%;
     }
+
+    .boardsNavigation>button {
+        width: 100%;
+    }
 }

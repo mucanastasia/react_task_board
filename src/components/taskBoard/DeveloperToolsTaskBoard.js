@@ -6,7 +6,7 @@ import './developerToolsTaskBoard.css';
 import { useTheme } from '../../contexts/ThemeContext';
 
 export default function DeveloperToolsTaskBoard() {
-    const { tasks, setTasks, boards, setBoards, currentBoardId } = useBoard();
+    const { tasks, setTasks, currentBoardId } = useBoard();
     const { theme } = useTheme();
     const { saveTasks } = taskHelpers(tasks, setTasks, currentBoardId);
 
