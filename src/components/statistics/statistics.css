@@ -31,6 +31,7 @@
     padding: 10px 20px;
     color: #6938EF;
     background-color: #f0f0f0;
+    cursor: pointer;
 }
 
 .boardsNavigation>button.active {
