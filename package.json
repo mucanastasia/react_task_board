@@ -4,7 +4,9 @@
   "homepage": "https://mucanastasia.github.io/react_task_board/#",
   "private": true,
   "dependencies": {
+    "chart.js": "^4.4.3",
     "framer-motion": "^11.2.10",
+    "react-chartjs-2": "^5.2.0",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"

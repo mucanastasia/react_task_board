@@ -72,3 +72,16 @@ span.doubleSlash.dark::before {
         padding: 0 10px;
     }
 }
+
+@media only screen and (max-width: 768px) {
+
+    .headerName h1.light,
+    .headerName h1.dark {
+        margin-top: 4px;
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 180px;
+    }
+}
