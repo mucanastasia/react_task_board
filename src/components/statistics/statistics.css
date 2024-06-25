@@ -29,22 +29,36 @@
 .boardsNavigation>button {
     border-radius: 8px;
     padding: 10px 20px;
-    color: #6938EF;
-    background-color: #f0f0f0;
     cursor: pointer;
 }
 
-.boardsNavigation>button.active {
+.boardsNavigation.light>button {
+    color: #6938EF;
+    background-color: #f0f0f0;
+}
+
+.boardsNavigation.dark>button {
+    color: #A98AFF;
+    background-color: #2F363A;
+}
+
+.boardsNavigation.light>button.active,
+.boardsNavigation.dark>button.active {
     color: #ffffff;
     background-color: #6938EF;
 }
 
-.boardsNavigation>button.active:hover {
+.boardsNavigation.light>button.active:hover,
+.boardsNavigation.dark>button.active:hover {
     background-color: #5925DC;
 }
 
-.boardsNavigation>button:hover {
+.boardsNavigation.light>button:hover {
     background-color: #e9e9e9;
+}
+
+.boardsNavigation.dark>button:hover {
+    background-color: #343B3F;
 }
 
 section.tabs {
@@ -62,20 +76,40 @@ section.tabs>div {
     padding: 12px 24px
 }
 
-section.tabs>div.total {
+section.tabs.light>div.total {
     background-color: #EBE9FE;
 }
 
-section.tabs>div.done {
+section.tabs.light>div.done {
     background-color: #DDF5EB;
 }
 
-section.tabs>div.toDo {
+section.tabs.light>div.toDo {
     background-color: #ECEDF0;
 }
 
-section.tabs>div.inProgress {
+section.tabs.light>div.inProgress {
     background-color: #DFF2FF;
+}
+
+section.tabs.dark>div.total {
+    color: #FFFFFF;
+    background-color: #8B61FF;
+}
+
+section.tabs.dark>div.done {
+    color: #FFFFFF;
+    background-color: #22A06B;
+}
+
+section.tabs.dark>div.toDo {
+    color: #FFFFFF;
+    background-color: #595E61;
+}
+
+section.tabs.dark>div.inProgress {
+    color: #FFFFFF;
+    background-color: #0097FF;
 }
 
 .tabs span {

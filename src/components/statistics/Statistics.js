@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useBoard } from '../../contexts/BoardContext';
 import { getTasksFromLocalStorage } from '../../services/localStorageService';
+import { useTheme } from '../../contexts/ThemeContext';
 import boardHelpers from '../../helpers/boardHelpers';
 import Header from '../header/Header';
 import PageTransition from '../pageTransition/PageTransition';
@@ -9,6 +10,7 @@ import './statistics.css';
 
 export default function Statistics() {
     const { boards } = useBoard();
+    const { theme } = useTheme();
     const [headerName, setHeaderName] = useState('of All boards');
     const [activeBoardId, setActiveBoardId] = useState('all');
     const { countTasksInBoard, countTasksInAllBoards } = boardHelpers(boards);
@@ -45,7 +47,7 @@ export default function Statistics() {
             <Header name={`Statistics ${headerName}`} />
             <div className='container-stats-page'>
                 <div className='container'>
-                    <div className='boardsNavigation'>
+                    <div className={`boardsNavigation ${theme}`}>
                         <button className={activeBoardId === 'all' ? 'active' : ''}
                             onClick={handleClick}>
                             All boards
@@ -53,7 +55,7 @@ export default function Statistics() {
                         {renderBoardsList()}
                     </div>
                     <div className='container-stats'>
-                        <section className='tabs'>
+                        <section className={`tabs ${theme}`}>
                             <div className='total'>
                                 <p>Total tasks</p>
                                 <span>{data['Total']}</span>
@@ -72,7 +74,7 @@ export default function Statistics() {
                             </div>
                         </section>
                         <section className='bar'>
-                            <BarChart dataStats={data} />
+                            <BarChart dataStats={data} theme={theme} />
                         </section>
                     </div>
                 </div>

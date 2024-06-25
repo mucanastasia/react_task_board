@@ -4,25 +4,29 @@ import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Lege
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-export default function BarChart({ dataStats }) {
+export default function BarChart({ dataStats, theme }) {
+    const lightBackgroundColor = [
+        '#EBE9FE',
+        '#ECEDF0',
+        '#DFF2FF',
+        '#DDF5EB'
+    ];
+
+    const darkBackgroundColor = [
+        '#8B61FF',
+        '#595E61',
+        '#0097FF',
+        '#22A06B'
+    ];
+
     const labels = ['Total', 'To do', 'In progress', 'Done'];
     const data = {
         labels: labels,
         datasets: [{
             data: dataStats,
             label: 'Tasks',
-            backgroundColor: [
-                '#EBE9FE',
-                '#ECEDF0',
-                '#DFF2FF',
-                '#DDF5EB'
-            ],
-            hoverBackgroundColor: [
-                '#EBE9FE',
-                '#ECEDF0',
-                '#DFF2FF',
-                '#DDF5EB'
-            ],
+            backgroundColor: theme === 'light' ? lightBackgroundColor : darkBackgroundColor,
+            hoverBackgroundColor: theme === 'light' ? lightBackgroundColor : darkBackgroundColor,
             maxBarThickness: 100,
             skipNull: true,
         }]
@@ -42,9 +46,21 @@ export default function BarChart({ dataStats }) {
         scales: {
             x: {
                 beginAtZero: true,
+                ticks: {
+                    color: theme === 'light' ? '#666666' : '#EDEDED'
+                },
+                grid: {
+                    color: theme === 'light' ? '#DDDDDD' : '#444444'
+                }
             },
             y: {
                 beginAtZero: true,
+                ticks: {
+                    color: theme === 'light' ? '#666666' : '#EDEDED'
+                },
+                grid: {
+                    color: theme === 'light' ? '#DDDDDD' : '#444444'
+                }
             }
         }
     };
