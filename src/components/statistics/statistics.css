@@ -77,19 +77,19 @@ section.tabs>div {
 }
 
 section.tabs.light>div.total {
-    background-color: #EBE9FE;
+    background-color: #C9C4FF;
 }
 
 section.tabs.light>div.done {
-    background-color: #DDF5EB;
+    background-color: #9AF1CD;
 }
 
 section.tabs.light>div.toDo {
-    background-color: #ECEDF0;
+    background-color: #D7DAE2;
 }
 
 section.tabs.light>div.inProgress {
-    background-color: #DFF2FF;
+    background-color: #A9DCFF;
 }
 
 section.tabs.dark>div.total {

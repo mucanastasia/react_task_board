@@ -6,10 +6,10 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 export default function BarChart({ dataStats, theme }) {
     const lightBackgroundColor = [
-        '#EBE9FE',
-        '#ECEDF0',
-        '#DFF2FF',
-        '#DDF5EB'
+        '#C9C4FF',
+        '#D7DAE2',
+        '#A9DCFF',
+        '#9AF1CD'
     ];
 
     const darkBackgroundColor = [
