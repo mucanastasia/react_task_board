@@ -33,7 +33,7 @@ export default function BarChart({ dataStats }) {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: true,
+                display: false,
             },
             tooltip: {
                 enabled: true,

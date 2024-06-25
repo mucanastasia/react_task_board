@@ -84,6 +84,7 @@ section.tabs>div.inProgress {
 
 
 .chart-container {
+    margin-top: 12px;
     width: 800px;
     height: 360px;
 }
