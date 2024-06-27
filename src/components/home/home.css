@@ -23,9 +23,16 @@
     flex-direction: column;
     width: 358px;
     max-width: 358px;
-    background-color: #DDF5EB;
     border-radius: 16px;
     padding: 12px 24px 44px 24px;
+}
+
+.newBoardSection.light {
+    background-color: #DDF5EB;
+}
+
+.newBoardSection.dark {
+    background-color: #00111E;
 }
 
 .newBoardSection>h1 {
@@ -33,9 +40,16 @@
 }
 
 .newBoardSection>div {
-    background-color: #ffffff;
     border-radius: 8px;
     padding: 16px 12px;
+}
+
+.newBoardSection.light>div {
+    background-color: #ffffff;
+}
+
+.newBoardSection.dark>div {
+    background-color: #0B2530;
 }
 
 .navigation>.newBoardSection>div>input.boardName {
@@ -75,19 +89,34 @@
     display: flex;
     flex-direction: column;
     width: 358px;
-    background-color: #EBE9FE;
     border-radius: 16px;
     padding: 12px 24px 44px 24px;
 }
 
+.navigation .boardsList.light {
+    background-color: #EBE9FE;
+}
+
+.navigation .boardsList.dark {
+    background-color: #0E0E0E;
+}
+
 .boardsListItem {
     display: flex;
-    color: #6938ef;
     margin: 4px 0;
     padding: 10px 20px;
-    background-color: rgb(255, 255, 255, 0.8);
     border-radius: 8px;
     transition: background-color 0.35s ease;
+}
+
+.boardsListItem.light {
+    color: #6938EF;
+    background-color: #FFFFFF;
+}
+
+.boardsListItem.dark {
+    color: #A98AFF;
+    background-color: #1B2121;
 }
 
 .boardsList>h1 {
@@ -99,12 +128,20 @@
     line-height: 150%;
 }
 
-.boardsListItem:hover {
-    background-color: #ffffff;
+.boardsListItem.light:hover {
+    background-color: rgb(255, 255, 255, 0.7);
 }
 
-.boardsListItem:hover p {
+.boardsListItem.dark:hover {
+    background-color: #262C2C;
+}
+
+.boardsListItem.light:hover p {
     color: #5925dc;
+}
+
+.boardsListItem.dark:hover p {
+    color: #A98AFF;
 }
 
 .boardsListItem>p {
@@ -125,21 +162,40 @@
 .copyright {
     text-align: center;
     border-radius: 16px;
-    background-color: #DFF2FF;
     padding: 30px;
+}
+
+.copyright.light {
+    background-color: #DFF2FF;
+}
+
+.copyright.dark {
+    background-color: #001A0F;
 }
 
 .copyright a {
     font-size: 16px;
-    color: #6938ef;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: all 0.35s ease;
 }
 
-.copyright a:hover {
-    color: #5925dc;
+.copyright.light a {
+    color: #6938EF;
+}
+
+.copyright.dark a {
+    color: #A98AFF;
+}
+
+.copyright.light a:hover {
+    color: #5925DC;
     border-bottom: 1px solid #7449ec;
+}
+
+.copyright.dark a:hover {
+    color: #A98AFF;
+    border-bottom: 1px solid #A98AFF;
 }
 
 

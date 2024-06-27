@@ -30,7 +30,7 @@ export default function Home() {
     const renderBoardsList = () => {
         const boardsList = boards.map((board, index) => (
             <Link to={board.path} key={board.id}>
-                <div className='boardsListItem'>
+                <div className={`boardsListItem ${theme}`}>
                     <p>{board.name}</p>
                 </div>
             </Link>
@@ -38,7 +38,7 @@ export default function Home() {
         return boardsList;
     };
 
-    //TODO: Divide into components + DARK THEME!!!
+    //TODO: Divide into components
 
     return (
         <>
@@ -59,12 +59,12 @@ export default function Home() {
                                     {loading ? <span className='spinner'></span> : 'Confirm'}</button>
                             </div>
                         </div>
-                        {<div className='boardsList'>
+                        {<div className={`boardsList ${theme}`}>
                             <h1>Your boards</h1>
                             {boards.length > 0 ? renderBoardsList() : <p>It looks like you don't have any boards yet. Start by creating your first board!</p>}
                         </div>}
                     </div>
-                    <div className='copyright'>
+                    <div className={`copyright ${theme}`}>
                         <p>© 2024 <a href='https://github.com/mucanastasia'>mucanastasia</a></p>
                     </div>
                 </div>
