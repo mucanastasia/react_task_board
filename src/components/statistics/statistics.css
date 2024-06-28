@@ -24,9 +24,11 @@
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 6px;
+    max-width: 1330px;
 }
 
 .boardsNavigation>button {
+    font-size: 14px;
     border-radius: 8px;
     padding: 10px 20px;
     cursor: pointer;
